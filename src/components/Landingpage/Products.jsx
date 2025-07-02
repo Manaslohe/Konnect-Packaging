@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 
 const Products = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [selectedProduct, setSelectedProduct] = useState(null);
   const [direction, setDirection] = useState(0);
 
   const productData = [
@@ -19,37 +19,37 @@ const Products = () => {
         id: 2,
         name: 'VCI PE Laminated Paper',
         code: '(K101 PE)',
-        image: '/VCI/VCI Kraft Paper (K101 A).png'
+        image: '/VCI/laminated.png'
       },
       {
         id: 3,
         name: 'VCI 3-Ply Paper',
         code: '(KP 301)',
-        image: '/VCI/VCI Kraft Paper (K101 A).png'
+        image: '/VCI/VCI 3-Ply Paper (KP 301) 1.png'
       },
       {
         id: 4,
         name: 'VCI LDPE Film',
         code: '(K101 VCF)',
-        image: '/VCI/VCI Kraft Paper (K101 A).png'
+        image: '/VCI/VCI LDPE Film (K101 VCF) 1.png'
       },
       {
         id: 5,
         name: 'VCI Strength Fabric',
         code: '(K101 SF)',
-        image: '/VCI/VCI Kraft Paper (K101 A).png'
+        image: '/VCI/VCI PE strength fabric (K101 sf) 2.png'
       },
       {
         id: 6,
         name: 'VCI MET PET Laminated Paper',
         code: '(K101 AMP)',
-        image: '/VCI/VCI Kraft Paper (K101 A).png'
+        image: '/VCI/VCI MET PET Laminated Paper (K101 AMP) 1.png'
       },
       {
         id: 7,
         name: 'VCI 4-Ply Fabric',
         code: '(K104 PF)',
-        image: '/VCI/VCI Kraft Paper (K101 A).png'
+        image: '/VCI/VCI 4-Ply Fabric (K104 PF) 1.png'
       }
     ],
     // Second Slide
@@ -58,37 +58,37 @@ const Products = () => {
         id: 8,
         name: 'VCI Shrink Film',
         code: '(K102 SF)',
-        image: '/VCI/VCI Shrink Film.png'
+        image: '/VCI/VCI Shrink Film (K102 SF) 1.png'
       },
       {
         id: 9,
         name: 'VCI Desiccant',
         code: '(K103 DC)',
-        image: '/VCI/VCI Desiccant.png'
+        image: '/VCI/VCI Desiccant (K103 DC) 1.png'
       },
       {
         id: 10,
         name: 'VCI Masterbatch',
         code: '(K106 MB)',
-        image: '/VCI/VCI Masterbatch.png'
+        image: '/VCI/VCI Masterbatch (K106 MB) 1.png'
       },
       {
         id: 11,
         name: 'VCI Power Stretch Film',
         code: '(K107 PSF)',
-        image: '/VCI/VCI Power Stretch.png'
+        image: '/VCI/VCI Power Stretch Film (K107 PSF) 1.png'
       },
       {
         id: 12,
         name: 'Industrial Wax Paper',
         code: '(IWP101)',
-        image: '/VCI/Industrial Wax Paper.png'
+        image: '/VCI/Industrial Wax Paper1 (IWP101) 1.png'
       },
       {
         id: 13,
         name: 'Alu Barrier Bags',
         code: '(K108 ABB)',
-        image: '/VCI/Alu Barrier Bags.png'
+        image: '/VCI/Alu Barrier Bags (K108 ABB) 1.png'
       }
     ]
   ];
@@ -120,9 +120,7 @@ const Products = () => {
   };
 
   const handleViewClick = (product) => {
-    setSelectedProduct(product);
-    // Add your view functionality here
-    console.log("Viewing product:", product);
+    window.location.href = `/product/${product.id}`;
   };
 
   return (
@@ -136,7 +134,10 @@ const Products = () => {
       <div className="max-w-full mx-auto">
         <div
             className="bg-[#f1d598] rounded-3xl p-1 relative overflow-hidden"
-            style={{ minHeight: '130vh', height: '110vh' }}
+            style={{ 
+              minHeight: window.innerWidth < 768 ? '100vh' : '130vh', 
+              height: window.innerWidth < 768 ? '120vh' : '120vh' 
+            }}
           >          
           {/* Subtitle */}
           <h3 className="text-xl md:text-3xl font-normal text-center text-black mb-4 pt-4 md:mb-16 font-['Krona_One']">
@@ -166,14 +167,21 @@ const Products = () => {
                     {/* Mobile Layout - 2 columns */}
                     <div className="grid grid-cols-2 gap-2 justify-items-center md:hidden">
                       {productData[currentSlide].slice(0, 4).map((product) => (
-                        <div key={product.id} className="rounded-2xl p-2 w-full max-w-[180px] relative group">
+                        <div 
+                          key={product.id} 
+                          className="rounded-2xl p-2 w-full max-w-[180px] relative group cursor-pointer"
+                          onClick={() => handleViewClick(product)}
+                        >
                           {/* View Button with Ring */}
                           <div className="absolute top-1 right-1 z-10">
                             <div className="relative">
                               <div className="absolute -inset-1.5 bg-black rounded-full blur opacity-30 group-hover:opacity-100 transition-opacity duration-300"></div>
                               <button 
-                                onClick={() => handleViewClick(product)}
-                                className="relative bg-black text-white w-10 h-10 rounded-full flex items-center justify-center text-xs font-medium hover:scale-105 transition-transform duration-300"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleViewClick(product);
+                                }}
+                                className="relative bg-black text-white w-10 h-10 rounded-full flex items-center justify-center text-xs font-medium hover:scale-105 transition-transform duration-300 cursor-pointer"
                               >
                                 View
                               </button>
@@ -207,14 +215,21 @@ const Products = () => {
                     {/* Desktop Layout - 4 columns with original size */}
                     <div className="hidden md:grid md:grid-cols-4 md:gap-8 justify-items-center">
                       {productData[currentSlide].slice(0, 4).map((product) => (
-                        <div key={product.id} className="rounded-2xl p-6 w-80 relative group">
+                        <div 
+                          key={product.id} 
+                          className="rounded-2xl p-6 w-80 relative group cursor-pointer"
+                          onClick={() => handleViewClick(product)}
+                        >
                           {/* View Button with Ring */}
                           <div className="absolute top-1 right-1 z-10">
                             <div className="relative">
                               <div className="absolute -inset-1.5 bg-black rounded-full blur opacity-30 group-hover:opacity-100 transition-opacity duration-300"></div>
                               <button 
-                                onClick={() => handleViewClick(product)}
-                                className="relative bg-black text-white w-18 h-18 rounded-full flex items-center justify-center text-base font-medium hover:scale-105 transition-transform duration-300"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleViewClick(product);
+                                }}
+                                className="relative bg-black text-white w-18 h-18 rounded-full flex items-center justify-center text-base font-medium hover:scale-105 transition-transform duration-300 cursor-pointer"
                               >
                                 View
                               </button>
@@ -254,14 +269,21 @@ const Products = () => {
                         {/* Mobile Layout - 2 columns */}
                         <div className="grid grid-cols-2 gap-2 md:hidden">
                           {productData[currentSlide].slice(4, 6).map((product) => (
-                            <div key={product.id} className="rounded-2xl p-2 w-full max-w-[180px] relative group mx-auto">
+                            <div 
+                              key={product.id} 
+                              className="rounded-2xl p-2 w-full max-w-[180px] relative group mx-auto cursor-pointer"
+                              onClick={() => handleViewClick(product)}
+                            >
                               {/* View Button with Ring */}
                               <div className="absolute top-1 right-1 z-10">
                                 <div className="relative">
                                   <div className="absolute -inset-1.5 bg-black rounded-full blur opacity-30 group-hover:opacity-100 transition-opacity duration-300"></div>
                                   <button 
-                                    onClick={() => handleViewClick(product)}
-                                    className="relative bg-black text-white w-10 h-10 rounded-full flex items-center justify-center text-xs font-medium hover:scale-105 transition-transform duration-300"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleViewClick(product);
+                                    }}
+                                    className="relative bg-black text-white w-10 h-10 rounded-full flex items-center justify-center text-xs font-medium hover:scale-105 transition-transform duration-300 cursor-pointer"
                                   >
                                     View
                                   </button>
@@ -296,14 +318,21 @@ const Products = () => {
                         {productData[currentSlide].slice(6, 7).length > 0 && (
                           <div className="flex justify-center mt-2 md:hidden">
                             {productData[currentSlide].slice(6, 7).map((product) => (
-                              <div key={product.id} className="rounded-2xl p-2 w-full max-w-[180px] relative group">
+                              <div 
+                                key={product.id} 
+                                className="rounded-2xl p-2 w-full max-w-[180px] relative group cursor-pointer"
+                                onClick={() => handleViewClick(product)}
+                              >
                                 {/* View Button with Ring */}
                                 <div className="absolute top-1 right-1 z-10">
                                   <div className="relative">
                                     <div className="absolute -inset-1.5 bg-black rounded-full blur opacity-30 group-hover:opacity-100 transition-opacity duration-300"></div>
                                     <button 
-                                      onClick={() => handleViewClick(product)}
-                                      className="relative bg-black text-white w-10 h-10 rounded-full flex items-center justify-center text-xs font-medium hover:scale-105 transition-transform duration-300"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleViewClick(product);
+                                      }}
+                                      className="relative bg-black text-white w-10 h-10 rounded-full flex items-center justify-center text-xs font-medium hover:scale-105 transition-transform duration-300 cursor-pointer"
                                     >
                                       View
                                     </button>
@@ -338,14 +367,21 @@ const Products = () => {
                         {/* Desktop Layout - 3 columns with original size */}
                         <div className="hidden md:grid md:grid-cols-3 md:gap-8">
                           {productData[currentSlide].slice(4, 7).map((product) => (
-                            <div key={product.id} className="rounded-2xl p-6 w-80 relative group">
+                            <div 
+                              key={product.id} 
+                              className="rounded-2xl p-6 w-80 relative group cursor-pointer"
+                              onClick={() => handleViewClick(product)}
+                            >
                               {/* View Button with Ring */}
                               <div className="absolute top-1 right-1 z-10">
                                 <div className="relative">
                                   <div className="absolute -inset-1.5 bg-black rounded-full blur opacity-30 group-hover:opacity-100 transition-opacity duration-300"></div>
                                   <button 
-                                    onClick={() => handleViewClick(product)}
-                                    className="relative bg-black text-white w-18 h-18 rounded-full flex items-center justify-center text-base font-medium hover:scale-105 transition-transform duration-300"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleViewClick(product);
+                                    }}
+                                    className="relative bg-black text-white w-18 h-18 rounded-full flex items-center justify-center text-base font-medium hover:scale-105 transition-transform duration-300 cursor-pointer"
                                   >
                                     View
                                   </button>
@@ -382,14 +418,21 @@ const Products = () => {
                         {/* Mobile Layout */}
                         <div className="grid grid-cols-2 gap-4 md:hidden">
                           {productData[currentSlide].slice(4, 6).map((product) => (
-                            <div key={product.id} className="rounded-2xl p-3 w-full max-w-[160px] relative group mx-auto">
+                            <div 
+                              key={product.id} 
+                              className="rounded-2xl p-3 w-full max-w-[160px] relative group mx-auto cursor-pointer"
+                              onClick={() => handleViewClick(product)}
+                            >
                               {/* View Button with Ring */}
                               <div className="absolute top-2 right-2 z-10">
                                 <div className="relative">
                                   <div className="absolute -inset-1.5 bg-black rounded-full blur opacity-30 group-hover:opacity-100 transition-opacity duration-300"></div>
                                   <button 
-                                    onClick={() => handleViewClick(product)}
-                                    className="relative bg-black text-white w-12 h-12 rounded-full flex items-center justify-center text-xs font-medium hover:scale-105 transition-transform duration-300"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleViewClick(product);
+                                    }}
+                                    className="relative bg-black text-white w-12 h-12 rounded-full flex items-center justify-center text-xs font-medium hover:scale-105 transition-transform duration-300 cursor-pointer"
                                   >
                                     View
                                   </button>
@@ -423,14 +466,21 @@ const Products = () => {
                         {/* Desktop Layout - 2 columns with original size */}
                         <div className="hidden md:grid md:grid-cols-2 md:gap-8">
                           {productData[currentSlide].slice(4, 6).map((product) => (
-                            <div key={product.id} className="rounded-2xl p-6 w-80 relative group">
+                            <div 
+                              key={product.id} 
+                              className="rounded-2xl p-6 w-80 relative group cursor-pointer"
+                              onClick={() => handleViewClick(product)}
+                            >
                               {/* View Button with Ring */}
                               <div className="absolute top-4 right-4 z-10">
                                 <div className="relative">
                                   <div className="absolute -inset-1.5 bg-black rounded-full blur opacity-30 group-hover:opacity-100 transition-opacity duration-300"></div>
                                   <button 
-                                    onClick={() => handleViewClick(product)}
-                                    className="relative bg-black text-white w-16 h-16 rounded-full flex items-center justify-center text-base font-medium hover:scale-105 transition-transform duration-300"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      handleViewClick(product);
+                                    }}
+                                    className="relative bg-black text-white w-16 h-16 rounded-full flex items-center justify-center text-base font-medium hover:scale-105 transition-transform duration-300 cursor-pointer"
                                   >
                                     View
                                   </button>
@@ -470,21 +520,17 @@ const Products = () => {
             {/* Left Arrow */}
             <button 
               onClick={prevSlide}
-              className="absolute -left-3 md:-left-6 -bottom-30 z-10 bg-white rounded-xl p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-['Krona_One']"
+              className="absolute left-2 md:left-4 -bottom-30 z-10 bg-white rounded-xl p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-['Krona_One']"
             >
-              <svg className="w-8 h-8 md:w-12 md:h-12 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
+              <BsChevronLeft className="w-8 h-8 md:w-14 md:h-14 text-gray-600" />
             </button>
             
             {/* Right Arrow */}
             <button 
               onClick={nextSlide}
-              className="absolute -right-3 md:-right-6 -bottom-30 z-10 bg-white rounded-xl p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-['Krona_One']"
+              className="absolute right-2 md:right-4 -bottom-30 z-10 bg-white rounded-xl p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-['Krona_One']"
             >
-              <svg className="w-8 h-8 md:w-12 md:h-12 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              <BsChevronRight className="w-8 h-8 md:w-14 md:h-14 text-gray-600" />
             </button>
           </div>
         </div>
