@@ -107,8 +107,8 @@ const Products = () => {
         <div
             className="bg-[#f1d598] rounded-3xl p-1 relative overflow-hidden"
             style={{ 
-              minHeight: window.innerWidth < 768 ? '100vh' : '130vh', 
-              height: window.innerWidth < 768 ? '120vh' : '120vh' 
+              minHeight: window.innerWidth < 768 ? '130vh' : '130vh', 
+              height: window.innerWidth < 768 ? '140vh' : '120vh' 
             }}
           >          
           {/* Subtitle */}
@@ -117,7 +117,7 @@ const Products = () => {
           </h3>
           
           {/* Navigation and Products Container */}
-          <div className="relative flex items-center h-[650px] md:h-[650px] sm:h-auto">
+          <div className="relative flex items-center h-[750px] md:h-[650px] sm:h-auto pb-4 md:pb-0">
             {/* Products Grid */}
             <div className="w-full relative h-full">
               <AnimatePresence initial={false} custom={direction} mode="popLayout">
@@ -288,7 +288,7 @@ const Products = () => {
                         
                         {/* Last card centered on mobile */}
                         {productData[currentSlide].slice(6, 7).length > 0 && (
-                          <div className="flex justify-center mt-2 md:hidden">
+                          <div className="flex justify-center mt-2 mb-8 md:mb-0 md:hidden">
                             {productData[currentSlide].slice(6, 7).map((product) => (
                               <div 
                                 key={product.id} 
@@ -388,7 +388,7 @@ const Products = () => {
                       // Second slide layout (2 cards centered)
                       <div className="w-full md:max-w-[700px]">
                         {/* Mobile Layout */}
-                        <div className="grid grid-cols-2 gap-4 md:hidden">
+                        <div className="grid grid-cols-2 gap-4 mb-8 md:mb-0 md:hidden">
                           {productData[currentSlide].slice(4, 6).map((product) => (
                             <div 
                               key={product.id} 
