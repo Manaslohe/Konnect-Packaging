@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import '@fontsource/krona-one/400.css';
 
 // Certification data array
@@ -8,66 +8,54 @@ const certifications = [
     id: "zed",
     title: "ZED",
     description: "ZED‑certified enterprises follow India's \"Zero Defect Zero Effect\" standards, delivering defect‑free products while minimizing environmental impact and meeting global quality and sustainability expectations.",
-    svgId: "2026:7",
-    titlePosition: "left-[179px]",
-    titleWidth: "w-[62px]"
   },
   {
     id: "rohs",
     title: "ROHS",
     description: "RoHS-certified products are free from harmful substances like lead and mercury, making them safe and eco-friendly. This certification ensures compliance with global standards, especially in electronics and packaging.",
-    svgId: "2026:8",
-    titlePosition: "left-[163px]",
-    titleWidth: "w-[94px]"
   },
   {
     id: "ce",
     title: "CE",
     description: "CE‑certified products meet the European Union's safety, health, and environmental protection standards, ensuring they are reliable, consumer‑safe, and eligible for sale across the EU single market.",
-    svgId: "2026:9",
-    titlePosition: "left-[189px]",
-    titleWidth: "w-[42px]"
   }
 ];
 
 // Reusable Card component
 const CertificationCard = ({ certification }) => {
-  const { id, title, description, svgId, titlePosition, titleWidth } = certification;
+  const { id, title, description } = certification;
 
   return (
-    <div className="relative max-w-full mx-auto h-[265px] w-[421px] max-md:h-[220px] max-md:w-[350px] max-sm:h-[200px] max-sm:w-[300px]">
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `<svg id="${svgId}" width="100%" height="100%" viewBox="0 0 423 267" fill="none" xmlns="http://www.w3.org/2000/svg"> 
-              <path d="M6.42837 265.748H211.5H416.572L422 260.32V6.42764L416.572 1H305.592H292.591L211.5 1L130.074 1H119.821H6.42837L1 6.42764V260.32L6.42837 265.748Z" fill="url(#paint0_linear_${svgId.replace(":", "_")})" stroke="black"></path> 
-              <defs> 
-                <linearGradient id="paint0_linear_${svgId.replace(":", "_")}" x1="1" y1="265.748" x2="422" y2="1" gradientUnits="userSpaceOnUse"> 
-                  <stop stop-color="#FFD57F"></stop> 
-                  <stop offset="1" stop-color="#F6DFAB"></stop> 
-                </linearGradient> 
-              </defs> 
-            </svg>`
-        }}
-      />
-      <div className="absolute top-11 left-[140px] h-px w-[140px]" />
-      <div className={`absolute top-3.5 text-2xl max-md:text-xl max-sm:text-lg text-black h-[30px] ${titlePosition} ${titleWidth}`}>
+    <div className="relative max-w-full mx-auto h-[280px] w-[450px] max-md:h-[220px] max-md:w-[380px] max-sm:h-[200px] max-sm:w-[320px]">
+      {/* Card background with rounded corners and gradient */}
+      <div className="w-full h-full bg-gradient-to-tr from-[#FFD57F] to-[#F6DFAB] rounded-[20px] border-2 border-black/60"></div>
+      
+      {/* Title */}
+      <div className="absolute top-[30px] left-0 right-0 text-center text-[32px] max-md:text-[24px] max-sm:text-[20px] text-black font-bold">
         {title}
       </div>
+      
+      {/* Horizontal line under title with fade effect */}
       <div 
-        className="absolute h-[1.5px] left-[10%] right-[10%] w-[80%] top-[45px]"
+        className="absolute top-[80px] left-[30px] right-[30px] h-[2px] max-md:top-[65px] max-sm:top-[55px] max-md:left-[20px] max-md:right-[20px]"
         style={{
           background: 'linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0))'
         }}
       ></div>
-      <div className="absolute text-sm max-md:text-xs max-sm:text-[11px] font-normal text-center text-black top-[72px] left-[18px] w-[386px] max-md:w-80 max-md:left-[15px] max-sm:left-[15px] max-sm:w-[270px]">
-        {description}
+      
+      {/* Description text container with fixed height */}
+      <div className="absolute top-[110px] left-[25px] right-[25px] h-[100px] max-md:top-[80px] max-md:h-[90px] max-sm:top-[70px] max-sm:h-[85px] max-md:left-[15px] max-md:right-[15px] flex items-center justify-center">
+        <div className="text-[14px] max-md:text-[11px] max-sm:text-[9px] font-medium text-black text-center leading-[1.3] px-4 overflow-hidden">
+          {description}
+        </div>
       </div>
-      <div className="flex absolute shrink-0 justify-center items-center h-8 left-[155px] top-[212px] w-[110px] max-md:left-[120px] max-sm:top-40 max-sm:left-[95px]">
-        {/* Replaced SVG with PNG image */}
+      
+      {/* Check mark icon at the bottom of the card */}
+      <div className="absolute bottom-[15px] left-1/2 transform -translate-x-1/2 max-md:bottom-[8px] max-sm:bottom-[6px]">
         <img 
           src="/hero/check.png" 
           alt="Certification check" 
-          className="w-[122px] h-[22px] max-md:w-[118px] max-md:h-[18px]" 
+          className="w-[150px] h-[30px] max-md:w-[100px] max-md:h-[20px] max-sm:w-[80px] max-sm:h-[16px]" 
         />
       </div>
     </div>
@@ -79,6 +67,27 @@ function Certi() {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const carouselRef = useRef(null);
+
+  // Create extended array for infinite scroll
+  const extendedCertifications = [
+    ...certifications.slice(-1), // Last item at the beginning
+    ...certifications,
+    ...certifications.slice(0, 1), // First item at the end
+  ];
+
+  const totalCards = certifications.length;
+
+  // Initialize position
+  useEffect(() => {
+    if (carouselRef.current) {
+      const cardWidthPercent = 100 / extendedCertifications.length;
+      const initialOffset = 1 * cardWidthPercent; // Offset by 1 due to prepended item
+      carouselRef.current.style.transition = 'none';
+      carouselRef.current.style.transform = `translateX(-${initialOffset}%)`;
+    }
+  }, []);
 
   const handleTouchStart = (e) => setTouchStart(e.targetTouches[0].clientX);
   const handleTouchMove = (e) => setTouchEnd(e.targetTouches[0].clientX);
@@ -88,15 +97,73 @@ function Certi() {
   };
 
   const goToPrevCard = () => {
-    setCurrentCardIndex((prevIndex) =>
-      prevIndex === 0 ? certifications.length - 1 : prevIndex - 1
-    );
+    if (isAnimating) return;
+    setIsAnimating(true);
+    
+    const newIndex = currentCardIndex - 1;
+    setCurrentCardIndex(newIndex);
+    
+    const cardWidth = 100 / extendedCertifications.length;
+    const translateX = -((1 + newIndex) * cardWidth);
+    
+    if (carouselRef.current) {
+      carouselRef.current.style.transition = 'transform 0.3s ease-in-out';
+      carouselRef.current.style.transform = `translateX(${translateX}%)`;
+    }
+    
+    setTimeout(() => {
+      if (newIndex < 0) {
+        setCurrentCardIndex(totalCards - 1);
+        if (carouselRef.current) {
+          carouselRef.current.style.transition = 'none';
+          carouselRef.current.style.transform = `translateX(-${(1 + totalCards - 1) * cardWidth}%)`;
+        }
+      }
+      setIsAnimating(false);
+    }, 300);
   };
 
   const goToNextCard = () => {
-    setCurrentCardIndex((prevIndex) =>
-      prevIndex === certifications.length - 1 ? 0 : prevIndex + 1
-    );
+    if (isAnimating) return;
+    setIsAnimating(true);
+    
+    const newIndex = currentCardIndex + 1;
+    setCurrentCardIndex(newIndex);
+    
+    const cardWidth = 100 / extendedCertifications.length;
+    const translateX = -((1 + newIndex) * cardWidth);
+    
+    if (carouselRef.current) {
+      carouselRef.current.style.transition = 'transform 0.3s ease-in-out';
+      carouselRef.current.style.transform = `translateX(${translateX}%)`;
+    }
+    
+    setTimeout(() => {
+      if (newIndex >= totalCards) {
+        setCurrentCardIndex(0);
+        if (carouselRef.current) {
+          carouselRef.current.style.transition = 'none';
+          carouselRef.current.style.transform = `translateX(-${1 * cardWidth}%)`;
+        }
+      }
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const goToCard = (index) => {
+    if (isAnimating || index === currentCardIndex) return;
+    setIsAnimating(true);
+    setCurrentCardIndex(index);
+    
+    const cardWidth = 100 / extendedCertifications.length;
+    const translateX = -((1 + index) * cardWidth);
+    
+    if (carouselRef.current) {
+      carouselRef.current.style.transition = 'transform 0.3s ease-in-out';
+      carouselRef.current.style.transform = `translateX(${translateX}%)`;
+    }
+    
+    setTimeout(() => setIsAnimating(false), 300);
   };
 
   return (
@@ -119,8 +186,27 @@ function Certi() {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <div className="flex justify-center">
-          <CertificationCard certification={certifications[currentCardIndex]} />
+        <div className="w-full overflow-hidden py-4">
+          <div
+            ref={carouselRef}
+            className="flex transition-transform duration-300 ease-in-out"
+            style={{
+              width: `${extendedCertifications.length * 100}%`,
+            }}
+          >
+            {extendedCertifications.map((cert, index) => (
+              <div
+                key={`${cert.id}-${index}`}
+                className="flex justify-center"
+                style={{ 
+                  width: `${100 / extendedCertifications.length}%`,
+                  padding: '0 10px',
+                }}
+              >
+                <CertificationCard certification={cert} />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Indicator dots */}
@@ -128,8 +214,9 @@ function Certi() {
           {certifications.map((cert, index) => (
             <div
               key={cert.id}
-              className={`w-2.5 h-2.5 rounded-full ${
-                index === currentCardIndex ? "bg-black" : "bg-gray-300"
+              onClick={() => goToCard(index)}
+              className={`w-2.5 h-2.5 rounded-full cursor-pointer transition-all duration-200 ${
+                index === currentCardIndex ? "bg-black scale-110" : "bg-gray-300 hover:bg-gray-400"
               }`}
             />
           ))}
@@ -140,4 +227,3 @@ function Certi() {
 }
 
 export default Certi;
-  

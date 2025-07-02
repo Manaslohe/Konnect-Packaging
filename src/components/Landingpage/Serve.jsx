@@ -8,48 +8,42 @@ const industries = [
 		title: "Metals & Foundry",
 		description:
 			"Robust packaging solutions engineered to withstand extreme conditions. Supporting the heavy-duty demands of the metals and foundry industry with strength and precision.",
-		image:
-			"https://cdn.builder.io/api/v1/image/assets/TEMP/75c74371d5145683762d57ec82cd7c2b43fb77f2",
+		image: "/hero/Serve/4.png",
 	},
 	{
 		id: 2,
 		title: "Automotive & Engineering",
 		description:
 			"Secure packaging that safeguards delicate automotive and engineering parts. Ensures damage-free shipping and supports efficient logistics.",
-		image:
-			"https://cdn.builder.io/api/v1/image/assets/TEMP/ef2b5edabbb4c451e06a8fee2f842781e42b6026",
+		image: "/hero/Serve/5.png",
 	},
 	{
 		id: 3,
 		title: "Food & Beverage",
 		description:
 			"Hygienic and reliable packaging that maintains freshness and safety. Eco-friendly options to enhance product appeal and shelf life.",
-		image:
-			"https://cdn.builder.io/api/v1/image/assets/TEMP/06d4ca5e48f7c9e6f3f2cbba553bba845327f201",
+		image: "/hero/Serve/6.png",
 	},
 	{
 		id: 4,
 		title: "Agriculture & Tea Export",
 		description:
 			"Packaging that preserves quality and aroma, protecting against moisture and contamination. Compliant with global export standards for freshness.",
-		image:
-			"https://cdn.builder.io/api/v1/image/assets/TEMP/06d4ca5e48f7c9e6f3f2cbba553bba845327f201",
+		image: "/hero/Serve/1.png",
 	},
 	{
 		id: 5,
 		title: "Export & Logistics",
 		description:
 			"Robust packaging optimized for international shipping. Protects products with cushioning and smart design for timely delivery.",
-		image:
-			"https://cdn.builder.io/api/v1/image/assets/TEMP/75c74371d5145683762d57ec82cd7c2b43fb77f2",
+		image: "/hero/Serve/2.png",
 	},
 	{
 		id: 6,
 		title: "Defense & Aerospace",
 		description:
 			"High-strength packaging for sensitive components. Provides protection from impact and environmental hazards, meeting strict industry standards.",
-		image:
-			"https://cdn.builder.io/api/v1/image/assets/TEMP/ef2b5edabbb4c451e06a8fee2f842781e42b6026",
+		image: "/hero/Serve/3.png",
 	},
 ];
 
@@ -73,13 +67,6 @@ function IndustryCard({ title, description, image }) {
 
 				{/* Circular icon positioned at bottom center, partially outside the card */}
 				<div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 h-[88px] w-[88px] max-sm:h-[70px] max-sm:w-[70px]">
-					<div>
-						<div
-							dangerouslySetInnerHTML={{
-								__html: `<svg width="88" height="88" viewBox="0 0 88 88" fill="none" xmlns="http://www.w3.org/2000/svg" class="card-icon-bg" style="width: 88px; height: 88px; flex-shrink: 0; fill: #000; position: absolute; left: 0; top: 0"> <circle cx="44" cy="44" r="44" fill="black"></circle> </svg>`,
-							}}
-						/>
-					</div>
 					<img
 						src={image}
 						alt=""

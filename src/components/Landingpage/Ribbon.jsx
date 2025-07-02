@@ -1,15 +1,29 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react';
 
 const FeaturedClients = () => {
   const [topRibbonOffset, setTopRibbonOffset] = useState(0);
-  const [bottomRibbonOffset, setBottomRibbonOffset] = useState(-4320); // Start with 3 sets before (3 * 6 logos * 240px = -4320px)
+  const [bottomRibbonOffset, setBottomRibbonOffset] = useState(-4320);
   const [isDragging, setIsDragging] = useState({ top: false, bottom: false });
   const [dragStart, setDragStart] = useState({ x: 0, offset: 0 });
   const [isPaused, setIsPaused] = useState({ top: false, bottom: false });
+  const [isMobile, setIsMobile] = useState(false);
   
   const topRibbonRef = useRef(null);
   const bottomRibbonRef = useRef(null);
   const animationRef = useRef(null);
+  const lastFrameTime = useRef(0);
+
+  // Detect mobile viewport
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Sample client logos - you can replace these with actual logo URLs
 const topClients = [
@@ -29,34 +43,51 @@ const topClients = [
     { name: 'SPM', logo: '/ribbon2/6.png' },
   ];
 
-  // Create infinite scrolling effect by duplicating the arrays multiple times
-  const topClientsExtended = [...topClients, ...topClients, ...topClients, ...topClients];
-  const bottomClientsExtended = [...bottomClients, ...bottomClients, ...bottomClients, ...bottomClients];
+  // Memoize client arrays to prevent unnecessary re-renders
+  const topClientsExtended = useMemo(() => 
+    [...topClients, ...topClients, ...topClients, ...topClients]
+  , []);
+  
+  const bottomClientsExtended = useMemo(() => 
+    [...bottomClients, ...bottomClients, ...bottomClients, ...bottomClients]
+  , []);
 
-  // Animation loop with infinite scrolling
-  useEffect(() => {
-    const animate = () => {
-      if (!isPaused.top && !isDragging.top) {
-        setTopRibbonOffset(prev => {
-          const newOffset = prev - 1; // Right to left
-          const singleSetWidth = topClients.length * 240; // 240px per logo (200px width + 40px margin)
-          // Use modulo to create seamless loop
-          return newOffset <= -singleSetWidth ? newOffset + singleSetWidth : newOffset;
-        });
-      }
-      
-      if (!isPaused.bottom && !isDragging.bottom) {
-        setBottomRibbonOffset(prev => {
-          const newOffset = prev + 1; // Left to right (opposite direction)
-          const singleSetWidth = bottomClients.length * 240; // 240px per logo
-          // Use modulo to create seamless loop
-          return newOffset >= singleSetWidth ? newOffset - singleSetWidth : newOffset;
-        });
-      }
-      
-      animationRef.current = requestAnimationFrame(animate);
-    };
+  // Throttled animation function for better mobile performance
+  const animate = useCallback((currentTime) => {
+    // Throttle to 30fps on mobile, 60fps on desktop
+    const targetFPS = isMobile ? 30 : 60;
+    const frameInterval = 1000 / targetFPS;
     
+    if (currentTime - lastFrameTime.current < frameInterval) {
+      animationRef.current = requestAnimationFrame(animate);
+      return;
+    }
+    
+    lastFrameTime.current = currentTime;
+    
+    const speed = isMobile ? 0.5 : 1; // Slower animation on mobile
+    
+    if (!isPaused.top && !isDragging.top) {
+      setTopRibbonOffset(prev => {
+        const newOffset = prev - speed;
+        const singleSetWidth = topClients.length * 240;
+        return newOffset <= -singleSetWidth ? newOffset + singleSetWidth : newOffset;
+      });
+    }
+    
+    if (!isPaused.bottom && !isDragging.bottom) {
+      setBottomRibbonOffset(prev => {
+        const newOffset = prev + speed;
+        const singleSetWidth = bottomClients.length * 240;
+        return newOffset >= singleSetWidth ? newOffset - singleSetWidth : newOffset;
+      });
+    }
+    
+    animationRef.current = requestAnimationFrame(animate);
+  }, [isPaused, isDragging, isMobile]);
+
+  // Animation loop with throttling
+  useEffect(() => {
     animationRef.current = requestAnimationFrame(animate);
     
     return () => {
@@ -64,7 +95,7 @@ const topClients = [
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isPaused, isDragging, topClients.length, bottomClients.length]);
+  }, [animate]);
 
   // Drag handlers
   const handleMouseDown = (e, ribbon) => {
@@ -126,7 +157,7 @@ const topClients = [
     };
   }, [isDragging, dragStart]);
 
-  const ClientLogo = ({ client, index }) => (
+  const ClientLogo = React.memo(({ client, index }) => (
     <div 
       key={`${client.name}-${index}`}
       className="flex-shrink-0 w-48 h-24 md:w-56 md:h-28 mx-5 cursor-pointer group relative"
@@ -136,12 +167,13 @@ const topClients = [
         alt={client.name}
         className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-125"
         draggable={false}
+        loading="lazy"
       />
     </div>
-  );
+  ));
 
   return (
-    <div className="w-full  py-16 px-4 overflow-hidden">
+    <div className="w-full py-16 px-4 overflow-hidden">
       <div className="w-[90%] mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-normal text-gray-800 mb-4" style={{ fontFamily: 'Krona One, sans-serif' }}>
@@ -150,7 +182,7 @@ const topClients = [
         </div>
 
         <div className="space-y-12">
-          {/* Top Ribbon - Left to Right */}
+          {/* Top Ribbon */}
           <div className="relative overflow-hidden">
             {/* Ribbon Background */}
             <div className="w-full h-32 md:h-36 bg-white rounded-2xl shadow-lg relative">
@@ -162,8 +194,9 @@ const topClients = [
               ref={topRibbonRef}
               className="absolute inset-0 flex items-center cursor-grab active:cursor-grabbing select-none px-4"
               style={{ 
-                transform: `translateX(${topRibbonOffset}px)`,
-                transition: isDragging.top ? 'none' : 'transform 0.1s ease-out'
+                transform: `translate3d(${topRibbonOffset}px, 0, 0)`,
+                transition: isDragging.top ? 'none' : 'transform 0.1s ease-out',
+                willChange: 'transform'
               }}
               onMouseDown={(e) => handleMouseDown(e, 'top')}
               onTouchStart={(e) => handleTouchStart(e, 'top')}
@@ -174,7 +207,7 @@ const topClients = [
             </div>
           </div>
 
-          {/* Bottom Ribbon - Right to Left */}
+          {/* Bottom Ribbon */}
           <div className="relative overflow-hidden">
             {/* Ribbon Background */}
             <div className="w-full h-32 md:h-36 bg-white rounded-2xl shadow-lg relative">
@@ -186,8 +219,9 @@ const topClients = [
               ref={bottomRibbonRef}
               className="absolute inset-0 flex items-center cursor-grab active:cursor-grabbing select-none px-4"
               style={{ 
-                transform: `translateX(${bottomRibbonOffset}px)`,
-                transition: isDragging.bottom ? 'none' : 'transform 0.1s ease-out'
+                transform: `translate3d(${bottomRibbonOffset}px, 0, 0)`,
+                transition: isDragging.bottom ? 'none' : 'transform 0.1s ease-out',
+                willChange: 'transform'
               }}
               onMouseDown={(e) => handleMouseDown(e, 'bottom')}
               onTouchStart={(e) => handleTouchStart(e, 'bottom')}
