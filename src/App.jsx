@@ -15,6 +15,7 @@ import Eco from './components/Eco'
 import Study2 from './components/Study2'
 import BackButton from './components/BackButton'
 import ProductDetail from './components/ProductDetail'
+import VisionValues from './components/VisionValues'
 
 // New Routes wrapper to force remounting via location.key
 function AppRoutes() {
@@ -75,6 +76,12 @@ function AppRoutes() {
         <>
           <BackButton />
           <Study2 />
+        </>
+      } />
+      <Route path="/vision-values" element={
+        <>
+          <BackButton />
+          <VisionValues />
         </>
       } />
     </Routes>

@@ -48,8 +48,22 @@ const Header = () => {
     }, 500); // increased from 300 to 500
   };
 
+  const handleGlobalFootprintClick = (e) => {
+    e.preventDefault();
+    setActiveDropdown(null);
+    // Navigate to global footprint page
+    window.location.href = '/global-footprint';
+  };
+
+  const handleMobileGlobalFootprintClick = (e) => {
+    e.preventDefault();
+    closeMobileMenu();
+    // Navigate to global footprint page
+    window.location.href = '/global-footprint';
+  };
+
   return (
-    <header className="w-full px-8 py-6 bg-[#f2d896] relative z-30">
+    <header className="w-full px-8 py-6 bg-[#f2d896] relative z-50">
       <nav className="flex items-center justify-between max-w-full mx-auto">
         {/* Logo */}
         <a className="flex items-center cursor-pointer" href="/">
@@ -73,11 +87,11 @@ const Header = () => {
               <ChevronDown className="w-4 h-4" />
             </button>
             {activeDropdown === 'about' && (
-              <div className="absolute top-full mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+              <div className="absolute top-full mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-[9999]">
                 <a href="/our-story" className={dropdownItemStyle}>Our Story</a>
-                <a href="/vision-mission" className={dropdownItemStyle}>Vision & Values</a>
+                <a href="/vision-values" className={dropdownItemStyle}>Vision & Values</a>
                 <a href="#" className={dropdownItemStyle}>Leadership Team</a>
-                <a href="/global-footprint" className={dropdownItemStyle}>Our Global Footprint</a>
+                <a href="/global-footprint" onClick={handleGlobalFootprintClick} className={`${dropdownItemStyle} cursor-pointer`}>Our Global Footprint</a>
                 <a href="#" className={dropdownItemStyle}>Awards & Certifications</a>
               </div>
             )}
@@ -98,7 +112,7 @@ const Header = () => {
               <ChevronDown className="w-4 h-4" />
             </button>
             {activeDropdown === 'ecosectors' && (
-              <div className="absolute top-full mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+              <div className="absolute top-full mt-2 w-64 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-[9999]">
                 <a href="/industries" className={dropdownItemStyle}>Industries We Serve</a>
                 <a href="/eco-sustainability" className={dropdownItemStyle}>Eco-Friendly Sustainability</a>
                 <a href="/custom-solutions" className={dropdownItemStyle}>Custom Solutions & Innovation</a>
@@ -141,13 +155,13 @@ const Header = () => {
       {/* Mobile Menu Overlay */}
       {(isMobileMenuOpen || isAnimating) && (
         <div 
-          className={`lg:hidden fixed inset-0 bg-black/50 z-40 transition-all duration-500 ease-in-out ${
+          className={`lg:hidden fixed inset-0 bg-black/50 z-[9998] transition-all duration-500 ease-in-out ${
             isMobileMenuOpen && !isAnimating ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`} 
           onClick={closeMobileMenu}
         >
           <div 
-            className={`absolute top-0 right-0 w-80 max-w-[85vw] h-full bg-white shadow-xl transform will-change-transform transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+            className={`absolute top-0 right-0 w-80 max-w-[85vw] h-full bg-white shadow-xl transform will-change-transform transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] z-[9999] ${
               isMobileMenuOpen && !isAnimating ? 'translate-x-0' : 'translate-x-full'
             }`}
             onClick={(e) => e.stopPropagation()}
@@ -186,9 +200,9 @@ const Header = () => {
                   }`}>
                     <div className="ml-4 mt-2 space-y-1 pb-2">
                       <a href="/our-story" onClick={closeMobileMenu} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors">Our Story</a>
-                      <a href="/vision-mission" onClick={closeMobileMenu} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors">Vision & Values</a>
+                      <a href="/vision-values" onClick={closeMobileMenu} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors">Vision & Values</a>
                       <a href="#" onClick={closeMobileMenu} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors">Leadership Team</a>
-                      <a href="/global-footprint" onClick={closeMobileMenu} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors">Our Global Footprint</a>
+                      <a href="/global-footprint" onClick={handleMobileGlobalFootprintClick} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors cursor-pointer">Our Global Footprint</a>
                       <a href="#" onClick={closeMobileMenu} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors">Awards & Certifications</a>
                     </div>
                   </div>
