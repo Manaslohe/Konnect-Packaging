@@ -62,6 +62,20 @@ const Header = () => {
     window.location.href = '/global-footprint';
   };
 
+  const handleAwardsCertificationsClick = (e) => {
+    e.preventDefault();
+    setActiveDropdown(null);
+    // Navigate to awards & certifications page
+    window.location.href = '/awards-certifications';
+  };
+
+  const handleMobileAwardsCertificationsClick = (e) => {
+    e.preventDefault();
+    closeMobileMenu();
+    // Navigate to awards & certifications page
+    window.location.href = '/awards-certifications';
+  };
+
   return (
     <header className="w-full px-8 py-6 bg-[#f2d896] relative z-50">
       <nav className="flex items-center justify-between max-w-full mx-auto">
@@ -92,7 +106,7 @@ const Header = () => {
                 <a href="/vision-values" className={dropdownItemStyle}>Vision & Values</a>
                 <a href="#" className={dropdownItemStyle}>Leadership Team</a>
                 <a href="/global-footprint" onClick={handleGlobalFootprintClick} className={`${dropdownItemStyle} cursor-pointer`}>Our Global Footprint</a>
-                <a href="#" className={dropdownItemStyle}>Awards & Certifications</a>
+                <a href="/awards-certifications" onClick={handleAwardsCertificationsClick} className={`${dropdownItemStyle} cursor-pointer`}>Awards & Certifications</a>
               </div>
             )}
           </div>
@@ -203,7 +217,7 @@ const Header = () => {
                       <a href="/vision-values" onClick={closeMobileMenu} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors">Vision & Values</a>
                       <a href="#" onClick={closeMobileMenu} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors">Leadership Team</a>
                       <a href="/global-footprint" onClick={handleMobileGlobalFootprintClick} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors cursor-pointer">Our Global Footprint</a>
-                      <a href="#" onClick={closeMobileMenu} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors">Awards & Certifications</a>
+                      <a href="/awards-certifications" onClick={handleMobileAwardsCertificationsClick} className="block text-gray-600 py-2 px-4 rounded hover:bg-gray-50 transition-colors cursor-pointer">Awards & Certifications</a>
                     </div>
                   </div>
                 </div>
