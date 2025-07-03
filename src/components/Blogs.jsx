@@ -227,7 +227,7 @@ function Blogs() {
 
 	return (
 		<div className="flex justify-center min-h-screen bg-white py-8">
-			<div className="relative w-[95%] max-w-none overflow-hidden bg-white min-h-[1855px] max-md:p-5 max-md:min-h-[auto] max-sm:max-w-screen-sm">
+			<div className="relative w-[95%] max-w-none overflow-hidden bg-white min-h-[1855px] max-md:p-5 max-md:min-h-[auto] max-sm:max-w-screen-sm max-md:bg-gradient-to-tr max-md:from-[#E9C77F] max-md:to-[#FBE6B7] max-md:rounded-[50px]">
 				{/* Back Button */}
 				<BackButton />
 
