@@ -137,40 +137,55 @@ const ContentSection = ({
 				<div
 					className={`absolute text-7xl text-black h-[88px] ${
 						title === "BLOG" ? "left-[799px]" : "left-[816px]"
-					} top-[${topOffset}px] w-[280px] max-md:left-2/4 max-md:w-auto max-md:text-5xl max-md:text-center max-md:-translate-x-2/4 max-sm:text-4xl max-sm:top-[120px]`}
-					style={{ fontFamily: 'Krona One' }}
+					} w-[280px]`}
+					style={{ 
+						fontFamily: 'Krona One',
+						top: `${topOffset}px`
+					}}
 				>
 					{title}
 				</div>
 				<div
 					className={`absolute text-2xl font-medium text-black h-[37px] ${
 						title === "BLOG" ? "left-[830px]" : "left-[821px]"
-					} top-[${topOffset + 82}px] w-[656px] max-md:left-2/4 max-md:text-xl max-md:text-center max-md:-translate-x-2/4 max-md:w-[90%] max-sm:text-lg max-sm:top-[180px]`}
-					style={{ fontFamily: 'Krona One' }}
+					} w-[656px]`}
+					style={{ 
+						fontFamily: 'Krona One',
+						top: `${topOffset + 82}px`
+					}}
 				>
 					{subtitle}
 				</div>
 				<div
 					className={`absolute text-lg text-black h-[72px] ${
 						title === "BLOG" ? "left-[830px]" : "left-[821px]"
-					} top-[${topOffset + 127}px] w-[569px] max-md:left-2/4 max-md:text-lg max-md:text-center max-md:-translate-x-2/4 max-md:w-[90%] max-sm:text-base max-sm:top-[220px]`}
-					style={{ fontFamily: 'Krona One' }}
+					} w-[569px]`}
+					style={{ 
+						fontFamily: 'Krona One',
+						top: `${topOffset + 127}px`
+					}}
 				>
 					{description}
 				</div>
 				<div
 					className={`absolute ${
 						title === "BLOG" ? "left-[825px]" : "left-[816px]"
-					} top-[${topOffset + 225}px] max-md:left-2/4 max-md:-translate-x-2/4 max-md:w-[90%] max-sm:top-[300px] max-sm:w-[95%]`}
+					}`}
+					style={{ 
+						top: `${topOffset + 225}px`
+					}}
 				>
 					<SearchBar placeholder={searchPlaceholder} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 				</div>
 				<div
 					className={`absolute ${
 						title === "BLOG"
-							? "left-[77px] top-[427px]"
-							: "left-[92px] top-[1281px]"
-					} w-[600px] max-md:relative max-md:left-2/4 max-md:-translate-x-2/4 max-md:top-[100px] max-md:w-[90%] max-sm:top-[380px] max-sm:w-[95%]`}
+							? "left-[77px]"
+							: "left-[92px]"
+					} w-[600px]`}
+					style={{ 
+						top: title === "BLOG" ? "427px" : "1281px"
+					}}
 				>
 					{filteredItems.map((item, index) => (
 						<React.Fragment key={item.id}>
