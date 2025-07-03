@@ -34,25 +34,29 @@ function Stories() {
       id: 'voices',
       icon: VoicesIcon,
       title: 'Voices of Trust',
-      description: 'Our clients share how Konnect Packaging made a difference. Real stories from real industries — built on reliability and results. Their trust fuels our drive to deliver more every day.'
+      description: 'Our clients share how Konnect Packaging made a difference. Real stories from real industries — built on reliability and results. Their trust fuels our drive to deliver more every day.',
+      image: '/testimonials/2.png'
     },
     {
       id: 'partnerships',
       icon: PartnershipsIcon,
       title: 'Partnerships That Deliver',
-      description: 'Hear directly from businesses that trust our packaging expertise. Every success story reflects our commitment to quality and innovation. These testimonials are proof of our purpose-driven approach.'
+      description: 'Hear directly from businesses that trust our packaging expertise. Every success story reflects our commitment to quality and innovation. These testimonials are proof of our purpose-driven approach.',
+      image: '/testimonials/1.png'
     },
     {
       id: 'perform',
       icon: PerformIcon,
       title: 'Built to Perform',
-      description: 'Explore testimonials from industry-diverse sectors. From export protection to eco-packaging — we go beyond expectations. Decades of experience shaped by every client we serve.'
+      description: 'Explore testimonials from industry-diverse sectors. From export protection to eco-packaging — we go beyond expectations. Decades of experience shaped by every client we serve.',
+      image: '/testimonials/3.png'
     },
     {
       id: 'clients',
       icon: ClientsIcon,
       title: 'What Our Clients Say',
-      description: 'Insights from hundreds of satisfied businesses worldwide. Their words reflect the impact, consistency, and value we bring. It\'s not just packaging — it\'s confidence in every layer.'
+      description: 'Insights from hundreds of satisfied businesses worldwide. Their words reflect the impact, consistency, and value we bring. It\'s not just packaging — it\'s confidence in every layer.',
+      image: '/testimonials/4.png'
     }
   ];
 
@@ -95,10 +99,14 @@ function Stories() {
     }
   ];
 
-  const FeatureCard = ({ icon: IconComponent, title, description }) => (
+  const FeatureCard = ({ icon: IconComponent, title, description, image }) => (
     <div className="bg-white border-2 border-black/60 rounded-[20px] p-8 pt-14 relative">
-      <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-2 border-black rounded-full flex items-center justify-center">
-        <IconComponent />
+      <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white border-2 border-black rounded-full flex items-center justify-center overflow-hidden">
+        <img 
+          src={image} 
+          alt={title}
+          className="w-full h-full object-cover"
+        />
       </div>
       <div className="text-center mb-6">
         <h3 className="text-2xl font-bold text-black">{title}</h3>
@@ -185,6 +193,7 @@ function Stories() {
             icon={card.icon}
             title={card.title}
             description={card.description}
+            image={card.image}
           />
         ))}
       </div>

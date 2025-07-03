@@ -12,26 +12,30 @@ function Eco() {
     {
       id: 'recyclable',
       title: 'Recyclable & Biodegradable Materials',
-      description: "Konnect's packaging products, such as VCI Kraft Paper and VCI-X-Dry Paper, are made with eco-friendly materials, reducing environmental impact and waste generation."
+      description: "Konnect's packaging products, such as VCI Kraft Paper and VCI-X-Dry Paper, are made with eco-friendly materials, reducing environmental impact and waste generation.",
+      image: '/eco/1.png'
     },
     {
       id: 'elimination',
       title: 'Elimination of Harmful Substances',
-      description: "All products are nitrite-free and compliant with RoHS, ensuring they are free from hazardous chemicals, making them safe for both users and the environment."
+      description: "All products are nitrite-free and compliant with RoHS, ensuring they are free from hazardous chemicals, making them safe for both users and the environment.",
+      image: '/eco/2.png'
     },
     {
       id: 'certificate',
       title: 'Sustainable Certificate & Commitment',
-      description: "Konnect Packaging holds ZED (Zero Effect Zero Defect) and CE certifications, reflecting our commitment to sustainable manufacturing, minimal environmental impact, and high product quality."
+      description: "Konnect Packaging holds ZED (Zero Effect Zero Defect) and CE certifications, reflecting our commitment to sustainable manufacturing, minimal environmental impact, and high product quality.",
+      image: '/eco/3.png'
     },
     {
       id: 'protection',
       title: 'Long-Lasting Protection, Less Waste',
-      description: "Konnect's VCI technologies extend the lifespan of metal components during storage and transport, reducing the need for frequent replacements and maximizing material efficiency to sustainable industrial practices."
+      description: "Konnect's VCI technologies extend the lifespan of metal components during storage and transport, reducing the need for frequent replacements and maximizing material efficiency to sustainable industrial practices.",
+      image: '/eco/4.png'
     }
   ];
 
-  const FeatureCard = ({ title, description }) => (
+  const FeatureCard = ({ title, description, image }) => (
     <div className="bg-black rounded-[20px] p-6 relative pb-12">
       <div className="bg-white rounded-t-[15px] rounded-b-none p-4 mb-4 text-center">
         <h3 className="text-black text-lg font-bold leading-tight">{title}</h3>
@@ -39,8 +43,12 @@ function Eco() {
       <p className="text-white text-sm leading-relaxed mb-6">
         {description}
       </p>
-      <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-        <RecycleIcon />
+      <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gray-800 border-2 border-white rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+        <img 
+          src={image} 
+          alt={title}
+          className="w-8 h-8 object-cover"
+        />
       </div>
     </div>
   );
@@ -80,6 +88,7 @@ function Eco() {
                 key={feature.id}
                 title={feature.title}
                 description={feature.description}
+                image={feature.image}
               />
             ))}
           </div>

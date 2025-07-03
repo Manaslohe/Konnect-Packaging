@@ -1,5 +1,4 @@
 import Header from './Header'; // Import the Header component
-import { ArrowRight } from 'lucide-react';
 
 const Hero = () => {
   const scrollToProducts = () => {
@@ -44,11 +43,11 @@ const Hero = () => {
             </div>
 
             <div className="max-w-2xl z-20 relative lg:-top-30">
-              <div className="bg-black text-white px-2 md:px-2 lg:px-1 rounded-full text-sm md:text-lg lg:text-xl font-medium mb-3 md:mb-2 lg:mb-1 inline-block font-['Krona_One']">
+              <div className="bg-gray-800 text-white px-2 md:px-2 lg:px-1 rounded-full text-sm md:text-lg lg:text-xl font-medium mb-3 md:mb-2 lg:mb-1 inline-block font-['Krona_One']">
                 KONNECT PACKAGING
               </div>
 
-              <h1 className="text-3xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-[4rem] lg:text-nowrap font-normal text-black leading-tight mb-4 font-['Krona_One']">
+              <h1 className="text-3xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-[4rem] lg:text-nowrap font-normal text-gray-800 leading-tight mb-4 font-['Krona_One']">
                     <div>Sealing Quality</div>
                     <div>Delivering Trust.</div>
                     </h1>
@@ -64,10 +63,14 @@ const Hero = () => {
               <div className="w-full flex justify-start md:justify-center lg:justify-end">
                 <button 
                   onClick={scrollToProducts}
-                  className="bg-black text-white px-4 md:px-5 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-full flex items-center space-x-2 hover:bg-gray-800 transition-all duration-300 font-['Krona_One'] text-xs md:text-base lg:text-base"
+                  className="bg-gray-800 text-white px-4 md:px-5 lg:px-4 py-2 md:py-2.5 lg:py-3 rounded-full flex items-center space-x-2 hover:bg-gray-700 transition-all duration-300 font-['Krona_One'] text-xs md:text-base lg:text-base"
                 >
                   <span className="font-normal">Explore Our Products</span>
-                  <ArrowRight className="w-4 h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 ml-1" />
+                  <img 
+                    src="/arrow.png" 
+                    alt="Arrow"
+                    className="w-4 h-4 md:w-5 md:h-5 lg:w-10 lg:h-10 ml-1"
+                  />
                 </button>
               </div>
                 {/* Certification Badge for Mobile - Below text */}

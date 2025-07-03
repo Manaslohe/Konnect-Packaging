@@ -59,15 +59,15 @@ const faqData = [
 
 const SearchBar = ({ placeholder, searchTerm, setSearchTerm }) => (
 	<div className="relative group">
-		<div className="rounded-2xl border-2 border-gray-200 bg-white/70 backdrop-blur-sm h-[56px] w-[561px] max-md:w-[90%] max-sm:h-[52px] max-sm:w-[95%] relative shadow-lg hover:shadow-xl transition-all duration-300 hover:border-gray-300 focus-within:border-black focus-within:ring-2 focus-within:ring-black/10 flex items-center px-4">
+		<div className="rounded-2xl border-2 border-gray-200 bg-white/70 backdrop-blur-sm h-[56px] w-[561px] max-md:w-[90%] max-sm:h-[52px] max-sm:w-[95%] relative shadow-lg hover:shadow-xl transition-all duration-300 hover:border-gray-300 focus-within:border-gray-800 focus-within:ring-2 focus-within:ring-gray-800/10 flex items-center px-4">
 			<input
 				type="text"
 				placeholder={placeholder}
 				value={searchTerm}
 				onChange={(e) => setSearchTerm(e.target.value)}
-				className="flex-1 text-lg font-medium text-black bg-transparent outline-none placeholder-gray-500 placeholder:font-normal max-sm:text-base pr-4"
+				className="flex-1 text-lg font-medium text-gray-800 bg-transparent outline-none placeholder-gray-500 placeholder:font-normal max-sm:text-base pr-4"
 			/>
-			<div className="w-10 h-10 bg-black rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-800 transition-colors duration-200 group-hover:scale-105 flex-shrink-0">
+			<div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-colors duration-200 group-hover:scale-105 flex-shrink-0">
 				<FiSearch className="w-5 h-5 text-white" />
 			</div>
 		</div>
@@ -82,19 +82,19 @@ const SearchBar = ({ placeholder, searchTerm, setSearchTerm }) => (
 
 const ListItem = ({ title, description, isExpanded, onToggle }) => (
 	<div className="flex relative items-start mb-5">
-		<div className="w-2 h-2 bg-black rounded-full absolute left-0 top-2 flex-shrink-0" />
+		<div className="w-2 h-2 bg-gray-800 rounded-full absolute left-0 top-2 flex-shrink-0" />
 		<div className="flex-1 ml-4 max-w-[518px]">
-			<div className="mb-1.5 text-xl font-medium text-black max-md:text-lg max-sm:text-base cursor-pointer" onClick={onToggle}>
+			<div className="mb-1.5 text-xl font-medium text-gray-800 max-md:text-lg max-sm:text-base cursor-pointer" onClick={onToggle}>
 				{title}
 			</div>
-			<div className={`text-base text-black max-md:text-sm max-sm:text-sm transition-all duration-300 ease-in-out overflow-hidden ${
+			<div className={`text-base text-gray-800 max-md:text-sm max-sm:text-sm transition-all duration-300 ease-in-out overflow-hidden ${
 				isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
 			}`}>
 				{description}
 			</div>
 		</div>
 		<div className="relative">
-			<div className="w-[42px] h-[42px] bg-black rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-800 transition-colors duration-200" onClick={onToggle}>
+			<div className="w-[42px] h-[42px] bg-gray-800 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-colors duration-200" onClick={onToggle}>
 				{isExpanded ? <FiMinus className="w-6 h-6 text-white" /> : <FiPlus className="w-6 h-6 text-white" />}
 			</div>
 		</div>
@@ -102,7 +102,7 @@ const ListItem = ({ title, description, isExpanded, onToggle }) => (
 );
 
 const SectionDivider = () => (
-	<div className="mx-0 my-5 h-px bg-black w-[582px] max-sm:w-full" />
+	<div className="mx-0 my-5 h-px bg-gray-800 w-[582px] max-sm:w-full" />
 );
 
 const ContentSection = ({
@@ -135,7 +135,7 @@ const ContentSection = ({
 			{/* Desktop Layout */}
 			<div className="hidden md:block">
 				<div
-					className={`absolute text-7xl text-black h-[88px] ${
+					className={`absolute text-7xl text-gray-800 h-[88px] ${
 						title === "BLOG" ? "left-[799px]" : "left-[816px]"
 					} w-[280px]`}
 					style={{ 
@@ -146,7 +146,7 @@ const ContentSection = ({
 					{title}
 				</div>
 				<div
-					className={`absolute text-2xl font-medium text-black h-[37px] ${
+					className={`absolute text-2xl font-medium text-gray-800 h-[37px] ${
 						title === "BLOG" ? "left-[830px]" : "left-[821px]"
 					} w-[656px]`}
 					style={{ 
@@ -157,7 +157,7 @@ const ContentSection = ({
 					{subtitle}
 				</div>
 				<div
-					className={`absolute text-lg text-black h-[72px] ${
+					className={`absolute text-lg text-gray-800 h-[72px] ${
 						title === "BLOG" ? "left-[830px]" : "left-[821px]"
 					} w-[569px]`}
 					style={{ 
@@ -204,13 +204,13 @@ const ContentSection = ({
 			{/* Mobile & Tablet Layout */}
 			<div className="block md:hidden mb-12">
 				<div className="text-center mb-8">
-					<div className="text-4xl font-bold text-black mb-4" style={{ fontFamily: 'Krona One' }}>
+					<div className="text-4xl font-bold text-gray-800 mb-4" style={{ fontFamily: 'Krona One' }}>
 						{title}
 					</div>
-					<div className="text-xl font-medium text-black mb-4" style={{ fontFamily: 'Krona One' }}>
+					<div className="text-xl font-medium text-gray-800 mb-4" style={{ fontFamily: 'Krona One' }}>
 						{subtitle}
 					</div>
-					<div className="text-[11px] text-black mb-6 px-4" style={{ fontFamily: 'Krona One' }}>
+					<div className="text-[11px] text-gray-800 mb-6 px-4" style={{ fontFamily: 'Krona One' }}>
 						{description}
 					</div>
 					<div className="flex justify-center mb-6">
@@ -226,7 +226,7 @@ const ContentSection = ({
 								isExpanded={expandedItems[item.id] || false}
 								onToggle={() => handleToggle(item.id)}
 							/>
-							{index < filteredItems.length - 1 && <div className="mx-0 my-5 h-px bg-black w-full" />}
+							{index < filteredItems.length - 1 && <div className="mx-0 my-5 h-px bg-gray-800 w-full" />}
 						</React.Fragment>
 					))}
 				</div>

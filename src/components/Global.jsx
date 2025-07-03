@@ -5,47 +5,45 @@ const Global = () => {
   const footprintItems = [
     {
       title: "Strong Base in India",
-      description: "Headquartered in Nagpur, we serve key industrial hubs across India with innovative, eco-friendly packaging tailored for high-volume sectors."
+      description: "Headquartered in Nagpur, we serve key industrial hubs across India with innovative, eco-friendly packaging tailored for high-volume sectors.",
+      icon: "/footprint/1.png"
     },
     {
       title: "Expanding Presence in Europe",
-      description: "Actively entering European markets with sustainable solutions that align with strict ESG, circular economy, and packaging compliance mandates."
+      description: "Actively entering European markets with sustainable solutions that align with strict ESG, circular economy, and packaging compliance mandates.",
+      icon: "/footprint/2.png"
     },
     {
       title: "Cross-Border Standards Compliance",
-      description: "Our products are engineered to meet both Indian and European quality, environmental, and safety standards for seamless global acceptance."
+      description: "Our products are engineered to meet both Indian and European quality, environmental, and safety standards for seamless global acceptance.",
+      icon: "/footprint/3.png"
     },
     {
       title: "Serving Export-Focused Clients",
-      description: "Empowering Indian exporters—especially in automotive, steel, and agro industries—with packaging that meets global durability and compliance needs."
+      description: "Empowering Indian exporters—especially in automotive, steel, and agro industries—with packaging that meets global durability and compliance needs.",
+      icon: "/footprint/4.png"
     },
     {
       title: "Partnering with European Distributors",
-      description: "Forming strategic alliances with European distributors and procurement networks to expand reach and localize supply for faster delivery."
+      description: "Forming strategic alliances with European distributors and procurement networks to expand reach and localize supply for faster delivery.",
+      icon: "/footprint/5.png"
     },
     {
       title: "Sustainable Impact Across Borders",
-      description: "Driving global sustainability by offering packaging that reduces carbon footprint and aligns with both India's and Europe's green goals."
+      description: "Driving global sustainability by offering packaging that reduces carbon footprint and aligns with both India's and Europe's green goals.",
+      icon: "/footprint/6.png"
     }
   ];
 
-  const FootprintCard = ({ title, description }) => (
+  const FootprintCard = ({ title, description, icon }) => (
     <div className="box-border relative bg-white rounded-2xl w-full mx-auto overflow-hidden shadow-none border-2 border-gray-300 max-sm:rounded-xl" style={{fontFamily: 'Krona One, sans-serif'}}>
       {/* Icon section */}
       <div className="relative p-4 bg-white flex justify-start items-center max-md:p-3 max-sm:p-2">
-        <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center max-md:w-10 max-md:h-10 max-sm:w-8 max-sm:h-8">
-          <img 
-            src="/dummy-icon.png" 
-            alt={title}
-            className="w-6 h-6 filter invert max-md:w-5 max-md:h-5 max-sm:w-4 max-sm:h-4"
-            onError={(e) => {
-              // Fallback to simple white dot if image fails
-              e.target.style.display = 'none';
-              e.target.nextSibling.style.display = 'block';
-            }}
-          />
-          <div className="w-6 h-6 bg-white rounded-full hidden max-md:w-5 max-md:h-5 max-sm:w-4 max-sm:h-4"></div>
-        </div>
+        <img 
+          src={icon} 
+          alt={title}
+          className="w-12 h-12 max-md:w-10 max-md:h-10 max-sm:w-8 max-sm:h-8"
+        />
       </div>
       
       {/* Title section */}
@@ -95,6 +93,7 @@ const Global = () => {
               key={index}
               title={item.title}
               description={item.description}
+              icon={item.icon}
             />
           ))}
         </div>
@@ -104,3 +103,4 @@ const Global = () => {
 };
 
 export default Global;
+
