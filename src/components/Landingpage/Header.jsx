@@ -137,7 +137,7 @@ const Header = () => {
           <a href="/testimonials" className={navButtonStyle}>
             Testimonials
           </a>
-          <a href="#" className={navButtonStyle}>
+          <a href="/blogs" className={navButtonStyle}>
             Blog & Faqs
           </a>
         </div>
@@ -256,7 +256,7 @@ const Header = () => {
                 <a href="/testimonials" onClick={closeMobileMenu} className="block text-black font-medium text-lg py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
                   Testimonials
                 </a>
-                <a href="#" onClick={closeMobileMenu} className="block text-black font-medium text-lg py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
+                <a href="/blogs" onClick={closeMobileMenu} className="block text-black font-medium text-lg py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors">
                   Blog & Faqs
                 </a>
 

@@ -17,6 +17,7 @@ import BackButton from './components/BackButton'
 import ProductDetail from './components/ProductDetail'
 import VisionValues from './components/VisionValues'
 import AwardsCertifications from './components/Awards'
+import BlogFaqComponent from './components/Blogs'
 
 // New Routes wrapper to force remounting via location.key
 function AppRoutes() {
@@ -91,6 +92,7 @@ function AppRoutes() {
           <AwardsCertifications />
         </>
       } />
+      <Route path="/blogs" element={<BlogFaqComponent />} />
     </Routes>
   );
 }
