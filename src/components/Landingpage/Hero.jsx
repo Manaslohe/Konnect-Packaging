@@ -85,11 +85,11 @@ const Hero = () => {
 
             {/* Large Background Text for Mobile - Beside image */}
             <div className="block md:block lg:hidden flex flex-col text-white/70 leading-none pointer-events-none select-none text-left space-y-1 relative -top-10 z-10">
-              <div className="text-3xl md:text-4xl font-light">KONNECT</div>
-              <div className="text-3xl md:text-4xl font-normal">PACKAGING</div>
+              <div className="text-4xl md:text-4xl font-light">KONNECT</div>
+              <div className="text-4xl md:text-4xl font-normal">PACKAGING</div>
               
               {/* Mobile Product Image - Overlapping large text */}
-              <div className="absolute -top-16 right-16 z-20">
+              <div className="absolute -top-12 right-26 z-20">
                 <img
                   src="/hero/bags.png"
                   alt="Konnect Packaging Bags Mobile"
