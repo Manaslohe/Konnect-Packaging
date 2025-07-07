@@ -94,6 +94,7 @@ const Header = () => {
                 <a href="/leadership" className={dropdownItemStyle}>Leadership Team</a>
                 <a href="/global-footprint" onClick={handleGlobalFootprintClick} className={dropdownItemStyle}>Our Global Footprint</a>
                 <a href="/awards-certifications" onClick={handleAwardsCertificationsClick} className={dropdownItemStyle}>Awards & Certifications</a>
+                <a href="/future" className={dropdownItemStyle}>Future-Proof Protection</a>
               </div>
             </div>
           </div>
@@ -176,6 +177,7 @@ const Header = () => {
                       <a href="/leadership" onClick={closeMobileMenu} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Leadership Team</a>
                       <a href="/global-footprint" onClick={handleMobileGlobalFootprintClick} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Our Global Footprint</a>
                       <a href="/awards-certifications" onClick={handleMobileAwardsCertificationsClick} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Awards & Certifications</a>
+                      <a href="/future" onClick={closeMobileMenu} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Future-Proof Protection</a>
                     </div>
                   </div>
                 </div>

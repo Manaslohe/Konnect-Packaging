@@ -20,6 +20,7 @@ import AwardsCertifications from './components/Awards'
 import BlogFaqComponent from './components/Blogs'
 import LeadershipTeam from './components/Leader'
 import Analysis from './components/Analysis'
+import FutureProof from './components/Future'
 
 // New Routes wrapper to force remounting via location.key
 function AppRoutes() {
@@ -107,6 +108,13 @@ function AppRoutes() {
           <Analysis />
         </>
       } />
+      <Route path="/future" element={
+        <>
+          <BackButton />
+          <FutureProof/>
+        </>
+      } />
+
     </Routes>
   );
 }
