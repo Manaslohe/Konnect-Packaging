@@ -1,5 +1,6 @@
 import * as React from "react";
 import '@fontsource/krona-one/400.css';
+import '@fontsource/montserrat/400.css';
 
 const IndustriesWeServe = () => {
   const industries = [
@@ -36,12 +37,15 @@ const IndustriesWeServe = () => {
   ];
 
   const IndustryCard = ({ title, description }) => (
-    <div className="box-border relative p-6 bg-black rounded-[3rem] w-full max-w-md mx-auto h-[400px] max-md:p-3 max-md:h-[300px] max-md:max-w-none max-sm:p-3 max-sm:h-[230px] max-sm:rounded-[2rem]" style={{fontFamily: 'Krona One, sans-serif'}}>
-      <div className="relative mb-6 text-lg font-bold flex items-center justify-center text-black border-2 border-white bg-white h-16 rounded-full w-full max-md:h-10 max-md:text-[10px] max-sm:h-9 max-sm:text-[8px]" style={{fontFamily: 'Krona One, sans-serif'}}>
+    <div
+      className="box-border relative p-6 bg-black rounded-[3rem] w-full max-w-md mx-auto h-[400px] max-md:p-3 max-md:h-[300px] max-md:max-w-none max-sm:p-3 max-sm:h-[230px] max-sm:rounded-[2rem] transition-transform duration-500 hover:shadow-xl hover:scale-[1.03]"
+      style={{fontFamily: 'Montserrat, sans-serif'}}
+    >
+      <div className="relative mb-6 text-xl font-extrabold flex items-center justify-center text-black border-2 border-white bg-white h-16 rounded-full w-full max-md:h-10 max-md:text-[10px] max-sm:h-9 max-sm:text-[12px]" style={{fontFamily: 'Montserrat, sans-serif'}}>
         {title}
       </div>
       <div className="h-[250px] rounded-2xl p-[2px] bg-gradient-to-b from-transparent to-white max-md:h-[150px] max-sm:h-[140px]">
-        <div className="h-full text-[0.8rem] text-center font-normal text-white leading-relaxed p-4 bg-black rounded-2xl flex items-center justify-center max-md:text-[0.6rem] max-md:p-2 max-sm:text-[0.45rem] max-sm:p-2" style={{fontFamily: 'Krona One, sans-serif'}}>
+        <div className="h-full text-[1rem] text-center font-normal text-white leading-relaxed p-4 bg-black rounded-2xl flex items-center justify-center max-md:text-[0.6rem] max-md:p-2 max-sm:text-[0.45rem] max-sm:p-2" style={{fontFamily: 'Montserrat, sans-serif'}}>
           {description}
         </div>
       </div>
@@ -49,12 +53,12 @@ const IndustriesWeServe = () => {
   );
 
   return (
-    <div className="box-border px-7 pt-32 pb-16 mx-auto my-0 w-full bg-white max-w-[1440px] max-md:px-5 max-md:pt-20 max-md:pb-12 max-sm:px-4 max-sm:pt-16 max-sm:pb-8" style={{fontFamily: 'Krona One, sans-serif'}}>
-      <div className="box-border bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] px-6 pt-12 pb-0 mb-12 w-full min-h-[17rem] max-w-full rounded-3xl max-md:px-4 max-md:py-8 max-md:mb-8 max-md:min-h-auto max-sm:px-3 max-sm:py-6 max-sm:mb-6">
+    <div className="box-border px-7 pt-32 pb-16 mx-auto my-0 w-full bg-white max-w-[1440px] max-md:px-5 max-md:pt-20 max-md:pb-12 max-sm:px-4 max-sm:pt-16 max-sm:pb-8" style={{fontFamily: 'Montserrat, sans-serif'}}>
+      <div className="box-border bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] px-6 pt-12 pb-0 mb-12 w-full min-h-[17rem] max-w-full rounded-3xl max-md:px-4 max-md:py-8 max-md:mb-8 max-md:min-h-auto max-sm:px-3 max-sm:py-6 max-sm:mb-6 transition-all duration-500 hover:shadow-2xl hover:scale-[1.01]">
         <div className="mb-6 text-5xl text-black max-md:mb-4 max-md:text-4xl max-sm:mb-3 max-sm:text-2xl" style={{fontFamily: 'Krona One, sans-serif'}}>
           Industries We Serve
         </div>
-        <div className="text-xl text-black max-w-4xl max-md:text-lg max-sm:text-base" style={{fontFamily: 'Krona One, sans-serif'}}>
+        <div className="text-2xl text-black max-w-4xl max-md:text-lg max-sm:text-base" style={{fontFamily: 'Montserrat, sans-serif'}}>
           Smart packaging for diverse sectors—secure, sustainable, and
           industry-ready.
         </div>

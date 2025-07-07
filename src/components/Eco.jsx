@@ -36,9 +36,9 @@ function Eco() {
   ];
 
   const FeatureCard = ({ title, description, image }) => (
-    <div className="bg-black rounded-[20px] p-6 relative pb-12">
+    <div className="bg-gray-900 rounded-[20px] p-6 relative pb-12 transition-all duration-500 hover:shadow-xl hover:scale-[1.03]">
       <div className="bg-white rounded-t-[15px] rounded-b-none p-4 mb-4 text-center">
-        <h3 className="text-black text-lg font-bold leading-tight">{title}</h3>
+        <h3 className="text-gray-900 text-lg font-bold leading-tight">{title}</h3>
       </div>
       <p className="text-white text-sm leading-relaxed mb-6">
         {description}
@@ -81,7 +81,7 @@ function Eco() {
 
       {/* Features Grid */}
       <div className="flex justify-center lg:justify-end">
-        <div className="bg-gradient-to-br border-2 border-black/60 from-[#E9C77F] to-[#FBE6B7] rounded-[30px] p-6 md:p-8 lg:p-12 relative z-0 w-full max-w-6xl">
+        <div className="bg-gradient-to-br border-2 border-black/60 from-[#E9C77F] to-[#FBE6B7] rounded-[30px] p-6 md:p-8 lg:p-12 relative z-0 w-full max-w-6xl transition-all duration-500 hover:shadow-2xl hover:scale-[1.01]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {sustainabilityFeatures.map((feature) => (
               <FeatureCard

@@ -89,7 +89,7 @@ const Hero = () => {
               <div className="text-3xl md:text-4xl font-normal">PACKAGING</div>
               
               {/* Mobile Product Image - Overlapping large text */}
-              <div className="absolute -top-16 right-22 z-20">
+              <div className="absolute -top-16 right-16 z-20">
                 <img
                   src="/hero/bags.png"
                   alt="Konnect Packaging Bags Mobile"

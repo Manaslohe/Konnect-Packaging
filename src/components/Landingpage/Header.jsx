@@ -75,8 +75,8 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full px-4 lg:px-6 xl:px-8 py-3 lg:py-4 xl:py-5 2xl:py-6 bg-[#f2d896] relative z-50">
-      <nav className="flex items-center justify-between max-w-full mx-auto">
+    <header className="w-full px-4 lg:px-6 xl:px-8 py-3 lg:py-4 xl:py-5 2xl:py-6 bg-[#f2d896] relative z-50 flex items-center min-h-[72px]">
+      <nav className="flex items-center justify-between max-w-full mx-auto w-full">
         {/* Logo */}
         <a className="flex items-center cursor-pointer" href="/">
           <img 
@@ -87,44 +87,44 @@ const Header = () => {
         </a>
 
         {/* Desktop Navigation Menu */}
-        <div className="hidden lg:flex items-center space-x-2 lg:space-x-3 xl:space-x-4 2xl:space-x-5 rounded-4xl px-1.5 lg:px-2 py-1 bg-white/40">
-          <a href="/" className={navButtonStyle}>
-            Home
+        <div className="hidden lg:flex items-center space-x-2 lg:space-x-3 xl:space-x-4 2xl:space-x-5 rounded-4xl px-1.5 lg:px-2 py-1 bg-white/40 h-full">
+          <a href="/" className={navButtonStyle + " flex items-center h-full"}>
+            <span className="whitespace-nowrap">Home</span>
           </a>
           
           {/* About us dropdown */}
-          <div className="relative">
+          <div className="relative h-full flex items-center">
             <button 
               onClick={() => toggleDropdown('about')}
-              className={`${navButtonStyle} flex items-center space-x-1`}
+              className={`${navButtonStyle} flex items-center space-x-1 h-full`}
               type="button"
             >
-              <span>About us</span>
+              <span className="whitespace-nowrap">About us</span>
               <ChevronDown className="w-3 h-3 xl:w-4 xl:h-4" />
             </button>
             {activeDropdown === 'about' && (
               <div className="absolute top-full mt-2 w-48 xl:w-52 2xl:w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-[9999]">
                 <a href="/our-story" className={dropdownItemStyle}>Our Story</a>
                 <a href="/vision-values" className={dropdownItemStyle}>Vision & Values</a>
-                <a href="#" className={dropdownItemStyle}>Leadership Team</a>
+                <a href="/leadership" className={dropdownItemStyle}>Leadership Team</a>
                 <a href="/global-footprint" onClick={handleGlobalFootprintClick} className={`${dropdownItemStyle} cursor-pointer`}>Our Global Footprint</a>
                 <a href="/awards-certifications" onClick={handleAwardsCertificationsClick} className={`${dropdownItemStyle} cursor-pointer`}>Awards & Certifications</a>
               </div>
             )}
           </div>
 
-          <button onClick={scrollToProducts} className={navButtonStyle}>
-            Products
+          <button onClick={scrollToProducts} className={navButtonStyle + " flex items-center h-full"}>
+            <span className="whitespace-nowrap">Products</span>
           </button>
           
           {/* EcoSectors dropdown */}
-          <div className="relative">
+          <div className="relative h-full flex items-center">
             <button 
               onClick={() => toggleDropdown('ecosectors')}
-              className={`${navButtonStyle} flex items-center space-x-1`}
+              className={`${navButtonStyle} flex items-center space-x-1 h-full`}
               type="button"
             >
-              <span>EcoSectors</span>
+              <span className="whitespace-nowrap">EcoSectors</span>
               <ChevronDown className="w-3 h-3 xl:w-4 xl:h-4" />
             </button>
             {activeDropdown === 'ecosectors' && (
@@ -136,25 +136,25 @@ const Header = () => {
             )}
           </div>
 
-          <a href="/testimonials" className={navButtonStyle}>
-            Testimonials
+          <a href="/testimonials" className={navButtonStyle + " flex items-center h-full"}>
+            <span className="whitespace-nowrap">Testimonials</span>
           </a>
-          <a href="/blogs" className={navButtonStyle}>
-            Blog & Faqs
+          <a href="/blogs" className={navButtonStyle + " flex items-center h-full"}>
+            <span className="whitespace-nowrap">Blog & Faqs</span>
           </a>
         </div>
 
         {/* Desktop Contact Button */}
         <a
           href="/contact"
-          className="hidden lg:flex items-center space-x-1.5 xl:space-x-2 bg-white/40 px-3 lg:px-4 xl:px-5 py-1.5 xl:py-2 rounded-full shadow-sm hover:shadow-lg hover:bg-white/60 cursor-pointer transition-colors duration-150"
+          className="hidden lg:flex items-center space-x-1.5 xl:space-x-2 bg-white/40 px-3 lg:px-4 xl:px-5 py-1.5 xl:py-2 rounded-full shadow-sm hover:shadow-lg hover:bg-white/60 cursor-pointer transition-colors duration-150 h-full"
         >
           <img 
             src="/contactlogo.png" 
             alt="Contact" 
             className="w-6 h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8" 
           />
-          <span className="text-black font-medium text-xs xl:text-sm 2xl:text-base">Contact</span>
+          <span className="text-black font-medium text-xs xl:text-sm 2xl:text-base whitespace-nowrap">Contact</span>
         </a>
 
         {/* Mobile Hamburger Button */}
@@ -221,7 +221,7 @@ const Header = () => {
                     <div className="ml-3 sm:ml-4 mt-1.5 sm:mt-2 space-y-1 pb-2">
                       <a href="/our-story" onClick={closeMobileMenu} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Our Story</a>
                       <a href="/vision-values" onClick={closeMobileMenu} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Vision & Values</a>
-                      <a href="#" onClick={closeMobileMenu} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Leadership Team</a>
+                      <a href="leadership" onClick={closeMobileMenu} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Leadership Team</a>
                       <a href="/global-footprint" onClick={handleMobileGlobalFootprintClick} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors cursor-pointer">Our Global Footprint</a>
                       <a href="/awards-certifications" onClick={handleMobileAwardsCertificationsClick} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors cursor-pointer">Awards & Certifications</a>
                     </div>

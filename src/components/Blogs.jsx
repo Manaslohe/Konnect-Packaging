@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FiSearch, FiPlus, FiMinus } from "react-icons/fi";
 import BackButton from "./BackButton";
 import '@fontsource/krona-one/400.css';
+import '@fontsource/montserrat/400.css';
 
 const blogPosts = [
 	{
@@ -131,7 +132,7 @@ const ContentSection = ({
 	};
 
 	return (
-		<div className="relative z-[2]">
+		<div className="relative z-[2]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
 			{/* Desktop Layout */}
 			<div className="hidden md:block">
 				<div
@@ -139,29 +140,29 @@ const ContentSection = ({
 						title === "BLOG" ? "left-[799px]" : "left-[816px]"
 					} w-[280px]`}
 					style={{ 
-						fontFamily: 'Krona One',
+						fontFamily: 'Krona One, sans-serif',
 						top: `${topOffset}px`
 					}}
 				>
 					{title}
 				</div>
 				<div
-					className={`absolute text-2xl font-medium text-gray-800 h-[37px] ${
+					className={`absolute text-2xl font-bold text-gray-800 h-[37px] ${
 						title === "BLOG" ? "left-[830px]" : "left-[821px]"
 					} w-[656px]`}
 					style={{ 
-						fontFamily: 'Krona One',
+						fontFamily: 'Montserrat, sans-serif',
 						top: `${topOffset + 82}px`
 					}}
 				>
 					{subtitle}
 				</div>
 				<div
-					className={`absolute text-lg text-gray-800 h-[72px] ${
+					className={`absolute text-xl font-medium text-gray-800 h-[72px] ${
 						title === "BLOG" ? "left-[830px]" : "left-[821px]"
 					} w-[569px]`}
 					style={{ 
-						fontFamily: 'Krona One',
+						fontFamily: 'Montserrat, sans-serif',
 						top: `${topOffset + 127}px`
 					}}
 				>
@@ -204,13 +205,13 @@ const ContentSection = ({
 			{/* Mobile & Tablet Layout */}
 			<div className="block md:hidden mb-12">
 				<div className="text-center mb-8">
-					<div className="text-4xl font-bold text-gray-800 mb-4" style={{ fontFamily: 'Krona One' }}>
+					<div className="text-4xl font-bold text-gray-800 mb-4" style={{ fontFamily: 'Krona One, sans-serif' }}>
 						{title}
 					</div>
-					<div className="text-xl font-medium text-gray-800 mb-4" style={{ fontFamily: 'Krona One' }}>
+					<div className="text-xl font-medium text-gray-800 mb-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
 						{subtitle}
 					</div>
-					<div className="text-[11px] text-gray-800 mb-6 px-4" style={{ fontFamily: 'Krona One' }}>
+					<div className="text-[11px] text-gray-800 mb-6 px-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
 						{description}
 					</div>
 					<div className="flex justify-center mb-6">
@@ -241,7 +242,7 @@ function Blogs() {
 	const [expandedItems, setExpandedItems] = useState({});
 
 	return (
-		<div className="flex justify-center min-h-screen bg-white py-8">
+		<div className="flex justify-center min-h-screen bg-white py-8" style={{ fontFamily: 'Montserrat, sans-serif' }}>
 			<div className="relative w-[95%] max-w-none overflow-hidden bg-white min-h-[1855px] max-md:p-5 max-md:min-h-[auto] max-sm:max-w-screen-sm max-md:bg-gradient-to-tr max-md:from-[#E9C77F] max-md:to-[#FBE6B7] max-md:rounded-[50px]">
 				{/* Back Button */}
 				<BackButton />
@@ -251,10 +252,10 @@ function Blogs() {
 				<div className="hidden md:block absolute bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] h-[1627px] left-[25px] rounded-[343px_0px_344px_0px] top-[114px] w-[calc(100%-50px)]" />
 
 				{/* Background Text - Desktop Only */}
-				<div className="hidden md:block absolute top-32 text-9xl h-[188px] left-[785px] text-white/50 text-opacity-50 w-[600px] z-[1]" style={{ fontFamily: 'Krona One' }}>
+				<div className="hidden md:block absolute top-42 text-9xl h-[198px] left-[790px] text-white/50 text-opacity-50 w-[600px] z-[1]" style={{ fontFamily: 'Krona One, sans-serif' }}>
 					BLOG
 				</div>
-				<div className="hidden md:block absolute text-9xl h-[188px] left-[785px] text-white/50 text-opacity-50 top-[1003px] w-[462px] z-[1]" style={{ fontFamily: 'Krona One' }}>
+				<div className="hidden md:block absolute text-9xl h-[188px] left-[810px] text-white/50 text-opacity-50 top-[1033px] w-[462px] z-[1]" style={{ fontFamily: 'Krona One, sans-serif' }}>
 					FAQ
 				</div>
 

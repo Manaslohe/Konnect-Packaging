@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Phone, Mail } from 'lucide-react';
 import BackButton from './BackButton';
+import '@fontsource/krona-one/400.css';
+import '@fontsource/montserrat/400.css';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -25,14 +27,14 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen w-full p-4 relative">
+    <div className="min-h-screen w-full p-4 relative" style={{ fontFamily: 'Montserrat, sans-serif' }}>
       {/* Back Button */}
       <BackButton />
 
       {/* Main Container */}
       <div className="flex items-center justify-center min-h-[90%] pt-10">
         <div 
-          className="relative w-full max-w-6xl mx-auto flex lg:flex-row flex-col rounded-[0_0_120px_0] lg:rounded-[0_0_120px_0] overflow-hidden"
+          className="relative w-full max-w-[90%] mx-auto flex lg:flex-row flex-col rounded-[0_0_150px_0] lg:rounded-[0_0_300px_0] overflow-hidden"
           style={{
             background: 'linear-gradient(135deg, #E9C77F 0%, #FBE6B7 100%)',
             minHeight: '600px'
@@ -55,10 +57,10 @@ const Contact = () => {
                   <Phone className="w-5 lg:w-6 h-5 lg:h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg lg:text-xl font-bold text-black mb-1 lg:mb-2" style={{ fontFamily: 'Krona One, sans-serif' }}>
+                  <h3 className="text-lg lg:text-xl font-bold text-black mb-1 lg:mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                     Contact Number
                   </h3>
-                  <p className="text-black text-base lg:text-lg font-medium">+91-7774031665</p>
+                  <p className="text-black text-base lg:text-lg font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>+91-7774031665</p>
                 </div>
               </div>
               
@@ -67,10 +69,10 @@ const Contact = () => {
                   <Mail className="w-5 lg:w-6 h-5 lg:h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg lg:text-xl font-bold text-black mb-1 lg:mb-2" style={{ fontFamily: 'Krona One, sans-serif' }}>
+                  <h3 className="text-lg lg:text-xl font-bold text-black mb-1 lg:mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                     For general enquires
                   </h3>
-                  <p className="text-black text-base lg:text-lg font-medium">info@konnectpackaging.com</p>
+                  <p className="text-black text-base lg:text-lg font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>info@konnectpackaging.com</p>
                 </div>
               </div>
               
@@ -79,10 +81,10 @@ const Contact = () => {
                   <Mail className="w-5 lg:w-6 h-5 lg:h-6 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg lg:text-xl font-bold text-black mb-1 lg:mb-2" style={{ fontFamily: 'Krona One, sans-serif' }}>
+                  <h3 className="text-lg lg:text-xl font-bold text-black mb-1 lg:mb-2" style={{ fontFamily: 'Montserrat, sans-serif' }}>
                     For material requirements
                   </h3>
-                  <p className="text-black text-base lg:text-lg font-medium">sales@konnectpackaging.com</p>
+                  <p className="text-black text-base lg:text-lg font-medium" style={{ fontFamily: 'Montserrat, sans-serif' }}>sales@konnectpackaging.com</p>
                 </div>
               </div>
             </div>
@@ -95,7 +97,14 @@ const Contact = () => {
           <div className="lg:hidden h-1 bg-white/60 mx-6"></div>
 
           {/* Right Section - Contact Form */}
-          <div className="flex-1 px-6 lg:px-12 py-8 lg:py-16 flex flex-col">
+          <div
+            className="flex-1 px-2 lg:px-12 py-8 lg:py-16 flex flex-col"
+            style={{
+              background: 'linear-gradient(90deg, #F0D395 0%, #EAC882 100%)',
+              borderRadius: window.innerWidth < 1024 ? '10px 30px 150px 0' : '10px 30px 300px 0',
+              margin: '30px',
+            }}
+          >
             {/* Send Us Message Header */}
             <h2 
               className="text-xl lg:text-2xl font-bold text-black mb-6 lg:mb-8 text-center"
@@ -112,7 +121,8 @@ const Contact = () => {
                 placeholder="Name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full px-4 lg:px-6 py-3 lg:py-4 rounded-full bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 text-base lg:text-lg border-2 border-white"
+                className="w-full px-4 lg:px-6 py-3 lg:py-3 rounded-full bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 text-base lg:text-lg border-2 border-white"
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
               />
               <input
                 type="tel"
@@ -120,7 +130,8 @@ const Contact = () => {
                 placeholder="Phone"
                 value={formData.phone}
                 onChange={handleInputChange}
-                className="w-full px-4 lg:px-6 py-3 lg:py-4 rounded-full bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 text-base lg:text-lg border-2 border-white"
+                className="w-full px-4 lg:px-6 py-3 lg:py-3 rounded-full bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 text-base lg:text-lg border-2 border-white"
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
               />
               <input
                 type="email"
@@ -128,7 +139,8 @@ const Contact = () => {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full px-4 lg:px-6 py-3 lg:py-4 rounded-full bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 text-base lg:text-lg border-2 border-white"
+                className="w-full px-4 lg:px-6 py-3 lg:py-3 rounded-full bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 text-base lg:text-lg border-2 border-white"
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
               />
               <input
                 type="text"
@@ -136,7 +148,8 @@ const Contact = () => {
                 placeholder="Country"
                 value={formData.country}
                 onChange={handleInputChange}
-                className="w-full px-4 lg:px-6 py-3 lg:py-4 rounded-full bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 text-base lg:text-lg border-2 border-white"
+                className="w-full px-4 lg:px-6 py-3 lg:py-3 rounded-full bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 text-base lg:text-lg border-2 border-white"
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
               />
               <textarea
                 name="message"
@@ -144,7 +157,8 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleInputChange}
                 rows={3}
-                className="w-full px-4 lg:px-6 py-3 lg:py-4 rounded-3xl bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 resize-none text-base lg:text-lg border-2 border-white lg:rows-4"
+                className="w-full px-4 lg:px-6 py-3 lg:py-3 rounded-3xl bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 resize-none text-base lg:text-lg border-2 border-white lg:rows-4"
+                style={{ fontFamily: 'Montserrat, sans-serif' }}
               />
               
               {/* Submit Button */}
