@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import '@fontsource/krona-one/400.css'; // Regular weight font import
+import '@fontsource/montserrat'; // Import Montserrat font
 
 function Worldwide() {
   // Country data array for reusable cards
@@ -166,6 +167,7 @@ function Worldwide() {
             <p 
               className="text-black text-xs md:text-sm text-center px-2 md:px-3 leading-relaxed"
               style={{
+                fontFamily: "'Montserrat', sans-serif",
                 opacity: isHovered ? 1 : 0,
                 transform: isHovered ? 'translateY(0)' : 'translateY(25px)',
                 transition: 'opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
@@ -186,23 +188,25 @@ function Worldwide() {
         Our Offices Worldwide
       </h1>
       
+      {/* World map image container, not absolute, so cards are always below */}
       <div
-        className="relative w-full mb-[1%] max-w-[100%] mx-auto"
-        style={{ height: "25vh" }}
+        className="relative w-full mb-[1%] max-w-[100%] mx-auto flex flex-col items-center"
+        style={{ height: "auto" }}
       >
         <img
           src="https://cdn.builder.io/api/v1/image/assets/TEMP/d04903ce5b967357a61ddea4f98adab76beb3981"
-          className="absolute inset-0 w-full h-full object-contain  md:!h-[75vh]"
+          className="w-full h-[25vh] md:h-[75vh] object-contain"
           alt="World Map"
-          style={{ height: "100%", maxHeight: "75vh" }}
+          style={{ maxHeight: "75vh" }}
         />
       </div>
       
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-[6%] max-w-[95%] md:max-w-[90%] mx-auto">
+      {/* Cards are now placed below the image */}
+      <div className="mt-8 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-[6%] max-w-[95%] md:max-w-[90%] mx-auto">
         {countries.map((country, index) => (
           <div 
             key={index} 
-            className={`w-full ${index >= 2 ? 'mt-4 md:mt-0' : ''}`}
+            className={`w-full`}
             style={{
               maxWidth: '250px',
               margin: '0 auto'

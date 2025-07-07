@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
-
+import '@fontsource/montserrat'; // Import Montserrat font
 const Products = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -69,8 +69,7 @@ const Products = () => {
       }
     ]
   ];
-
-  const slideVariants = {
+const slideVariants = {
     enter: (direction) => ({
       x: direction > 0 ? '100%' : '-100%',
       opacity: 0
@@ -101,19 +100,24 @@ const Products = () => {
   };
 
   return (
-    <div id="products" className="pb-6 pt-6 bg-white font-['Krona_One']">      
+    <div id="products" className="pb-6 pt-6 bg-white font-['Krona_One']">
+      {/* Main Title */}
+      <h2 className="text-3xl md:text-5xl font-bold text-center text-black mb-6 tracking-wider font-['Krona_One']">
+        Our Products
+      </h2>
+      
       {/* Product Container */}
       <div className="max-w-full mx-auto">
         <div
             className="bg-[#f1d598] rounded-3xl p-1 relative overflow-hidden"
             style={{ 
-              minHeight: window.innerWidth < 768 ? '130vh' : '130vh', 
+              minHeight: window.innerWidth < 768 ? '130vh' : '140vh', 
               height: window.innerWidth < 768 ? '140vh' : '120vh' 
             }}
           >          
           {/* Subtitle */}
           <h3 className="text-xl md:text-3xl font-normal text-center text-black mb-4 pt-4 md:mb-16 font-['Krona_One']">
-            Food & Agro Packaging
+            VCI Packaging Solutions
           </h3>
           
           {/* Navigation and Products Container */}
@@ -173,7 +177,7 @@ const Products = () => {
                           
                           {/* Product Info */}
                           <div className="text-center">
-                            <h4 className="font-bold text-black text-xs mb-1 font-['Krona_One'] leading-tight">
+                            <h4 className="font-bold text-black text-xs mb-1 font-['Montserrat'] leading-tight">
                               {product.name}
                             </h4>
                             <p className="text-gray-600 text-xs font-['Krona_One']">
@@ -221,7 +225,7 @@ const Products = () => {
                           
                           {/* Product Info */}
                           <div className="text-center">
-                            <h4 className="font-bold text-black text-lg mb-1 font-['Krona_One']">
+                            <h4 className="font-bold text-black text-lg mb-1 font-['Montserrat']" style={{ fontWeight: 600 }}>
                               {product.name}
                             </h4>
                             <p className="text-gray-600 text-base font-['Krona_One']">
@@ -275,7 +279,7 @@ const Products = () => {
                               
                               {/* Product Info */}
                               <div className="text-center">
-                                <h4 className="font-bold text-black text-xs mb-1 font-['Krona_One'] leading-tight">
+                                <h4 className="font-bold text-black text-xs mb-1 font-['Montserrat'] leading-tight">
                                   {product.name}
                                 </h4>
                                 <p className="text-gray-600 text-xs font-['Krona_One']">
@@ -324,7 +328,7 @@ const Products = () => {
                                 
                                 {/* Product Info */}
                                 <div className="text-center">
-                                  <h4 className="font-bold text-black text-xs mb-1 font-['Krona_One'] leading-tight">
+                                  <h4 className="font-bold text-black text-xs mb-1 font-['Montserrat'] leading-tight">
                                     {product.name}
                                   </h4>
                                   <p className="text-gray-600 text-xs font-['Krona_One']">
@@ -373,7 +377,7 @@ const Products = () => {
                               
                               {/* Product Info */}
                               <div className="text-center">
-                                <h4 className="font-bold text-black text-lg mb-1 font-['Krona_One']">
+                                <h4 className="font-bold text-black text-lg mb-1 font-['Montserrat']" style={{ fontWeight: 600 }}>
                                   {product.name}
                                 </h4>
                                 <p className="text-gray-600 text-base font-['Krona_One']">
@@ -424,7 +428,7 @@ const Products = () => {
                               
                               {/* Product Info */}
                               <div className="text-center">
-                                <h4 className="font-bold text-black text-xs mb-1 font-['Krona_One'] leading-tight">
+                                <h4 className="font-bold text-black text-xs mb-1 font-['Montserrat'] leading-tight">
                                   {product.name}
                                 </h4>
                                 <p className="text-gray-600 text-xs font-['Krona_One']">
@@ -472,7 +476,7 @@ const Products = () => {
                               
                               {/* Product Info */}
                               <div className="text-center">
-                                <h4 className="font-bold text-black text-lg mb-1 font-['Krona_One']">
+                                <h4 className="font-bold text-black text-lg mb-1 font-['Montserrat']" style={{ fontWeight: 600 }}>
                                   {product.name}
                                 </h4>
                                 <p className="text-gray-600 text-base font-['Krona_One']">
@@ -489,10 +493,12 @@ const Products = () => {
               </AnimatePresence>
             </div>
             
-            {/* Left Arrow */}
+          {/* Left Arrow */}
             <button 
               onClick={prevSlide}
-              className="absolute left-2 md:left-4 -bottom-30 z-10 bg-white rounded-xl p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-['Krona_One']"
+              className="absolute left-2 md:left-4 -bottom-30 z-10 bg-white 
+                rounded-tl-xl rounded-bl-xl rounded-tr-none rounded-br-none
+                p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-['Krona_One']"
             >
               <BsChevronLeft className="w-8 h-8 md:w-14 md:h-14 text-gray-600" />
             </button>
@@ -500,13 +506,14 @@ const Products = () => {
             {/* Right Arrow */}
             <button 
               onClick={nextSlide}
-              className="absolute right-2 md:right-4 -bottom-30 z-10 bg-white rounded-xl p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-['Krona_One']"
+              className="absolute right-2 md:right-4 -bottom-30 z-10 bg-white 
+                rounded-tr-xl rounded-br-xl rounded-tl-none rounded-bl-none
+                p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 font-['Krona_One']"
             >
               <BsChevronRight className="w-8 h-8 md:w-14 md:h-14 text-gray-600" />
             </button>
           </div>
         </div>
-        
         {/* Pagination Dots */}
         <div className="flex justify-center mt-12 gap-4">
           {productData.map((_, index) => (

@@ -47,10 +47,18 @@ const topClients = [
       
       if (!isPaused.bottom && !isDragging.bottom) {
         setBottomRibbonOffset(prev => {
-          const newOffset = prev + 1; // Left to right (opposite direction)
-          const singleSetWidth = bottomClients.length * 240; // 240px per logo
-          // Use modulo to create seamless loop
-          return newOffset >= singleSetWidth ? newOffset - singleSetWidth : newOffset;
+          const singleSetWidth = bottomClients.length * 240;
+          // Use modulo for seamless infinite effect (like top ribbon)
+          let newOffset = prev + 1;
+          if (newOffset > 0) {
+            // If offset goes beyond 0, wrap to negative singleSetWidth
+            return newOffset - singleSetWidth;
+          }
+          if (newOffset <= -singleSetWidth) {
+            // If offset goes beyond -singleSetWidth, wrap to 0
+            return newOffset + singleSetWidth;
+          }
+          return newOffset;
         });
       }
       

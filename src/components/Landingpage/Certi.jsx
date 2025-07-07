@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useEffect, useRef } from "react";
 import '@fontsource/krona-one/400.css';
+import '@fontsource/montserrat'; // Import Montserrat font
 
 // Certification data array
 const certifications = [
@@ -26,7 +27,11 @@ const CertificationCard = ({ certification }) => {
   const { id, title, description } = certification;
 
   return (
-    <div className="relative max-w-full mx-auto h-[280px] w-[450px] max-md:h-[220px] max-md:w-[380px] max-sm:h-[200px] max-sm:w-[320px]">
+    <div
+      className="relative max-w-full mx-auto h-[280px] w-[450px] max-md:h-[220px] max-md:w-[380px] max-sm:h-[200px] max-sm:w-[320px]
+        duration-400 ease-in-out
+        hover:shadow-2xl hover:scale-[1.04] hover:z-10"
+    >
       {/* Card background with rounded corners and gradient */}
       <div className="w-full h-full bg-gradient-to-tr from-[#FFD57F] to-[#F6DFAB] rounded-[20px] border-2 border-black/60"></div>
       
@@ -45,7 +50,10 @@ const CertificationCard = ({ certification }) => {
       
       {/* Description text container with fixed height */}
       <div className="absolute top-[110px] left-[25px] right-[25px] h-[100px] max-md:top-[80px] max-md:h-[90px] max-sm:top-[70px] max-sm:h-[85px] max-md:left-[15px] max-md:right-[15px] flex items-center justify-center">
-        <div className="text-[14px] max-md:text-[11px] max-sm:text-[9px] font-medium text-black text-center leading-[1.3] px-4 overflow-hidden">
+        <div
+          className="text-[14px] max-md:text-[12px] max-sm:text-[11px] font-medium text-black text-center leading-[1.3] px-4 overflow-hidden"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
+        >
           {description}
         </div>
       </div>
@@ -167,7 +175,7 @@ function Certi() {
   };
 
   return (
-    <div className="box-border px-8 py-12 w-full bg-white font-['Krona_One']">
+    <div className="box-border py-12 w-full bg-white font-['Krona_One']">
       <div className="mb-12 text-5xl text-center text-black max-md:text-4xl max-sm:text-3xl">
         Certifications
       </div>
