@@ -34,7 +34,7 @@ const Contact = () => {
       {/* Main Container */}
       <div className="flex items-center justify-center min-h-[90%] pt-10">
         <div 
-          className="relative w-full max-w-[90%] mx-auto flex lg:flex-row flex-col rounded-[0_0_150px_0] lg:rounded-[0_0_300px_0] overflow-hidden"
+          className="relative w-full max-w-full lg:max-w-[90%] mx-auto flex lg:flex-row flex-col rounded-[0_0_150px_0] lg:rounded-[0_0_300px_0] overflow-hidden"
           style={{
             background: 'linear-gradient(135deg, #E9C77F 0%, #FBE6B7 100%)',
             minHeight: '600px'

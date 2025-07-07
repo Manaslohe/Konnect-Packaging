@@ -1,5 +1,8 @@
 import * as React from "react";
 import '@fontsource/krona-one/400.css';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/600.css';
 
 function VisionAndMission() {
   const EyeIcon = () => (
@@ -84,10 +87,10 @@ function VisionAndMission() {
   ];
 
   return (
-    <div className="relative mx-auto my-0 w-full bg-gray-50 min-h-screen max-w-full max-md:p-5 max-sm:p-4" style={{ fontFamily: 'Krona One, sans-serif' }}>
+    <div className="relative mx-auto my-0 w-full bg-gray-50 min-h-screen max-w-full max-md:p-5 max-sm:p-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
       {/* Title Section - Keeping as is */}
       <div className="absolute bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] h-[171px] left-1/2 transform -translate-x-1/2 rounded-[30px] top-[104px] w-[1382px] max-md:h-[120px] max-md:top-[84px] max-md:w-[calc(100%_-_40px)] max-sm:rounded-3xl max-sm:h-[100px] max-sm:top-[74px] max-sm:w-[calc(100%_-_30px)]" />
-      <div className="absolute text-6xl text-gray-800 h-[75px] left-1/2 transform -translate-x-1/2 top-[152px] text-center max-md:text-4xl max-md:top-[120px] max-sm:text-3xl max-sm:top-[100px]">
+      <div className="absolute text-6xl text-gray-800 h-[75px] left-1/2 transform -translate-x-1/2 top-[152px] text-center max-md:text-4xl max-md:top-[120px] max-sm:text-2xl text-nowrap max-sm:top-[100px]" style={{ fontFamily: 'Krona One, sans-serif' }}>
         Vision and Mission
       </div>
 
@@ -101,14 +104,14 @@ function VisionAndMission() {
               {/* Vision Header */}
               <div className="bg-gradient-to-r from-[#E9C77F] to-[#FBE6B7] p-8 max-md:p-6 max-sm:p-5">
                 <div className="flex items-center space-x-6 max-sm:space-x-4">
-                  <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center max-sm:w-16 max-sm:h-16">
+                  <div className="w-20 h-20 bg-gray-800 backdrop-blur-sm rounded-2xl flex items-center justify-center max-sm:w-16 max-sm:h-16">
                     <EyeIcon />
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-4xl font-bold text-white mb-2 max-md:text-3xl max-sm:text-2xl">
+                    <h2 className="text-4xl font-bold text-gray-900 mb-2 max-md:text-3xl max-sm:text-2xl">
                       Our Vision
                     </h2>
-                    <p className="text-white/90 text-lg max-md:text-base max-sm:text-sm">
+                    <p className="text-gray-900 font-medium text-xl max-md:text-base max-sm:text-sm">
                       Where we're heading and what we aspire to achieve
                     </p>
                   </div>
@@ -122,7 +125,7 @@ function VisionAndMission() {
                     <div key={index} className="flex items-start space-x-4 group hover:bg-gray-50 p-4 rounded-xl transition-all duration-200 max-sm:space-x-3 max-sm:p-3">
                       <CheckmarkIcon />
                       <div className="flex-1">
-                        <p className="text-gray-700 text-lg leading-relaxed font-normal group-hover:text-gray-900 transition-colors duration-200 max-md:text-base max-sm:text-sm">
+                        <p className="text-gray-700 text-xl leading-relaxed font-medium group-hover:text-gray-900 transition-colors duration-200 max-md:text-base max-sm:text-sm">
                           {point}
                         </p>
                       </div>
@@ -139,14 +142,14 @@ function VisionAndMission() {
               {/* Mission Header */}
               <div className="bg-gradient-to-r from-[#FBE6B7] to-[#E9C77F] p-8 max-md:p-6 max-sm:p-5">
                 <div className="flex items-center space-x-6 max-sm:space-x-4">
-                  <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center max-sm:w-16 max-sm:h-16">
+                  <div className="w-20 h-20 bg-gray-800 backdrop-blur-sm rounded-2xl flex items-center justify-center max-sm:w-16 max-sm:h-16">
                     <MissionIcon />
                   </div>
                   <div className="flex-1">
-                    <h2 className="text-4xl font-bold text-white mb-2 max-md:text-3xl max-sm:text-2xl">
+                    <h2 className="text-4xl font-bold text-gray-900 mb-2 max-md:text-3xl max-sm:text-2xl">
                       Our Mission
                     </h2>
-                    <p className="text-white/90 text-lg max-md:text-base max-sm:text-sm">
+                    <p className="text-gray-900 font-medium text-xl max-md:text-base max-sm:text-sm">
                       How we deliver value and make a difference every day
                     </p>
                   </div>
@@ -160,7 +163,7 @@ function VisionAndMission() {
                     <div key={index} className="flex items-start space-x-4 group hover:bg-gray-50 p-4 rounded-xl transition-all duration-200 max-sm:space-x-3 max-sm:p-3">
                       <CheckmarkIcon />
                       <div className="flex-1">
-                        <p className="text-gray-700 text-lg leading-relaxed font-normal group-hover:text-gray-900 transition-colors duration-200 max-md:text-base max-sm:text-sm">
+                        <p className="text-gray-700 text-xl font-medium leading-relaxed group-hover:text-gray-900 transition-colors duration-200 max-md:text-base max-sm:text-sm">
                           {point}
                         </p>
                       </div>
