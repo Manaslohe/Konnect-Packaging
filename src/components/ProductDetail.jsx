@@ -4,6 +4,9 @@ import { FaPlay, FaCube } from 'react-icons/fa';
 import productInfoData from '../utils/ProductInfoData';
 import foodProductInfoData from '../utils/FoodProductInfoData';
 import BackButton from './BackButton';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/600.css';
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -318,7 +321,7 @@ const ProductDetail = () => {
                 </div>
                 <span className="text-xs sm:text-sm font-medium">VIEW 360°</span>
               </div>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-x-[-100%] group-hover:translate-x-[100%] duration-700"></div>
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-100%] group-hover:translate-x-[100%] duration-700"></div>
             </button>
             <button className="group relative overflow-hidden bg-[#E9C77F] hover:[#E9C77F] text-white px-4 py-3.5 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex-1 border border-amber-500/30">
               <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -328,13 +331,13 @@ const ProductDetail = () => {
                 </div>
                 <span className="text-xs sm:text-sm font-medium">WATCH NOW</span>
               </div>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-black/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-x-[-100%] group-hover:translate-x-[100%] duration-700"></div>
+              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-black/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-100%] group-hover:translate-x-[100%] duration-700"></div>
             </button>
           </div>
         </div>
 
         {/* Right Side - Product Details */}
-        <div className="lg:w-1/2 relative">
+        <div className="lg:w-1/2 relative font-['Montserrat']">
           <div
             id="scrollable-content"
             className="
@@ -345,6 +348,7 @@ const ProductDetail = () => {
               pr-16 md:pr-20 lg:pr-24
               overflow-y-auto
               rounded-tl-3xl rounded-bl-3xl
+              font-['Montserrat']
               "
             style={{
               scrollbarWidth: 'none',
@@ -366,92 +370,100 @@ const ProductDetail = () => {
           >
             {/* Overview Section */}
             <div className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-gray-800 rounded flex items-center justify-center">
-                  <span className="text-white text-sm">📋</span>
-                </div>
-                <h2 className="text-lg md:text-xl font-bold text-gray-800">Overview</h2>
+              <div className="flex items-center gap-1 mb-1">
+                <img src="/details/3.png" alt="Overview" className="w-14 h-14 rounded" />
+                <h2 className="text-lg md:text-2xl font-bold text-gray-800">Overview</h2>
               </div>
-              <p className="text-sm md:text-base leading-relaxed text-gray-800">
+              <p className="text-sm md:text-base leading-relaxed text-gray-800 font-medium">
                 {details.overview}
               </p>
             </div>
 
             {/* Composition Section */}
             <div className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-gray-800 rounded flex items-center justify-center">
-                  <span className="text-white text-sm">⚗️</span>
-                </div>
-                <h2 className="text-lg md:text-xl font-bold text-gray-800">Composition</h2>
+              <div className="flex items-center gap-1 mb-1">
+                <img src="/details/4.png" alt="Composition" className="w-14 h-14 rounded" />
+                <h2 className="text-lg md:text-2xl font-bold text-gray-800">Composition</h2>
               </div>
-              <ul className="text-sm md:text-base space-y-1 text-gray-800">
-                {details.composition && details.composition.map((item, i) => <li key={i}>{item}</li>)}
+              <ul className="text-sm md:text-base space-y-2 text-gray-800 font-medium">
+                {details.composition && details.composition.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-2 w-1 h-1 min-w-[0.5rem] min-h-[0.5rem] rounded-full bg-gray-900 inline-block shadow-md"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Layer Structure Section */}
             <div className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-gray-800 rounded flex items-center justify-center">
-                  <span className="text-white text-sm">📊</span>
-                </div>
-                <h2 className="text-lg md:text-xl font-bold text-gray-800">Layer Structure</h2>
+              <div className="flex items-center gap-1 mb-1">
+                <img src="/details/6.png" alt="Layer Structure" className="w-14 h-14 rounded" />
+                <h2 className="text-lg md:text-2xl font-bold text-gray-800">Layer Structure</h2>
               </div>
-              <ul className="text-sm md:text-base space-y-1 text-gray-800">
-                {details.layerStructure && details.layerStructure.map((item, i) => <li key={i}>{item}</li>)}
+              <ul className="text-sm md:text-base space-y-2 text-gray-800 font-medium">
+                {details.layerStructure && details.layerStructure.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-2 w-1 h-1 min-w-[0.5rem] min-h-[0.5rem] rounded-full bg-gray-900 inline-block shadow-md"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Application Guidelines Section */}
             <div className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-gray-800 rounded flex items-center justify-center">
-                  <span className="text-white text-sm">📋</span>
-                </div>
-                <h2 className="text-lg md:text-xl font-bold text-gray-800">Application Guidelines</h2>
+              <div className="flex items-center gap-1 mb-1">
+                <img src="/details/1.png" alt="Application Guidelines" className="w-14 h-14 rounded" />
+                <h2 className="text-lg md:text-2xl font-bold text-gray-800">Application Guidelines</h2>
               </div>
-              <ul className="text-sm md:text-base space-y-1 text-gray-800">
-                {details.application && details.application.map((item, i) => <li key={i}>{item}</li>)}
+              <ul className="text-sm md:text-base space-y-2 text-gray-800 font-medium">
+                {details.application && details.application.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-2 w-1 h-1 min-w-[0.5rem] min-h-[0.5rem] rounded-full bg-gray-900 inline-block shadow-md"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Key Features Section */}
             <div className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-gray-800 rounded flex items-center justify-center">
-                  <span className="text-white text-sm">⭐</span>
-                </div>
-                <h2 className="text-lg md:text-xl font-bold text-gray-800">Key Features</h2>
+              <div className="flex items-center gap-1 mb-1">
+                <img src="/details/2.png" alt="Key Features" className="w-14 h-14 rounded" />
+                <h2 className="text-lg md:text-2xl font-bold text-gray-800">Key Features</h2>
               </div>
-              <ul className="text-sm md:text-base space-y-1 text-gray-800">
-                {details.features && details.features.map((item, i) => <li key={i}>{item}</li>)}
+              <ul className="text-sm md:text-base space-y-2 text-gray-800 font-medium">
+                {details.features && details.features.map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-2 w-1 h-1 min-w-[0.5rem] min-h-[0.5rem] rounded-full bg-gray-900 inline-block shadow-md"></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
             {/* Technical Specifications Section */}
             <div className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-gray-800 rounded flex items-center justify-center">
-                  <span className="text-white text-sm">📄</span>
-                </div>
-                <h2 className="text-lg md:text-xl font-bold text-gray-800">Technical Specifications</h2>
+              <div className="flex items-center gap-1 mb-1">
+                <img src="/details/5.png" alt="Technical Specifications" className="w-14 h-14 rounded" />
+                <h2 className="text-lg md:text-2xl font-bold text-gray-800">Technical Specifications</h2>
               </div>
               
               {/* Specifications Table */}
-              <div className="bg-transparent rounded-lg overflow-hidden border border-gray-800/20">
-                <table className="w-full text-sm md:text-base">
+              <div className="bg-transparent rounded-lg overflow-hidden border border-black">
+                <table className="w-full text-sm md:text-base bg-transparent">
                   <thead>
-                    <tr className="bg-[#b8860b] text-gray-800">
-                      <th className="text-left p-3 font-bold border-r border-gray-800/30">Parameter</th>
-                      <th className="text-left p-3 font-bold">Specification</th>
+                    <tr className="bg-transparent text-gray-800">
+                      <th className="text-left p-3 text-base md:text-xl font-bold border-r border-b border-black">Parameter</th>
+                      <th className="text-left p-3 text-base md:text-xl font-bold border-b border-black">Specification</th>
                     </tr>
                   </thead>
-                  <tbody className="text-gray-800 bg-white/40 backdrop-blur-sm">
+                  <tbody className="text-gray-800 bg-transparent">
                     {details.specs && details.specs.map(([param, spec], i) => (
-                      <tr key={i} className={i < details.specs.length - 1 ? "border-b border-gray-800/20" : ""}>
-                        <td className="p-3 border-r border-gray-800/20">{param}</td>
-                        <td className="p-3">{spec}</td>
+                      <tr key={i} className="">
+                        <td className="p-3 border-r  border-b border-black font-medium">{param}</td>
+                        <td className="p-3 border-b border-black font-medium">{spec}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -461,27 +473,25 @@ const ProductDetail = () => {
 
             {/* Custom GSM Options Section */}
             <div className="mb-8">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 bg-gray-800 rounded flex items-center justify-center">
-                  <span className="text-white text-sm">⚙️</span>
-                </div>
-                <h2 className="text-lg md:text-xl font-bold text-gray-800">Custom GSM Options</h2>
+              <div className="flex items-center gap-1 mb-1">
+                <img src="/details/7.png" alt="Custom GSM Options" className="w-14 h-14 rounded" />
+                <h2 className="text-lg md:text-2xl font-bold text-gray-800">Custom GSM Options</h2>
               </div>
               
               {/* GSM Options Table */}
-              <div className="bg-transparent rounded-lg overflow-hidden border border-gray-800/20">
-                <table className="w-full text-sm md:text-base">
+              <div className="bg-transparent rounded-lg overflow-hidden border border-black">
+                <table className="w-full text-sm md:text-base bg-transparent">
                   <thead>
-                    <tr className="bg-[#b8860b] text-gray-800">
-                      <th className="text-left p-3 font-bold border-r border-gray-800/30">Component</th>
-                      <th className="text-left p-3 font-bold">GSM Range</th>
+                    <tr className="bg-transparent text-gray-800">
+                      <th className="text-left p-3 text-base md:text-xl font-bold border-r border-b border-black">Component</th>
+                      <th className="text-left p-3 text-sm md:text-xl font-bold border-b border-black">GSM Range</th>
                     </tr>
                   </thead>
-                  <tbody className="text-gray-800 bg-white/40 backdrop-blur-sm">
+                  <tbody className="text-gray-800 bg-transparent">
                     {details.gsm && details.gsm.map(([comp, gsm], i) => (
-                      <tr key={i} className={i < details.gsm.length - 1 ? "border-b border-gray-800/20" : ""}>
-                        <td className="p-3 border-r border-gray-800/20">{comp}</td>
-                        <td className="p-3">{gsm}</td>
+                      <tr key={i} className="">
+                        <td className="p-3 border-r  border-b border-black font-medium">{comp}</td>
+                        <td className="p-3 border-b border-black font-medium">{gsm}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -489,7 +499,6 @@ const ProductDetail = () => {
               </div>
             </div>
           </div>
-          
           {/* Custom Scroll Indicator */}
           <div className="absolute top-4 right-8 lg:right-12 h-[calc(100%-2rem)] w-1 flex items-center">
             <div id="scroll-line" className="relative w-full h-3/4 bg-gray-800/20 rounded-full">

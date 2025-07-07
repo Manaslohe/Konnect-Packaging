@@ -7,23 +7,48 @@ function LeadershipTeam() {
            style={{ borderBottomRightRadius: '300px' }}>
         
         {/* Content Container */}
-        <div className="flex flex-col">
-          {/* Main Title */}
-          <h1 className="font-normal pb-2 text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem] 
-                         text-[#111] mb-1 leading-[1.1] 
-                         font-['Krona_One',sans-serif]">
-            Leadership Team
+       {/* Main Title */}
+          <h1 className="font-normal pb-2 text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem]
+                          text-[#111] mb-1 leading-[1.1]
+                          font-['Krona_One',sans-serif]">
+            Leadership Message
           </h1>
-          
-          {/* Description */}
-          <p className="font-normal text-[0.95rem] sm:text-[1rem] md:text-[1.1rem] lg:text-[1.2rem] xl:text-[1.3rem] 
-                        text-[#222] leading-[1.3] max-w-[340px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] 
-                        font-['Montserrat',sans-serif]">
-            Led by <span className="font-semibold">Parth Chandra</span> and{' '}
-            <span className="font-semibold">Suchitra Gupta</span>, combining legal expertise and operational 
-            excellence to drive sustainable innovation and scalable growth.
-          </p>
-        </div>
+                     
+          {/* Message Content */}
+          <div className="font-normal text-[0.95rem] sm:text-[1rem] md:text-[1.1rem] lg:text-[1.2rem] xl:text-[2rem]
+                         text-[#222] leading-[1.4] max-w-[340px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[90%] xl:max-w-[90%]
+                         font-['Montserrat',sans-serif] space-y-4">
+            <p>
+              At Konnect Packaging International LLP, we are driving the evolution 
+              of the packaging industry with innovative and sustainable solutions. 
+              Our expertise in VCI Packaging ensures corrosion protection for metal 
+              components, safeguarding them during storage and transport.
+            </p>
+            
+            <p>
+              We are committed to delivering high-quality, eco-friendly, and reliable 
+              packaging that meets global standards. By protecting products and 
+              reducing material waste, we contribute to a safer supply chain and a 
+              sustainable future.
+            </p>
+            
+            <p>
+              Under my leadership, we will continue to expand globally and set new 
+              benchmarks in packaging—offering solutions that protect, preserve, 
+              and perform.
+            </p>
+            
+            <p className="font-semibold text-[#111] mt-12 pb-8">
+              Konnect Packaging International LLP
+            </p>
+          </div>
+        {/* Logo at bottom right */}
+        <img
+          src="/logo.png"
+          alt="Konnect Packaging Logo"
+          className="absolute right-38 bottom-2 w-[460px] max-w-[60vw] opacity-30"
+          style={{ minWidth: '160px' }}
+        />
       </div>
     </div>
   );
