@@ -94,7 +94,7 @@ function Footer() {
                 <CompanyLink to="/career">Career</CompanyLink>
                 <CompanyLink to="/why-choose-us">Why Choose Us</CompanyLink>
                 <CompanyLink to="/vision-mission">Vision and Mission</CompanyLink>
-                <CompanyLink to="/product-analysis">Product Analysis</CompanyLink>
+                <CompanyLink to="/analysis">Product Analysis</CompanyLink>
                 <CompanyLink to="/catalog">Catalog</CompanyLink>
                 <CompanyLink to="/brochure">Brochure</CompanyLink>
               </ul>
