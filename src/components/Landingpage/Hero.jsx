@@ -84,16 +84,16 @@ const Hero = () => {
             </div>
 
             {/* Large Background Text for Mobile - Beside image */}
-            <div className="block md:block lg:hidden flex flex-col text-white/70 leading-none pointer-events-none select-none text-left space-y-1 relative -top-10 z-10">
-              <div className="text-4xl md:text-4xl font-light">KONNECT</div>
-              <div className="text-4xl md:text-4xl font-normal">PACKAGING</div>
+            <div className="block md:block lg:hidden flex flex-col text-white/70  leading-none pointer-events-none select-none text-left space-y-1 relative -top-8 z-10">
+              <div className="text-[30px] md:text-4xl font-normal">KONNECT</div>
+              <div className="text-[30px] md:text-4xl font-normal">PACKAGING</div>
               
               {/* Mobile Product Image - Overlapping large text */}
-              <div className="absolute -top-12 right-26 z-20">
+              <div className="absolute -top-12 right-18 z-20">
                 <img
                   src="/hero/bags.png"
                   alt="Konnect Packaging Bags Mobile"
-                  className="w-40 md:w-44 h-auto object-contain opacity-80 scale-150"
+                  className="w-36 md:w-44 h-auto object-contain opacity-80 scale-150"
                 />
               </div>
             </div>
