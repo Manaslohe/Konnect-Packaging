@@ -31,7 +31,7 @@ const Hero = () => {
                 <img
                   src="/hero/bags.png"
                   alt="Konnect Packaging Bags"
-                  className="w-full h-auto object-contain scale-90 md:scale-110 lg:scale-[1.3] xl:scale-[1.6] 2xl:scale-[1.8] transform origin-center"
+                  className="w-full h-auto object-contain scale-90 md:scale-110 lg:scale-[1.3] xl:scale-[1.6] 2xl:scale-[1.5] transform origin-center"
                 />
               </div>
             </div>
