@@ -73,7 +73,7 @@ const Header = () => {
   };
 
   return (
-    <header className="w-full px-4 lg:px-6 xl:px-8 py-3 lg:py-4 xl:py-5 2xl:py-6 bg-[#f2d896] relative z-50 flex items-center min-h-[72px]">
+    <header className="w-full px-4 lg:px-6 xl:px-8 py-3 lg:py-4 xl:py-5 2xl:py-6 bg-transparent relative z-50 flex items-center min-h-[72px]">
       <nav className="flex items-center justify-between max-w-full mx-auto w-full">
         <a className="flex items-center cursor-pointer" href="/">
           <img src="/logo.png" alt="Konnect Packaging" className="h-12 lg:h-14 xl:h-16 2xl:h-18" />

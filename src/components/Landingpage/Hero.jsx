@@ -13,7 +13,12 @@ const Hero = () => {
   };
 
   return (
-    <div className="bg-[#f1d598] min-h-[60vh] md:min-h-[90vh] lg:min-h-[110vh] rounded-[2rem] md:rounded-[2rem] lg:rounded-[3rem] font-['Krona_One'] overflow-hidden">
+    <div
+      className="min-h-[60vh] md:min-h-[90vh] lg:min-h-[110vh] rounded-[2rem] md:rounded-[2rem] lg:rounded-[3rem] font-['Krona_One'] overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, #FAE5B5 0%, #EECF8E 100%)'
+      }}
+    >
       <Header />
 
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8">
