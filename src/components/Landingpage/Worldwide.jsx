@@ -47,9 +47,14 @@ function Worldwide() {
     
     return (
       <div 
-        className="relative w-full pb-[100%] cursor-pointer" 
+        className={`relative w-full pb-[100%] cursor-pointer group`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        style={{
+          // On desktop, increase height on hover
+          paddingBottom: isHovered && window.innerWidth >= 768 ? '120%' : '100%',
+          transition: 'padding-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+        }}
       >
         {/* Card container with instant and smooth shape transition */}
         <div 
