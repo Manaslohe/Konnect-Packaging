@@ -44,7 +44,7 @@ const Hero = () => {
               <img
                 src="/hero/1.png"
                 alt="Certification Badge"
-                className="w-40 lg:w-44 xl:w-50 2xl:w-56 h-auto object-contain"
+                className="w-36 lg:w-44 xl:w-50 2xl:w-46 h-auto object-contain"
               />
             </div>
 
@@ -53,12 +53,12 @@ const Hero = () => {
                 KONNECT PACKAGING
               </div>
 
-              <h1 className="text-2xl md:text-3xl lg:text-[2.5rem] xl:text-[3.5rem] 2xl:text-[3.5rem] lg:text-nowrap font-normal text-gray-800 leading-tight mb-4 font-['Krona_One']">
+              <h1 className="text-3xl md:text-3xl lg:text-[2.5rem] xl:text-[3.5rem] 2xl:text-[3.5rem] lg:text-nowrap font-normal text-gray-800 leading-tight mb-2 font-['Krona_One']">
                 <div>Sealing Quality</div>
                 <div>Delivering Trust.</div>
               </h1>
 
-              <p className="text-gray-700 lg:text-nowrap font-semibold text-[0.6rem] md:text-sm lg:text-[1rem] xl:text-[1rem] 2xl:text-[0.9rem] leading-relaxed mb-6 max-w-sm md:max-w-md lg:max-w-md px-2 md:px-0 font-['Montserrat']">
+              <p className="text-gray-700 lg:text-nowrap font-semibold text-[0.65rem] md:text-sm lg:text-[1rem] xl:text-[1rem] 2xl:text-[0.9rem] leading-relaxed mb-6 max-w-sm md:max-w-md lg:max-w-md px-2 md:px-0 font-['Montserrat']">
                 From design to delivery, we ensure every bag reflects your brand's value. Strong. <br className="hidden lg:block"/>
                 Stylish. Sustainable. Just like your vision.
               </p>
@@ -67,7 +67,7 @@ const Hero = () => {
               <div className="w-full flex justify-start md:justify-center lg:justify-end">
                 <button 
                   onClick={scrollToProducts}
-                  className="bg-gray-800 text-white px-3 md:px-4 lg:px-3 xl:px-4 2xl:px-5 py-2 md:py-2.5 lg:py-2.5 xl:py-3 2xl:py-3 rounded-full flex items-center space-x-2 hover:bg-gray-700 transition-all duration-300 font-['Krona_One'] text-[0.65rem] md:text-sm lg:text-sm xl:text-base 2xl:text-lg"
+                  className="bg-gray-800 text-white px-3 md:px-4 lg:px-3 xl:px-4 2xl:px-5 py-2 md:py-2.5 lg:py-2.5 xl:py-3 2xl:py-2 rounded-full flex items-center space-x-2 hover:bg-gray-700 transition-all duration-300 font-['Krona_One'] font-normal  text-[0.65rem] md:text-sm lg:text-sm xl:text-base 2xl:text-[1rem]"
                 >
                   <span className="font-normal">Explore Our Products</span>
                   <img 
