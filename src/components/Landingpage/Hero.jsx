@@ -49,11 +49,11 @@ const Hero = () => {
             </div>
 
             <div className="max-w-2xl z-20 relative lg:-top-30">
-              <div className="bg-gray-800 text-white px-2 md:px-2 lg:px-1 rounded-full text-[0.65rem] md:text-base lg:text-lg xl:text-xl 2xl:text-2xl font-medium mb-3 md:mb-2 lg:mb-1 inline-block font-['Krona_One']">
+              <div className="bg-gray-800 text-white px-2 md:px-2 lg:px-1 rounded-full text-[0.65rem] md:text-base lg:text-lg xl:text-xl 2xl:text-[1.2rem] font-medium mb-3 md:mb-2 lg:mb-1 inline-block font-['Krona_One']">
                 KONNECT PACKAGING
               </div>
 
-              <h1 className="text-2xl md:text-3xl lg:text-[2.5rem] xl:text-[3.5rem] 2xl:text-[4rem] lg:text-nowrap font-normal text-gray-800 leading-tight mb-4 font-['Krona_One']">
+              <h1 className="text-2xl md:text-3xl lg:text-[2.5rem] xl:text-[3.5rem] 2xl:text-[3.5rem] lg:text-nowrap font-normal text-gray-800 leading-tight mb-4 font-['Krona_One']">
                 <div>Sealing Quality</div>
                 <div>Delivering Trust.</div>
               </h1>
