@@ -11,18 +11,20 @@ import Footer from './Footer'
 
 const LandingPage = () => {
   return (
-    <div className="w-[95%] mx-auto mt-8 rounded-[3rem] overflow-hidden">
-      <Hero />
-      <Products />
-      <Products2 />
-      <Progress />
-      <Worldwide />
-      <Serve />
-      <Certifiation />
-      <Connect />
-      <Ribbon />
+    <>
+      <div className="w-[95%] mx-auto mt-8 rounded-[3rem] overflow-hidden">
+        <Hero />
+        <Products />
+        <Products2 />
+        <Progress />
+        <Worldwide />
+        <Serve />
+        <Certifiation />
+        <Connect />
+        <Ribbon />
+      </div>
       <Footer />
-    </div>
+    </>
   )
 }
 

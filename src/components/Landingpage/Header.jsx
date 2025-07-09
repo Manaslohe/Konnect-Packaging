@@ -9,10 +9,10 @@ const Header = () => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   const navButtonStyle =
-    'font-krona text-black font-medium text-xs xl:text-sm 2xl:text-[13px] px-4 lg:px-5 xl:px-6 2xl:px-7 py-2 xl:py-2.5 bg-white rounded-full shadow-sm hover:shadow-lg hover:bg-[#f8f8f8] cursor-pointer transition-all duration-200';
+    'font-krona text-black font-medium text-xs xl:text-sm 2xl:text-[12px] px-4 lg:px-5 xl:px-6 2xl:px-4 py-2 xl:py-2.2 bg-white rounded-full shadow-sm hover:shadow-lg hover:bg-[#f8f8f8] cursor-pointer transition-all duration-200';
 
   const dropdownItemStyle =
-    'block truncate whitespace-nowrap px-3 xl:px-4 py-1.5 xl:py-2 text-[11px] xl:text-xs 2xl:text-sm text-gray-700 hover:bg-gray-100 transition-all duration-150 font-montserrat';
+    'block truncate whitespace-nowrap px-3 xl:px-4 py-1.5 xl:py-2 text-[11px] xl:text-xs 2xl:text-[12px] text-gray-700 hover:bg-gray-100 transition-all duration-150 font-montserrat';
 
   const toggleDropdown = (dropdown) => {
     setActiveDropdown((prev) => (prev === dropdown ? null : dropdown));
@@ -119,9 +119,9 @@ const Header = () => {
           <a href="/blogs" className={navButtonStyle}>Blog & Faqs</a>
         </div>
 
-        <a href="/contact" className="hidden lg:flex items-center space-x-1.5 xl:space-x-2 bg-white/40 px-3 lg:px-4 xl:px-5 py-1.5 xl:py-2 rounded-full shadow-sm hover:shadow-lg hover:bg-white/60 cursor-pointer transition-colors duration-150 h-full">
+        <a href="/contact" className="hidden lg:flex items-center space-x-1.5 xl:space-x-2 bg-white/40 px-3 lg:px-2 xl:px-1 xl:pr-3  py-1.5 xl:py-1 rounded-full shadow-sm hover:shadow-lg hover:bg-white/60 cursor-pointer transition-colors duration-150 h-full">
           <img src="/contactlogo.png" alt="Contact" className="w-6 h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8" />
-          <span className="text-black font-medium text-xs xl:text-sm 2xl:text-base">Contact</span>
+          <span className="text-black font-normal text-xs xl:text-sm 2xl:text-[14px]">Contact</span>
         </a>
 
         <button onClick={toggleMobileMenu} className="lg:hidden flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-white/40 rounded-full shadow-sm hover:shadow-lg hover:bg-white/60 transition-all duration-200 active:scale-95" type="button" aria-label="Toggle menu">

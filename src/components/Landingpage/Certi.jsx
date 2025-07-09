@@ -19,6 +19,11 @@ const certifications = [
     id: "ce",
     title: "CE",
     description: "CE‑certified products meet the European Union's safety, health, and environmental protection standards, ensuring they are reliable, consumer‑safe, and eligible for sale across the EU single market.",
+  },
+  {
+    id: "gpsd",
+    title: "GPSD",
+    description: "GPSD-certified products meet EU safety standards (2001/95/EC), ensuring safe, risk-free use and compliance for the EU market. They are tested for consumer safety, durability, and environmental impact.",
   }
 ];
 
@@ -63,7 +68,7 @@ const CertificationCard = ({ certification }) => {
         <img 
           src="/hero/check.png" 
           alt="Certification check" 
-          className="w-[150px] h-[30px] max-md:w-[100px] max-md:h-[20px] max-sm:w-[80px] max-sm:h-[16px]" 
+          className="w-[110px] h-[30px] max-md:w-[100px] max-md:h-[20px] max-sm:w-[80px] max-sm:h-[16px]" 
         />
       </div>
     </div>

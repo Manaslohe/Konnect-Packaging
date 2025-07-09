@@ -1,5 +1,6 @@
 import * as React from "react";
 import '@fontsource/montserrat'; // Use Montserrat font
+import BackButton from "./BackButton";
 
 function Study2() {
   const storyFeatures = [
@@ -31,63 +32,77 @@ function Study2() {
 
   return (
     <div className="w-full py-16 px-6 lg:px-12" style={{ fontFamily: "'Montserrat', sans-serif" }}>
-      <div className="max-w-[1400px] mx-auto lg:grid lg:grid-cols-2 gap-16 lg:items-center">
-        {/* Left Side - Our Story */}
-        <div className="relative mb-12 lg:mb-0">
-          {/* Rectangle background image - hidden on mobile */}
-          <div
-            className="hidden lg:block absolute inset-0 w-[120vh] -top-40 -left-26 h-[120vh] -translate-x-16 -translate-y-8"
-            style={{
-              backgroundImage: "url('/rectangle.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              zIndex: 0,
-            }}
-          ></div>
-          
-          {/* Mobile background rectangle image */}
-          <div
-            className="lg:hidden absolute -top-48 -right-24 w-[70vh] h-[70vh]"
-            style={{
-              backgroundImage: "url('/rectangle.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              zIndex: 0,
-            }}
-          ></div>
-          
-          <div className="relative z-10 lg:pl-8">
-            <img src="/story.png" alt="Konnect Packaging" className="h-100 lg:h-130 mb-8" />
-          </div>
-        </div>
+      {/* Desktop View: Only show the image, fit to screen */}
+      <div className="hidden lg:flex fixed inset-0 w-screen h-screen z-50 bg-white items-center justify-start">
+        <BackButton />
+        <img
+          src="/story2.png"
+          alt="Story 2"
+          className="h-full object-cover"
+          style={{ maxWidth: "90vw" }}
+        />
+      </div>
 
-        {/* Right Side - Features */}
-        <div className="space-y-8 lg:space-y-11 relative">
-          {storyFeatures.map((feature, index) => {
-            const isFirstOrLast = index === 0 || index === storyFeatures.length - 1;
-            const overlayClass = isFirstOrLast ? "lg:-ml-32 lg:pr-12 relative z-20" : "";
+      {/* Mobile View: Show original content */}
+      <div className="block lg:hidden">
+        <div className="max-w-[1400px] mx-auto lg:grid lg:grid-cols-2 gap-16 lg:items-center">
+          {/* Left Side - Our Story */}
+          <div className="relative mb-12 lg:mb-0">
+            {/* Rectangle background image - hidden on mobile */}
+            <div
+              className="hidden lg:block absolute inset-0 w-[120vh] -top-40 -left-26 h-[120vh] -translate-x-16 -translate-y-8"
+              style={{
+                backgroundImage: "url('/rectangle.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                zIndex: 0,
+              }}
+            ></div>
             
-            return (
-              <div key={feature.id} className={`flex items-start gap-4 lg:gap-6 ${overlayClass}`}>
-                {/* Icon as image */}
-                <div className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-transparent">
-                  <img src={feature.icon}/>
+            {/* Mobile background rectangle image */}
+            <div
+              className="lg:hidden absolute -top-48 -right-24 w-[70vh] h-[70vh]"
+              style={{
+                backgroundImage: "url('/rectangle.png')",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                zIndex: 0,
+              }}
+            ></div>
+            
+            <div className="relative z-10 lg:pl-8">
+              <img src="/story.png" alt="Konnect Packaging" className="h-100 lg:h-130 mb-8" />
+            </div>
+          </div>
+
+          {/* Right Side - Features */}
+          <div className="space-y-8 lg:space-y-11 relative">
+            {storyFeatures.map((feature, index) => {
+              const isFirstOrLast = index === 0 || index === storyFeatures.length - 1;
+              const overlayClass = isFirstOrLast ? "lg:-ml-32 lg:pr-12 relative z-20" : "";
+              
+              return (
+                <div key={feature.id} className={`flex items-start gap-4 lg:gap-6 ${overlayClass}`}>
+                  {/* Icon as image */}
+                  <div className="flex-shrink-0 w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center bg-transparent">
+                    <img src={feature.icon}/>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex-1 pt-1">
+                    <h3 className="text-lg lg:text-xl  text-black mb-2 lg:mb-3 leading-tight">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm lg:text-base text-black/80 leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-                
-                {/* Content */}
-                <div className="flex-1 pt-1">
-                  <h3 className="text-lg lg:text-xl  text-black mb-2 lg:mb-3 leading-tight">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm lg:text-base text-black/80 leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

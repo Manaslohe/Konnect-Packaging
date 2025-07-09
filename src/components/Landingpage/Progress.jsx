@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import '@fontsource/krona-one/400.css';
+import '@fontsource/montserrat/400.css'; // Import Montserrat font
 
 const useInView = (options) => {
   const ref = useRef();
@@ -105,7 +106,7 @@ const Progress = () => {
           cy="100"
           r={radius}
           stroke="#ffffff"
-          strokeWidth="24"
+          strokeWidth="28"
           fill="none"
         />
       </svg>
@@ -117,20 +118,20 @@ const Progress = () => {
           cy="100"
           r={radius}
           stroke="#000000"
-          strokeWidth="24"
+          strokeWidth="28"
           fill="none"
           strokeDasharray={circumference}
           strokeDashoffset={strokeDashoffset}
           style={{
             transition: 'stroke-dashoffset 0.1s linear',
-            opacity: 0.7,
+            opacity: 1,
           }}
         />
       </svg>
 
       {/* Center count */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center font-bold text-2xl lg:text-3xl text-black">
+        <div className="text-center font-bold text-2xl lg:text-2xl text-black">
           {state.count}+
         </div>
       </div>
@@ -140,10 +141,10 @@ const Progress = () => {
 
 
   return (
-    <div className="w-full bg-white py-12 px-4 sm:py-6 sm:px-6 lg:py-6 lg:px-8 font-['Krona_One']">
+    <div className="w-full bg-white py-12 px-4 sm:py-6 sm:px-6 lg:py-4 lg:px-8 font-['Krona_One']">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
-        <div className="text-center mb-6 sm:mb-6 lg:mb-10 transition duration-700 hover:shadow-xl hover:scale-105">
+        <div className="text-center mb-6 sm:mb-6 lg:mb-10 transition duration-700">
           <h1 className="font-normal text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[50px] text-black leading-normal">
             Our Progress in Numbers
           </h1>
@@ -154,7 +155,7 @@ const Progress = () => {
           {progressData.map((item, index) => (
             <div key={index} className="flex flex-col items-center max-w-[378px] w-full">
               <div
-                className="relative w-full rounded-[30px] flex flex-col items-center py-4 px-4 transition duration-700 hover:shadow-xl hover:scale-105"
+                className="relative w-full rounded-[30px] flex flex-col items-center py-4 px-4 transition duration-700   hover:scale-105"
                 style={{
                   background: 'linear-gradient(to top right, #E7C478, #FDE9BD)'
                 }}
@@ -172,7 +173,7 @@ const Progress = () => {
                 </div>
                 <div className="w-[95%] mx-auto">
                   <div className="border-[1.5px] border-black rounded-b-[30px] py-2 px-5">
-                    <p className="text-sm font-normal sm:text-[12px] text-black text-center leading-relaxed">
+                    <p className="text-sm font-medium sm:text-[12px] text-black text-center leading-relaxed font-['Montserrat']">
                       {item.description}
                     </p>
                   </div>

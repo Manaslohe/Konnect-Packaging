@@ -1,0 +1,62 @@
+const productData = [
+    // First Slide
+    [
+      {
+        id: 14,
+        name: 'SMP Bags',
+        code: '(F110 SMP)',
+        image: '/Food/smp.png'
+      },
+      {
+        id: 15,
+        name: 'Bulk Tea Packaging Bags',
+        code: '(F111 BTPB)',
+        image: '/Food/2.png'
+      },
+      {
+        id: 16,
+        name: 'PE-Coated Paper',
+        code: '(Food Grade)',
+        image: '/Food/3.png'
+      },
+      {
+        id: 17,
+        name: 'Wax Coated Paper',
+        code: '(F109 WCP)',
+        image: '/Food/4.png'
+      },
+      {
+        id: 18,
+        name: 'Paper Aluminum Pouches',
+        code: '(F112 PAP)',
+        image: '/Food/5.png'
+      },
+      {
+        id: 19,
+        name: 'Standing Pouches',
+        code: '(F113 SP)',
+        image: '/Food/6.png'
+      },
+      {
+        id: 20,
+        name: 'HDPE Laminated Paper Bags',
+        code: '(F107 LPB)',
+        image: '/Food/7.png'
+      }
+    ],
+    // Second Slide
+    [
+      {
+        id: 21,
+        name: 'Sugar Paper',
+        code: '(F105 SP)',
+        image: '/Food/8.png'
+      },
+      {
+        id: 22,
+        name: 'Multiwall Paper Bags',
+        code: '(F106 MPB)',
+        image: '/Food/9.png'
+      }
+    ]
+  ];

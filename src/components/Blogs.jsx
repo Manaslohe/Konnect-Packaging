@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { FiSearch, FiPlus, FiMinus } from "react-icons/fi";
+import { Search, Plus, Minus, ArrowLeft } from "lucide-react";
 import BackButton from "./BackButton";
-import '@fontsource/krona-one/400.css';
-import '@fontsource/montserrat/400.css';
 
 const blogPosts = [
 	{
@@ -69,41 +67,76 @@ const SearchBar = ({ placeholder, searchTerm, setSearchTerm }) => (
 				className="flex-1 text-lg font-medium text-gray-800 bg-transparent outline-none placeholder-gray-500 placeholder:font-normal max-sm:text-base pr-4"
 			/>
 			<div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-colors duration-200 group-hover:scale-105 flex-shrink-0">
-				<FiSearch className="w-5 h-5 text-white" />
+				<Search className="w-5 h-5 text-white" />
 			</div>
 		</div>
-		{/* Search suggestions indicator */}
 		{searchTerm && (
-			<div className="absolute top-full left-0 right-0 mt-1 text-xs text-gray-500 px-6">
+			<div className="absolute top-full left-0 right-0 mt-1 text-xs text-gray-500 px-6 transition-opacity duration-200">
 				{searchTerm.length > 0 ? `Searching for "${searchTerm}"...` : ''}
 			</div>
 		)}
 	</div>
 );
 
-const ListItem = ({ title, description, isExpanded, onToggle }) => (
-	<div className="flex relative items-start mb-5">
-		<div className="w-2 h-2 bg-gray-800 rounded-full absolute left-0 top-2 flex-shrink-0" />
-		<div className="flex-1 ml-4 max-w-[518px]">
-			<div className="mb-1.5 text-xl font-medium text-gray-800 max-md:text-lg max-sm:text-base cursor-pointer" onClick={onToggle}>
-				{title}
+const ListItem = ({ 
+	id, 
+	title, 
+	description, 
+	isExpanded, 
+	onToggle,
+	type = 'blog' 
+}) => {
+	const handleToggle = () => {
+		onToggle(id, type);
+	};
+
+	return (
+		<div className="flex relative items-start mb-5 group">
+			<div className="w-2 h-2 bg-gray-800 rounded-full absolute left-0 top-3 flex-shrink-0 transition-all duration-300 group-hover:bg-gray-600" />
+			<div className="flex-1 ml-4 max-w-[518px]">
+				<div 
+					className="mb-1.5 text-xl font-medium text-gray-800 max-md:text-lg max-sm:text-base cursor-pointer hover:text-gray-600 transition-colors duration-200 select-none" 
+					onClick={handleToggle}
+				>
+					{title}
+				</div>
+				<div 
+					className={`text-base text-gray-800 max-md:text-sm max-sm:text-sm transition-all duration-500 ease-in-out overflow-hidden ${
+						isExpanded 
+							? 'max-h-96 opacity-100 transform translate-y-0' 
+							: 'max-h-0 opacity-0 transform -translate-y-2'
+					}`}
+					style={{
+						transitionProperty: 'max-height, opacity, transform',
+						transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+					}}
+				>
+					<div className="pt-1 pb-2">
+						{description}
+					</div>
+				</div>
 			</div>
-			<div className={`text-base text-gray-800 max-md:text-sm max-sm:text-sm transition-all duration-300 ease-in-out overflow-hidden ${
-				isExpanded ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-			}`}>
-				{description}
+			<div className="relative">
+				<button 
+					className="w-[42px] h-[42px] bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-800/20" 
+					onClick={handleToggle}
+					aria-label={isExpanded ? 'Collapse' : 'Expand'}
+				>
+					<div className="transition-transform duration-300 ease-in-out">
+						{isExpanded ? (
+							<Minus className="w-6 h-6 text-white" />
+						) : (
+							<Plus className="w-6 h-6 text-white" />
+						)}
+					</div>
+				</button>
 			</div>
 		</div>
-		<div className="relative">
-			<div className="w-[42px] h-[42px] bg-gray-800 rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-colors duration-200" onClick={onToggle}>
-				{isExpanded ? <FiMinus className="w-6 h-6 text-white" /> : <FiPlus className="w-6 h-6 text-white" />}
-			</div>
-		</div>
-	</div>
-);
+	);
+};
 
 const SectionDivider = () => (
-	<div className="mx-0 my-5 h-px bg-gray-800 w-[582px] max-sm:w-full" />
+	<div className="mx-0 my-5 h-px bg-gray-800 w-[582px] max-sm:w-full opacity-30" />
 );
 
 const ContentSection = ({
@@ -116,20 +149,14 @@ const ContentSection = ({
 	searchTerm,
 	setSearchTerm,
 	expandedItems,
-	setExpandedItems,
+	onToggle,
+	type,
 }) => {
 	const filteredItems = items.filter(item => {
 		const searchText = (item.title || item.question || '').toLowerCase() + 
 			(item.description || item.answer || '').toLowerCase();
 		return searchText.includes(searchTerm.toLowerCase());
 	});
-
-	const handleToggle = (id) => {
-		setExpandedItems(prev => ({
-			...prev,
-			[id]: !prev[id]
-		}));
-	};
 
 	return (
 		<div className="relative z-[2]" style={{ fontFamily: 'Montserrat, sans-serif' }}>
@@ -191,10 +218,12 @@ const ContentSection = ({
 					{filteredItems.map((item, index) => (
 						<React.Fragment key={item.id}>
 							<ListItem
+								id={item.id}
 								title={item.title || item.question}
 								description={item.description || item.answer}
-								isExpanded={expandedItems[item.id] || false}
-								onToggle={() => handleToggle(item.id)}
+								isExpanded={expandedItems[`${type}-${item.id}`] || false}
+								onToggle={onToggle}
+								type={type}
 							/>
 							{index < filteredItems.length - 1 && <SectionDivider />}
 						</React.Fragment>
@@ -222,12 +251,14 @@ const ContentSection = ({
 					{filteredItems.map((item, index) => (
 						<React.Fragment key={item.id}>
 							<ListItem
+								id={item.id}
 								title={item.title || item.question}
 								description={item.description || item.answer}
-								isExpanded={expandedItems[item.id] || false}
-								onToggle={() => handleToggle(item.id)}
+								isExpanded={expandedItems[`${type}-${item.id}`] || false}
+								onToggle={onToggle}
+								type={type}
 							/>
-							{index < filteredItems.length - 1 && <div className="mx-0 my-5 h-px bg-gray-800 w-full" />}
+							{index < filteredItems.length - 1 && <div className="mx-0 my-5 h-px bg-gray-800 w-full opacity-30" />}
 						</React.Fragment>
 					))}
 				</div>
@@ -240,6 +271,24 @@ function Blogs() {
 	const [blogSearchTerm, setBlogSearchTerm] = useState("");
 	const [faqSearchTerm, setFaqSearchTerm] = useState("");
 	const [expandedItems, setExpandedItems] = useState({});
+
+	// Optimized toggle function that ensures only one dropdown is open at a time
+	const handleToggle = (id, type) => {
+		const itemKey = `${type}-${id}`;
+		
+		setExpandedItems(prev => {
+			const newState = {};
+			
+			// If the current item is already expanded, collapse it
+			if (prev[itemKey]) {
+				return newState; // All items collapsed
+			}
+			
+			// Otherwise, expand only the clicked item
+			newState[itemKey] = true;
+			return newState;
+		});
+	};
 
 	return (
 		<div className="flex justify-center min-h-screen bg-white py-8" style={{ fontFamily: 'Montserrat, sans-serif' }}>
@@ -270,7 +319,8 @@ function Blogs() {
 					searchTerm={blogSearchTerm}
 					setSearchTerm={setBlogSearchTerm}
 					expandedItems={expandedItems}
-					setExpandedItems={setExpandedItems}
+					onToggle={handleToggle}
+					type="blog"
 				/>
 
 				{/* Divider Line - Desktop Only */}
@@ -287,7 +337,8 @@ function Blogs() {
 					searchTerm={faqSearchTerm}
 					setSearchTerm={setFaqSearchTerm}
 					expandedItems={expandedItems}
-					setExpandedItems={setExpandedItems}
+					onToggle={handleToggle}
+					type="faq"
 				/>
 			</div>
 		</div>

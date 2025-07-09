@@ -1,7 +1,5 @@
 import * as React from "react";
 import { useState } from "react";
-import '@fontsource/krona-one/400.css'; // Regular weight font import
-import '@fontsource/montserrat'; // Import Montserrat font
 
 function Worldwide() {
   // Country data array for reusable cards
@@ -12,15 +10,19 @@ function Worldwide() {
       type: "Headquarter",
       image: "https://cdn.builder.io/api/v1/image/assets/TEMP/0f70d605a2ea2cc5dbc06c200a8381192a80966c",
       imageStyle: { width: '80%', height: '87%', left: '11%', top: '5%' },
-      description: "Konnect Packaging Proudly Rooted in India, Delivering Globally."
+      description: "Konnect Packaging Proudly Rooted in India, Delivering Globally.",
+      personName: "Parth Chandra",
+      personTitle: "Head of Operations - India"
     },
     {
-      id: "2015:32",
-      name: "TURKEY",
+      id: "2015:50",
+      name: "FRANCE",
       type: "OFFICE",
-      image: "https://cdn.builder.io/api/v1/image/assets/TEMP/9af9452fce63bf2f75d5182a0dfa2cc3cf3e1907",
-      imageStyle: { width: '86%', height: '37%', left: '7%', top: '29%' },
-      description: "Delivering quality products across Turkey"
+      image: "/france.png",
+      imageStyle: { width: '80%', height: '80%', left: '10%', top: '10%' },
+      description: "",
+      personName: "Omar Azzam",
+      personTitle: "Head of Operations – France"
     },
     {
       id: "2015:37",
@@ -28,7 +30,9 @@ function Worldwide() {
       type: "OFFICE",
       image: "https://cdn.builder.io/api/v1/image/assets/TEMP/0492bf98b49f6501dcbdf863df50689a0cb0982e",
       imageStyle: { width: '53%', height: '76%', left: '24%', top: '12%' },
-      description: "Delivering quality products across Serbia"
+      description: "Delivering quality products across Serbia",
+      personName: "Marko Ristovski",
+      personTitle: "Head of Operations - Serbia"
     },
     {
       id: "2015:42",
@@ -36,27 +40,27 @@ function Worldwide() {
       type: "OFFICE",
       image: "https://cdn.builder.io/api/v1/image/assets/TEMP/5a1c092ff68133d0941e96eb5e5e0d8ea4f0afe7",
       imageStyle: { width: '87%', height: '65%', left: '7%', top: '19%' },
-      description: "Delivering quality products across Lithuania"
+      description: "Delivering quality products across Lithuania",
+      personName: "Suchitra Gupta",
+      personTitle: "Head of Operations - Lithuania"
     }
   ];
 
   // Reusable CountryCard component
   const CountryCard = ({ country }) => {
-    const { id, name, type, image, imageStyle, description } = country;
+    const { id, name, type, image, imageStyle, description, personName, personTitle } = country;
     const [isHovered, setIsHovered] = useState(false);
-    
+
     return (
       <div 
-        className={`relative w-full pb-[100%] cursor-pointer group`}
+        className={`relative w-full cursor-pointer group`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         style={{
-          // On desktop, increase height on hover
-          paddingBottom: isHovered && window.innerWidth >= 768 ? '120%' : '100%',
+          paddingBottom: isHovered ? '140%' : '100%',
           transition: 'padding-bottom 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
         }}
       >
-        {/* Card container with instant and smooth shape transition */}
         <div 
           className="absolute inset-0 overflow-hidden"
           style={{
@@ -67,120 +71,118 @@ function Worldwide() {
             boxShadow: isHovered ? '0 10px 25px rgba(0,0,0,0.15)' : '0 2px 4px rgba(0,0,0,0.05)',
           }}
         >
-          {/* Normal state (circle with country silhouette and text) */}
+          {/* Three dots at the top right */}
           <div 
-            className="absolute inset-0 flex flex-col items-center justify-center" 
+            className="absolute z-10"
             style={{
-              opacity: isHovered ? 0 : 1,
-              transform: isHovered ? 'scale(0.95)' : 'scale(1)',
+              top: '8px',
+              right: '12px',
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '4px',
+              opacity: isHovered ? 1 : 0,
+              transform: isHovered ? 'scale(1)' : 'scale(0)',
               transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
+              transitionDelay: '0.1s'
             }}
           >
-            {/* Country silhouette image */}
-            <img
-              src={image}
+            <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+            <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+            <div className="w-1.5 h-1.5 rounded-full bg-black"></div>
+          </div>
+
+          {/* Circular section container - maintains circular area for map and country name */}
+          <div 
+            className="absolute top-0 left-0 w-full"
+            style={{
+              height: isHovered ? '70%' : '100%',
+              transition: 'height 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+            }}
+          >
+            {/* Map image - stays in original circular position */}
+            <div 
               className="absolute"
-              alt={name}
               style={{
                 ...imageStyle,
-                transition: 'opacity 0.3s ease-out',
+                zIndex: 2,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                pointerEvents: 'none'
               }}
-            />
-            
-            {/* Country name and type overlay */}
-            <div className="absolute text-sm md:text-lg font-medium text-center text-white w-[70%] left-[50%] top-[42%] transform -translate-x-1/2 leading-tight">
-              {name}
-            </div>
-            <div className="absolute text-[10px] md:text-xs text-center text-white w-[70%] left-[50%] top-[52%] transform -translate-x-1/2">
-              {type}
-            </div>
-          </div>
-          
-          {/* Hover state (square with description) */}
-          <div 
-            className="absolute inset-0 flex flex-col items-center justify-center p-3 md:p-4"
-            style={{
-              opacity: isHovered ? 1 : 0,
-              transform: isHovered ? 'scale(1)' : 'scale(1.05)',
-              transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
-            }}
-          >
-            {/* Three dots at the top right */}
-            <div className="absolute top-3 right-3 flex space-x-1">
-              <div 
-                className="w-1.5 h-1.5 rounded-full bg-black"
-                style={{
-                  opacity: isHovered ? 1 : 0,
-                  transform: isHovered ? 'scale(1)' : 'scale(0)',
-                  transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
-                  transitionDelay: '0.1s'
-                }}
-              ></div>
-              <div 
-                className="w-1.5 h-1.5 rounded-full bg-black"
-                style={{
-                  opacity: isHovered ? 1 : 0,
-                  transform: isHovered ? 'scale(1)' : 'scale(0)',
-                  transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
-                  transitionDelay: '0.15s'
-                }}
-              ></div>
-              <div 
-                className="w-1.5 h-1.5 rounded-full bg-black"
-                style={{
-                  opacity: isHovered ? 1 : 0,
-                  transform: isHovered ? 'scale(1)' : 'scale(0)',
-                  transition: 'opacity 0.3s ease-out, transform 0.3s ease-out',
-                  transitionDelay: '0.2s'
-                }}
-              ></div>
-            </div>
-            
-            {/* Black country silhouette at top */}
-            <div 
-              className="w-full flex justify-center items-center mb-3" 
-              style={{ height: '35%' }}
             >
               <img
                 src={image}
-                className="h-[80%] max-w-[70%] object-contain"
                 alt={name}
-                style={{ 
-                  filter: 'brightness(0)',
-                  opacity: isHovered ? 1 : 0,
-                  transform: isHovered ? 'translateY(0) scale(1)' : 'translateY(-15px) scale(0.8)',
-                  transition: 'opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                  transitionDelay: '0.1s'
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
                 }}
               />
             </div>
-            
-            {/* Country name with slide-up animation */}
+
+            {/* Country name and type overlay - stays in original circular position */}
             <div 
-              className="text-black font-bold text-base md:text-lg mb-2 text-center leading-tight"
+              className="absolute z-3"
               style={{
-                opacity: isHovered ? 1 : 0,
-                transform: isHovered ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                transitionDelay: '0.15s'
+                left: '50%',
+                top: '48%',
+                transform: 'translate(-50%, -50%)',
+                textAlign: 'center',
+                width: '70%'
               }}
             >
-              {name}
+              <div className="text-sm md:text-lg font-bold text-white leading-tight mb-1" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.7)' }}>
+                {name}
+              </div>
+              <div
+                className={
+                  name === "INDIA"
+                    ? "text-[9px] md:text-[9px] text-white font-medium"
+                    : "text-[10px] md:text-xs text-white font-medium"
+                }
+                style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.7)' }}
+              >
+                {type}
+              </div>
             </div>
-            
-            {/* Description text with slide-up animation */}
-            <p 
-              className="text-black text-xs md:text-sm text-center px-2 md:px-3 leading-relaxed"
+          </div>
+
+          {/* Rectangle extension area - only visible on hover */}
+          <div 
+            className="absolute bottom-0 left-0 w-full"
+            style={{
+              height: isHovered ? '30%' : '0%',
+              opacity: isHovered ? 1 : 0,
+              transition: 'height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease-out',
+              transitionDelay: '0.1s',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: '0 16px'
+            }}
+          >
+            <div 
+              className="text-center w-full"
               style={{
-                fontFamily: "'Montserrat', sans-serif",
-                opacity: isHovered ? 1 : 0,
-                transform: isHovered ? 'translateY(0)' : 'translateY(25px)',
-                transition: 'opacity 0.4s ease-out, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                transform: isHovered ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                 transitionDelay: '0.2s'
               }}
             >
-              {description}
-            </p>
+              <div className="text-black font-bold text-sm md:text-base mb-1 leading-tight">
+                {personName}
+              </div>
+              <p 
+                className="text-black text-xs md:text-sm leading-relaxed"
+                style={{
+                  fontFamily: "'Montserrat', sans-serif"
+                }}
+              >
+                {personTitle}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -188,12 +190,12 @@ function Worldwide() {
   };
 
   return (
-    <div className="relative w-full bg-white py-[5%] px-[2%] max-w-[1519px] mx-auto" style={{ fontFamily: "'Krona One', sans-serif" }}>
+    <div className="relative w-full bg-white py-[5%] px-[2%] max-w-full mx-auto" style={{ fontFamily: "'Krona One', sans-serif" }}>
       <h1 className="text-xl md:text-5xl text-center text-black w-full mx-auto mb-[5%] font-normal">
         Our Offices Worldwide
       </h1>
       
-      {/* World map image container, not absolute, so cards are always below */}
+      {/* World map image container */}
       <div
         className="relative w-full mb-[1%] max-w-[100%] mx-auto flex flex-col items-center"
         style={{ height: "auto" }}
@@ -206,12 +208,12 @@ function Worldwide() {
         />
       </div>
       
-      {/* Cards are now placed below the image */}
+      {/* Cards grid */}
       <div className="mt-8 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-[6%] max-w-[95%] md:max-w-[90%] mx-auto">
         {countries.map((country, index) => (
           <div 
             key={index} 
-            className={`w-full`}
+            className="w-full"
             style={{
               maxWidth: '250px',
               margin: '0 auto'
