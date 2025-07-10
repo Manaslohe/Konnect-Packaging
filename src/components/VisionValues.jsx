@@ -64,7 +64,7 @@ const VisionValues = () => {
     <div className="bg-white py-12 px-8" style={{ fontFamily: 'Montserrat, sans-serif' }}>
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
-        <div className="bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] rounded-3xl p-8 mb-12">
+        <div className="bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] rounded-3xl p-8 mb-12 transition-all duration-500 ease-in-out hover:scale-105">
           <h1
             className="text-2xl md:text-5xl text-black mb-2"
             style={{ fontFamily: 'Krona One, sans-serif' }}
@@ -80,7 +80,10 @@ const VisionValues = () => {
         {/* Values Grid */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8 md:gap-6 lg:gap-12">
           {values.map((value, index) => (
-            <div key={index} className={`relative p-[2px] md:p-[3px]  bg-gradient-to-tr from-black via-white to-white h-38 md:h-55 w-full ${index === 8 ? 'col-span-2 max-w-[50%] mx-auto md:col-span-1 md:max-w-full md:mx-0' : ''}`}>
+            <div
+              key={index}
+              className={`relative p-[2px] md:p-[3px] bg-gradient-to-tr from-black via-white to-white h-38 md:h-55 w-full transition-all duration-500 ease-in-out hover:scale-105 ${index === 8 ? 'col-span-2 max-w-[50%] mx-auto md:col-span-1 md:max-w-full md:mx-0' : ''}`}
+            >
               {/* Inner card with white background */}
               <div className="relative bg-white  p-3 md:p-6 h-full w-full flex flex-col">
                 {/* Large Number Background */}

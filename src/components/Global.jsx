@@ -41,7 +41,8 @@ const Global = () => {
       className="box-border relative rounded-2xl mx-auto overflow-hidden shadow-none border-2 border-black max-sm:rounded-xl
         w-[260px] h-[340px] lg:w-[360px] lg:h-[400px] flex flex-col
         max-sm:w-full max-sm:h-auto
-        bg-white/30 backdrop-blur-md"
+        bg-white/30 backdrop-blur-md
+        transition-all duration-500 ease-in-out hover:scale-105"
       style={{ fontFamily: 'Montserrat, sans-serif' }}
     >
       {/* Icon section */}
@@ -84,7 +85,7 @@ const Global = () => {
       
       {/* Content with relative positioning to appear above background */}
       <div className="relative z-10">
-        <div className="box-border bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] px-6 pt-12 pb-6 mb-12 w-full rounded-3xl max-md:px-4 max-md:py-8 max-md:mb-8 max-sm:px-3 max-sm:py-6 max-sm:mb-6">
+        <div className="box-border bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] px-6 pt-12 pb-6 mb-12 w-full rounded-3xl max-md:px-4 max-md:py-8 max-md:mb-8 max-sm:px-3 max-sm:py-6 max-sm:mb-6 transition-all duration-500 ease-in-out hover:scale-105">
           <div
             className="mb-6 text-5xl text-black font-bold max-md:mb-4 max-md:text-4xl max-sm:mb-3 max-sm:text-2xl"
             style={{ fontFamily: 'Krona One, sans-serif' }}

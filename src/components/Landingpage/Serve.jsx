@@ -103,7 +103,7 @@ function IndustryCard({
 			{/* Gradient border wrapper for description box */}
 			<div
 				className="box-border absolute shrink-0 
-				h-[200px] sm:h-[210px] md:h-[220px] lg:h-[240px] xl:h-[258px] 2xl:h-[270px]
+				h-[220px] sm:h-[210px] md:h-[220px] lg:h-[240px] xl:h-[258px] 2xl:h-[280px]
 				left-[8px] sm:left-[9px] 
 				top-[65px] sm:top-[75px] md:top-[80px] lg:top-[85px] xl:top-[88px] 
 				w-[calc(100%_-_16px)] sm:w-[calc(100%_-_18px)] 
