@@ -66,12 +66,12 @@ const VisionValues = () => {
         {/* Header Section */}
         <div className="bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] rounded-3xl p-8 mb-12">
           <h1
-            className="text-3xl md:text-5xl text-black mb-2"
+            className="text-2xl md:text-5xl text-black mb-2"
             style={{ fontFamily: 'Krona One, sans-serif' }}
           >
             Vision & Values
           </h1>
-          <p className="text-sm md:text-lg text-black">
+          <p className="text-sm font-medium md:text-2xl text-black">
             Innovative, sustainable, scalable<br/>
             packaging solutions.
           </p>
@@ -80,16 +80,16 @@ const VisionValues = () => {
         {/* Values Grid */}
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8 md:gap-6 lg:gap-12">
           {values.map((value, index) => (
-            <div key={index} className={`relative p-[2px] md:p-[3px] rounded-xl md:rounded-2xl bg-gradient-to-tr from-gray-600 via-gray-300 to-white h-38 md:h-55 w-full ${index === 8 ? 'col-span-2 max-w-[50%] mx-auto md:col-span-1 md:max-w-full md:mx-0' : ''}`}>
+            <div key={index} className={`relative p-[2px] md:p-[3px]  bg-gradient-to-tr from-black via-white to-white h-38 md:h-55 w-full ${index === 8 ? 'col-span-2 max-w-[50%] mx-auto md:col-span-1 md:max-w-full md:mx-0' : ''}`}>
               {/* Inner card with white background */}
-              <div className="relative bg-white rounded-xl md:rounded-2xl p-3 md:p-6 h-full w-full flex flex-col">
+              <div className="relative bg-white  p-3 md:p-6 h-full w-full flex flex-col">
                 {/* Large Number Background */}
-                <div className="absolute -top-8 md:-top-12 lg:-top-14 right-1 font-bold md:right-2 text-[80px] md:text-[120px] lg:text-[160px] leading-none z-0 select-none opacity-60 bg-gradient-to-b from-black/80 to-white bg-clip-text text-transparent">
+                <div className="absolute -top-8 md:-top-12 lg:-top-14 right-1 font-bold md:right-2 text-[80px] md:text-[120px] lg:text-[160px] leading-none z-0 select-none opacity-60 bg-gradient-to-b from-black to-white bg-clip-text text-transparent">
                   {value.number}
                 </div>
                 
                 {/* Image Icon Circle - Positioned on top left border */}
-                <div className="absolute -top-4 md:-top-6 -left-4 md:-left-6 w-10 h-10 md:w-16 md:h-16 bg-white border-2 border-black/60 rounded-full flex items-center justify-center text-gray-600 z-20 overflow-hidden">
+                <div className="absolute -top-4 md:-top-6 -left-5 md:-left-8 w-10 h-10 md:w-16 md:h-16 bg-white border-2 border-black/60 rounded-full flex items-center justify-center text-gray-600 z-20 overflow-hidden">
                   <img
                     src={value.icon}
                     alt={value.title}
@@ -100,12 +100,12 @@ const VisionValues = () => {
                 {/* Content */}
                 <div className="relative z-10 pt-2 md:pt-4 flex-1 flex flex-col">
                   {/* Title */}
-                  <h3 className="text-sm md:text-lg lg:text-xl text-black mb-2 md:mb-3 leading-tight">
+                  <h3 className="text-sm font-bold md:text-lg lg:text-xl text-black mb-2 md:mb-3 leading-tight">
                     {value.title}
                   </h3>
                   
                   {/* Description */}
-                  <p className="text-gray-800 text-[11px] md:text-[15px] leading-none md:leading-relaxed flex-1">
+                  <p className="text-gray-800 font-medium text-[12px] md:text-[17px] leading-none md:leading-relaxed flex-1">
                     {value.description}
                   </p>
                 </div>

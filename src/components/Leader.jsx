@@ -8,14 +8,14 @@ function LeadershipTeam() {
         
         {/* Content Container */}
        {/* Main Title */}
-          <h1 className="font-normal pb-2 text-[2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem]
+          <h1 className="font-normal xl:pl-6 pb-2 text-[1.3rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem]
                           text-[#111] mb-1 leading-[1.1]
                           font-['Krona_One',sans-serif]">
             Leadership Message
           </h1>
                      
           {/* Message Content */}
-          <div className="font-normal text-[0.95rem] sm:text-[1rem] md:text-[1.1rem] lg:text-[1.2rem] xl:text-[2rem]
+          <div className="font-normal  xl:pl-6 text-[0.95rem] sm:text-[1rem] md:text-[1.1rem] lg:text-[1.2rem] xl:text-[2rem]
                          text-[#222] leading-[1.4] max-w-[340px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[90%] xl:max-w-[90%]
                          font-['Montserrat',sans-serif] space-y-4">
             <p>
@@ -38,15 +38,24 @@ function LeadershipTeam() {
               and perform.
             </p>
             
-            <p className="font-semibold text-[#111] mt-12 pb-8">
+            <p className="font-semibold  text-[#111] mt-12 pb-8">
               Konnect Packaging International LLP
             </p>
+            {/* Logo for mobile view: placed just below the text */}
+            <div className=" md:hidden w-full flex -ml-8 justify-left">
+              <img
+                src="/logo.png"
+                alt="Konnect Packaging Logo"
+                className="w-[100%] max-w-[80vw] opacity-60 mt-2"
+                style={{ minWidth: '100px' }}
+              />
+            </div>
           </div>
-        {/* Logo at bottom right */}
+        {/* Logo for desktop view: absolutely positioned at bottom right */}
         <img
           src="/logo.png"
           alt="Konnect Packaging Logo"
-          className="absolute right-38 bottom-2 w-[460px] max-w-[60vw] opacity-30"
+          className="hidden md:block absolute right-38 bottom-2 w-[460px] max-w-[60vw] opacity-30"
           style={{ minWidth: '160px' }}
         />
       </div>

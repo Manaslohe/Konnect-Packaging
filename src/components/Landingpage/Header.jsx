@@ -91,7 +91,7 @@ const Header = () => {
               <div className="py-2">
                 <a href="/our-story" className={dropdownItemStyle}>Our Story</a>
                 <a href="/vision-values" className={dropdownItemStyle}>Vision & Values</a>
-                <a href="/leadership" className={dropdownItemStyle}>Leadership Team</a>
+                <a href="/leadership" className={dropdownItemStyle}>Leadership Message</a>
                 <a href="/global-footprint" onClick={handleGlobalFootprintClick} className={dropdownItemStyle}>Our Global Footprint</a>
                 <a href="/awards-certifications" onClick={handleAwardsCertificationsClick} className={dropdownItemStyle}>Awards & Certifications</a>
                 <a href="/future" className={dropdownItemStyle}>Future-Proof Protection</a>
@@ -174,7 +174,7 @@ const Header = () => {
                     <div className="ml-3 sm:ml-4 mt-1.5 sm:mt-2 space-y-1 pb-2">
                       <a href="/our-story" onClick={closeMobileMenu} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Our Story</a>
                       <a href="/vision-values" onClick={closeMobileMenu} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Vision & Values</a>
-                      <a href="/leadership" onClick={closeMobileMenu} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Leadership Team</a>
+                      <a href="/leadership" onClick={closeMobileMenu} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Leadership Message</a>
                       <a href="/global-footprint" onClick={handleMobileGlobalFootprintClick} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Our Global Footprint</a>
                       <a href="/awards-certifications" onClick={handleMobileAwardsCertificationsClick} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Awards & Certifications</a>
                       <a href="/future" onClick={closeMobileMenu} className="block text-gray-600 text-sm sm:text-base py-1.5 sm:py-2 px-3 sm:px-4 rounded hover:bg-gray-50 transition-colors">Future-Proof Protection</a>

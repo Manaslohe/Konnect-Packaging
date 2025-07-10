@@ -45,7 +45,7 @@ function Study2() {
 
       {/* Mobile View: Show original content */}
       <div className="block lg:hidden">
-        <div className="max-w-[1400px] mx-auto lg:grid lg:grid-cols-2 gap-16 lg:items-center">
+        <div className="max-w-[100vw] mx-auto lg:grid lg:grid-cols-2 gap-16 lg:items-center">
           {/* Left Side - Our Story */}
           <div className="relative mb-12 lg:mb-0">
             {/* Rectangle background image - hidden on mobile */}
@@ -62,9 +62,9 @@ function Study2() {
             
             {/* Mobile background rectangle image */}
             <div
-              className="lg:hidden absolute -top-48 -right-24 w-[70vh] h-[70vh]"
+              className="lg:hidden absolute -top-22 -right-4 w-[50vh] h-[50vh]"
               style={{
-                backgroundImage: "url('/rectangle.png')",
+                backgroundImage: "url('/storyback.png')",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
@@ -72,9 +72,13 @@ function Study2() {
               }}
             ></div>
             
-            <div className="relative z-10 lg:pl-8">
-              <img src="/story.png" alt="Konnect Packaging" className="h-100 lg:h-130 mb-8" />
-            </div>
+                <div className="relative z-10 lg:pl-8">
+                    <img
+                    src="/story.png"
+                    alt="Konnect Packaging"
+                    className="w-full max-w-[450px] h-auto lg:h-130 mb-12"
+                    />
+                  </div>
           </div>
 
           {/* Right Side - Features */}
@@ -92,10 +96,10 @@ function Study2() {
                   
                   {/* Content */}
                   <div className="flex-1 pt-1">
-                    <h3 className="text-lg lg:text-xl  text-black mb-2 lg:mb-3 leading-tight">
+                    <h3 className="text-lg lg:text-xl font-medium text-black mb-2 lg:mb-3 leading-tight">
                       {feature.title}
                     </h3>
-                    <p className="text-sm lg:text-base text-black/80 leading-relaxed">
+                    <p className="text-sm font-medium lg:text-base text-black/80 leading-relaxed">
                       {feature.description}
                     </p>
                   </div>

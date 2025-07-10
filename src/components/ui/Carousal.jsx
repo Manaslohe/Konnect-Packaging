@@ -1,5 +1,5 @@
 "use client";;
-import { IconArrowNarrowRight } from "@tabler/icons-react";
+import { ArrowRight } from "lucide-react";
 import { useState, useRef, useId, useEffect } from "react";
 import React from "react"; // <-- Add this import
 
@@ -141,7 +141,7 @@ const CarouselControl = ({
       }`}
       title={title}
       onClick={handleClick}>
-      <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" />
+      <ArrowRight className="text-neutral-600 dark:text-neutral-200" />
     </button>
   );
 };

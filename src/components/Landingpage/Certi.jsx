@@ -3,7 +3,7 @@ import { useState } from "react";
 import '@fontsource/krona-one/400.css';
 import '@fontsource/montserrat';
 import { Carousel } from "../ui/Carousal";
-import { IconArrowNarrowRight } from "@tabler/icons-react"; // Add this import
+import { ArrowRight } from "lucide-react"; // Use Lucide React icon
 
 // Certification data array
 const certifications = [
@@ -139,7 +139,7 @@ function Certi() {
                 aria-label="Previous"
                 type="button"
               >
-                <IconArrowNarrowRight className="text-neutral-600 rotate-180" />
+                <ArrowRight className="text-neutral-600 rotate-180" />
               </button>
               <button
                 className="w-10 h-10 flex items-center justify-center bg-neutral-200 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200"
@@ -147,7 +147,7 @@ function Certi() {
                 aria-label="Next"
                 type="button"
               >
-                <IconArrowNarrowRight className="text-neutral-600" />
+                <ArrowRight className="text-neutral-600" />
               </button>
             </div>
           </div>
