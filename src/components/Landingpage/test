@@ -1,79 +1,22 @@
-import * as React from "react";
-import { useState } from "react";
-import '@fontsource/krona-one/400.css';
-import '@fontsource/montserrat';
-import { Carousel } from "../ui/Carousal"; // Import Carousel
-
-// Certification data array
-const certifications = [
-  {
-    id: "zed",
-    title: "ZED",
-    description: "ZED‑certified enterprises follow India's \"Zero Defect Zero Effect\" standards, delivering defect‑free products while minimizing environmental impact and meeting global quality and sustainability expectations.",
-  },
-  {
-    id: "rohs",
-    title: "ROHS",
-    description: "RoHS-certified products are free from harmful substances like lead and mercury, making them safe and eco-friendly. This certification ensures compliance with global standards, especially in electronics and packaging.",
-  },
-  {
-    id: "ce",
-    title: "CE",
-    description: "CE‑certified products meet the European Union's safety, health, and environmental protection standards, ensuring they are reliable, consumer‑safe, and eligible for sale across the EU single market.",
-  },
-  {
-    id: "gpsd",
-    title: "GPSD",
-    description: "GPSD-certified products meet EU safety standards (2001/95/EC), ensuring safe, risk-free use and compliance for the EU market. They are tested for consumer safety, durability, and environmental impact.",
-  }
-];
-
-// Remove CertificationCard and use image slides instead
-
-function Certi() {
-  // Prepare slides for Carousel (both mobile and desktop)
-  // Use explicit array for correct image order and avoid duplicate keys
-  const certImageNumbers = [4, 1, 2, 3, 4, 1]; // 4 at start, 1 at end for infinite effect
-
-  const imageSlides = certImageNumbers.map((i, idx) => ({
-    src: `/Certi/${i}.png`,
-    renderCard: () => (
-      <div className="flex items-center justify-center w-full h-full">
-        <img
-          src={`/Certi/${i}.png`}
-          alt={`Certification ${i}`}
-          className="w-full h-full max-w-[550px] max-h-[320px] object-contain"
-          draggable={false}
-        />
-      </div>
-    ),
-    key: `cert-${i}-${idx}` // unique key for each slide
-  }));
-
-  return (
-    <div className="box-border py-12 w-full bg-white font-['Krona_One']">
-      <div className="mb-12 text-5xl text-center text-black max-md:text-4xl max-sm:text-3xl">
-        Certifications
-      </div>
-
-      {/* Desktop view - use Carousel */}
-      <div className="hidden sm:flex w-full justify-center items-center">
-        <div className="w-[80vw] max-w-full mx-auto">
-          <Carousel slides={imageSlides} infinite />
-        </div>
-      </div>
-
-      {/* Mobile view - use Carousel, only one card visible at a time */}
-      <div className="sm:hidden w-full px-4">
-        <div className="relative overflow-hidden w-full py-4 flex items-center justify-center">
-          <div className="w-[90vw] max-w-[340px] mx-auto">
-            <Carousel slides={imageSlides} infinite />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default Certi;
-   
+  {/* Animated Subtitle Container - Fixed Width */}
+              <div className="relative overflow-hidden h-12 md:h-12 lg:h-8 xl:h-8 2xl:h-12 w-full max-w-2xl 2xl:mb-12 mb-0">
+                <div 
+                  className={`absolute top-0 left-0 w-full transition-all duration-1000 ease-in-out ${
+                    isAnimating ? 'transform translate-x-full opacity-0' : 'transform translate-x-0 opacity-100'
+                  }`}
+                >
+                  <p className="text-black lg:text-nowrap font-medium text-[0.65rem] md:text-sm lg:text-[1rem] xl:text-[1rem] 2xl:text-[0.9rem] leading-relaxed max-w-sm md:max-w-md lg:max-w-md px-2 md:px-0 font-['Montserrat']">
+                    {TITLES[textIndex].subtitle}
+                  </p>
+                </div>
+                
+                <div 
+                  className={`absolute top-0 left-0 w-full transition-all duration-1000 ease-in-out ${
+                    isAnimating ? 'transform translate-x-0 opacity-100' : 'transform -translate-x-full opacity-0'
+                  }`}
+                >
+                  <p className="text-black lg:text-nowrap font-medium text-[0.65rem] md:text-sm lg:text-[1rem] xl:text-[1rem] 2xl:text-[0.9rem] leading-relaxed max-w-sm md:max-w-md lg:max-w-md px-2 md:px-0 font-['Montserrat']">
+                   {TITLES[nextTextIndex].subtitle}
+                  </p>
+                </div>
+              </div>
