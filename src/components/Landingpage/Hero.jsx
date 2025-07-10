@@ -152,14 +152,22 @@ const Hero = ({ scrollToProducts }) => {
 
               <div className="w-full flex justify-start md:justify-center lg:justify-end">
                 <button
-                  onClick={scrollToProducts}
-                  className="bg-black text-white 2xl:pl-4 px-3 py-2 md:py-2.5 lg:py-2.5 xl:py-3 2xl:py-2 rounded-full flex items-center space-x-2 hover:bg-neutral-900 transition-all duration-300 font-['Krona_One'] font-normal text-[0.65rem] md:text-sm lg:text-sm xl:text-base"
+                  onClick={() => {
+                    if (typeof scrollToProducts === "function") {
+                      scrollToProducts();
+                    } else {
+                      // fallback: scroll to #products section if scrollToProducts not provided
+                      const el = document.getElementById('products');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="bg-black text-white 2xl:pl-4 px-1 pl-3 py-1 md:py-2.5 lg:py-2.5 xl:py-3 2xl:py-2 rounded-full flex items-center space-x-2 hover:bg-neutral-900 transition-all duration-300 font-['Krona_One'] font-normal text-[0.65rem] md:text-sm lg:text-sm xl:text-base"
                 >
                   <span>Explore Our Products</span>
                   <img
                     src="/arrow.png"
                     alt="Arrow"
-                    className="w-3 h-3 md:w-4 md:h-4 lg:w-6 lg:h-6 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 ml-1"
+                    className="w-6 h-6 md:w-4 md:h-4 lg:w-6 lg:h-6 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10 ml-1"
                   />
                 </button>
               </div>
