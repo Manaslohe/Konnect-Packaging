@@ -84,7 +84,7 @@ const Slide = ({
           transformOrigin: "bottom",
         }}>
         <div
-          className="absolute top-0 left-0 w-full h-full bg-white rounded-[1%] overflow-hidden transition-all duration-150 ease-out"
+          className="absolute top-0 left-0 w-full h-full bg-transparent rounded-[1%] overflow-hidden transition-all duration-150 ease-out"
           style={{
             transform:
               current === index

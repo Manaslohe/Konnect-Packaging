@@ -141,10 +141,10 @@ const Progress = () => {
 
 
   return (
-    <div className="w-full bg-white py-12 px-4 sm:py-6 sm:px-6 lg:py-4 lg:px-8 font-['Krona_One']">
+    <div className="w-full bg-white py-2 md:pb-12 px-4 sm:py-6 sm:px-6 lg:py-4 lg:px-8 font-['Krona_One']">
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
-        <div className="text-center mb-6 sm:mb-6 lg:mb-10 transition duration-700">
+        <div className="text-center mb-6 sm:mb-6 lg:mb-8 transition duration-700">
           <h1 className="font-normal text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-[50px] text-black leading-normal">
             Our Progress in Numbers
           </h1>

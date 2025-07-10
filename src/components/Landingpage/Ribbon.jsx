@@ -45,7 +45,7 @@ const topClients = [
     const animate = () => {
       if (!isPaused.top && !isDragging.top) {
         setTopRibbonOffset(prev => {
-          const newOffset = prev - 2; // Right to left, speed increased from 1 to 1.5
+          const newOffset = prev - 1.2; // Right to left, speed increased from 1 to 1.5
           const singleSetWidth = topClients.length * logoTotal;
           // Use modulo to create seamless loop
           return newOffset <= -singleSetWidth ? newOffset + singleSetWidth : newOffset;
@@ -55,7 +55,7 @@ const topClients = [
       if (!isPaused.bottom && !isDragging.bottom) {
         setBottomRibbonOffset(prev => {
           const singleSetWidth = bottomClients.length * logoTotal;
-          let newOffset = prev + 2; // Speed increased from 1 to 1.5
+          let newOffset = prev + 1.2; // Speed increased from 1 to 1.5
           if (newOffset > 0) {
             return newOffset - singleSetWidth;
           }
@@ -152,20 +152,20 @@ const topClients = [
   );
 
   return (
-    <div className="w-full py-16 px-4 overflow-hidden">
+    <div className="w-full py-8 md:py-12  px-4 overflow-hidden">
       <div className="w-[90%] mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-normal text-gray-800 mb-4" style={{ fontFamily: 'Krona One, sans-serif' }}>
+        <div className="text-center mb-2 md:mb-12">
+          <h2 className="text-2xl md:text-5xl font-normal text-gray-800 mb-4" style={{ fontFamily: 'Krona One, sans-serif' }}>
             Featured Clients
           </h2>
         </div>
 
         {/* Reduce space between ribbons on mobile */}
-        <div className="space-y-6 md:space-y-12">
+        <div className="space-y-1 md:space-y-6">
           {/* Top Ribbon - Left to Right */}
           <div className="relative overflow-hidden">
             {/* Ribbon Background */}
-            <div className="w-full h-32 md:h-36 bg-white rounded-2xl shadow-lg relative">
+            <div className="w-full h-32 md:h-36 bg-transparent rounded-2xl shadow-lg relative">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             </div>
             
@@ -189,7 +189,7 @@ const topClients = [
           {/* Bottom Ribbon - Right to Left */}
           <div className="relative overflow-hidden">
             {/* Ribbon Background */}
-            <div className="w-full h-32 md:h-36 bg-white rounded-2xl shadow-lg relative">
+            <div className="w-full h-32 md:h-36 bg-transparent rounded-2xl shadow-lg relative">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             </div>
             

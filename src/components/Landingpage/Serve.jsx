@@ -273,10 +273,10 @@ function ContinuousCarousel({
 export default function Serve() {
   return (
     <div
-      className="relative w-full max-w-[95%] sm:max-w-[100%] mx-auto py-8 sm:py-12 lg:py-16 px-4 sm:px-6"
+      className="relative w-full max-w-[95%] sm:max-w-[100%] mx-auto py-8 sm:py-12 lg:pb-14 lg:pt-6 px-4 sm:px-6"
       style={{ fontFamily: "'Krona One', sans-serif" }}
     >
-      <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center text-black mb-6 sm:mb-8 lg:mb-12 font-normal">
+      <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-center text-black mb-8 sm:mb-8 lg:mb-12 font-normal">
         Industries We Serve
       </div>
 

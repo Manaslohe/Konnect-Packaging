@@ -46,8 +46,9 @@ function Connect() {
             <FaLinkedin className="w-[24px] h-[24px] md:w-[27px] md:h-[27px]" />
             <div>LinkedIn</div>
           </div>
-          <div className="col-span-2 flex items-center gap-1.5 px-6 py-1.5 whitespace-nowrap bg-black rounded-3xl justify-center
+          <div className="col-span-2 flex justify-center w-full justify-self-center
             md:col-span-1 md:px-8 md:py-1.5 md:min-w-[170px] md:h-[48px] lg:min-w-[190px] lg:h-[54px]
+            items-center gap-1.5 px-6 py-1.5 whitespace-nowrap bg-black rounded-3xl
             cursor-pointer transition-all duration-300 hover:bg-gray-800 hover:scale-105 hover:shadow-lg">
             <FaTwitter className="w-5 h-5" />
             <div>Twitter</div>

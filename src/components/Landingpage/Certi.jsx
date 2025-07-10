@@ -113,8 +113,8 @@ function Certi() {
   const goNext = () => setCurrentCardIndex(prev => (prev >= carouselSlides.length - 2 ? 1 : prev + 1));
 
   return (
-    <div className="box-border py-12 pt-0 w-full bg-white font-['Krona_One']">
-      <div className="mb-12 text-5xl text-center text-black max-md:text-4xl max-sm:text-3xl">
+    <div className="box-border py-6 md:pb-14 pt-0 w-full font-['Krona_One']">
+      <div className="text-5xl text-center text-black mb-2 md:mb-12 max-md:text-4xl max-sm:text-3xl">
         Certifications
       </div>
 

@@ -18,12 +18,53 @@ const LandingPage = () => {
         <Products2 />
         <Progress />
         <Worldwide />
-        <Serve />
-        <Certifiation />
-        <Connect />
-        <Ribbon />
+        {/* Start background image here */}
+        <div style={{ position: "relative", width: "100%" }}>
+          {/* Background image layer */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 0,
+              backgroundImage: "url('/back1.png')",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "100% 100%",
+              backgroundPosition: "0 -40px",
+              opacity: 0.7, // only background is faded
+              pointerEvents: "none",
+            }}
+          />
+          {/* Foreground content */}
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <Serve />
+            <Certifiation />
+          </div>
+        </div>
+        {/* End background image here */}
+        {/* Start second background image here */}
+        <div style={{ position: "relative", width: "100%" }}>
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              zIndex: 0,
+              backgroundImage: "url('/back2.png')",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "100% 100%",
+              backgroundPosition: "0 0",
+              opacity: 1,
+              pointerEvents: "none",
+            }}
+          />
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <Connect />
+            <Ribbon />
+            <Footer />
+          </div>
+        </div>
+        {/* End second background image here */}
       </div>
-      <Footer />
+      {/* Removed Footer from outside, now included above */}
     </>
   )
 }
