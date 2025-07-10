@@ -34,20 +34,33 @@ const topClients = [
   const topClientsExtended = [...topClients, ...topClients, ...topClients, ...topClients, ...topClients, ...topClients];
   const bottomClientsExtended = [...bottomClients, ...bottomClients, ...bottomClients, ...bottomClients, ...bottomClients, ...bottomClients];
 
+  // Responsive: track window width in state
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Responsive logo width and margin for mobile/desktop
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
   const logoWidth = isMobile ? 80 : 192; // 20rem (80px) for mobile, 48 (192px) for md+
   const logoMargin = isMobile ? 6 : 20;  // 1.5rem (6px) for mobile, 5 (20px) for md+
   const logoTotal = logoWidth + logoMargin * 2;
 
   // Animation loop with infinite scrolling
   useEffect(() => {
+    const topSpeed = isMobile ? 0.5 : 2; // slower on mobile
+    const bottomSpeed = isMobile ? 0.5 : 2;
+
     const animate = () => {
       if (!isPaused.top && !isDragging.top) {
         setTopRibbonOffset(prev => {
-          const newOffset = prev - 1.2; // Right to left, speed increased from 1 to 1.5
+          const newOffset = prev - topSpeed;
           const singleSetWidth = topClients.length * logoTotal;
-          // Use modulo to create seamless loop
+          // Fix: always use correct set width for reset
           return newOffset <= -singleSetWidth ? newOffset + singleSetWidth : newOffset;
         });
       }
@@ -55,7 +68,7 @@ const topClients = [
       if (!isPaused.bottom && !isDragging.bottom) {
         setBottomRibbonOffset(prev => {
           const singleSetWidth = bottomClients.length * logoTotal;
-          let newOffset = prev + 1.2; // Speed increased from 1 to 1.5
+          let newOffset = prev + bottomSpeed;
           if (newOffset > 0) {
             return newOffset - singleSetWidth;
           }
@@ -74,7 +87,7 @@ const topClients = [
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isPaused, isDragging, topClients.length, bottomClients.length, logoTotal]);
+  }, [isPaused, isDragging, topClients.length, bottomClients.length, logoTotal, isMobile]);
 
   // Drag handlers
   const handleMouseDown = (e, ribbon) => {
