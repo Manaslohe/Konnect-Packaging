@@ -38,9 +38,9 @@ function Eco() {
   const FeatureCard = ({ title, description, image }) => (
     <div className="bg-gray-900 rounded-[20px] p-6 relative pb-12 transition-all duration-500 hover:shadow-xl hover:scale-[1.03]">
       <div className="bg-white rounded-t-[15px] rounded-b-none p-4 mb-4 text-center">
-        <h3 className="text-gray-900 text-lg font-bold leading-tight">{title}</h3>
+        <h3 className="text-gray-900 text-[12px] md:text-lg font-bold leading-tight">{title}</h3>
       </div>
-      <p className="text-white text-sm leading-relaxed mb-6">
+      <p className="text-white text-[11px] md:text-lg leading-normal mb-1">
         {description}
       </p>
       <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gray-800 border-2 border-white rounded-full flex items-center justify-center shadow-lg overflow-hidden">
@@ -54,7 +54,7 @@ function Eco() {
   );
 
   return (
-    <div className="w-full max-w-[1440px] mx-auto bg-white py-16 px-6 lg:px-12 relative" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="w-full max-w-full mx-auto bg-white py-16 px-6 lg:px-12 relative" style={{ fontFamily: 'Inter, sans-serif' }}>
       {/* Desktop Tree Image - Top Right (Hidden on mobile/tablet) */}
       <div className="absolute top-2 right-12 lg:right-24 z-10 hidden lg:block">
         <img src="/eco.png" alt="Eco Tree" className="w-48 lg:w-200 h-auto" />
@@ -72,8 +72,8 @@ function Eco() {
       </div>
 
       {/* Mobile/Tablet Tree Image (Shown only on mobile/tablet) */}
-      <div className="flex justify-center mb-16 lg:hidden">
-        <img src="/eco.png" alt="Eco Tree" className="w-100 md:w-80 h-auto" />
+      <div className="flex justify-center mb-0 top-2 lg:hidden">
+        <img src="/eco2.png" alt="Eco Tree" className="w-100 md:w-100 h-auto" />
       </div>
 
       {/* Desktop Spacer (Hidden on mobile/tablet) */}

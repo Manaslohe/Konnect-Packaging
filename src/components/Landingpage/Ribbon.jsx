@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 
 const FeaturedClients = () => {
   const [topRibbonOffset, setTopRibbonOffset] = useState(0);
-  const [bottomRibbonOffset, setBottomRibbonOffset] = useState(0);
+  const [bottomRibbonOffset, setBottomRibbonOffset] = useState(-4320); // Start with 3 sets before (3 * 6 logos * 240px = -4320px)
   const [isDragging, setIsDragging] = useState({ top: false, bottom: false });
   const [dragStart, setDragStart] = useState({ x: 0, offset: 0 });
   const [isPaused, setIsPaused] = useState({ top: false, bottom: false });
@@ -11,14 +11,14 @@ const FeaturedClients = () => {
   const bottomRibbonRef = useRef(null);
   const animationRef = useRef(null);
 
-  // Sample client logos
-  const topClients = [
+  // Sample client logos - you can replace these with actual logo URLs
+const topClients = [
     { name: 'ESSAR STEEL', logo: '/ribbon1/1.png' },
     { name: 'HMT', logo: '/ribbon1/2.png' },
     { name: 'NALCO', logo: '/ribbon1/3.png' },
     { name: 'SPMCIL', logo: '/ribbon1/4.png' },
-    { name: 'SPMCIL', logo: '/ribbon1/5.png' },
-  ];
+     { name: 'SPMCIL', logo: '/ribbon1/5.png' },
+];
 
   const bottomClients = [
     { name: 'ONGC', logo: '/ribbon2/1.png' },
@@ -34,37 +34,28 @@ const FeaturedClients = () => {
   const topClientsExtended = [...topClients, ...topClients, ...topClients, ...topClients, ...topClients, ...topClients];
   const bottomClientsExtended = [...bottomClients, ...bottomClients, ...bottomClients, ...bottomClients, ...bottomClients, ...bottomClients];
 
-  // Get logo width based on screen size
-  const getLogoWidth = () => {
-    if (typeof window !== 'undefined') {
-      return window.innerWidth < 768 ? 120 : 240; // 120px for mobile, 240px for desktop
-    }
-    return 240;
-  };
+  // Responsive logo width and margin for mobile/desktop
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const logoWidth = isMobile ? 80 : 192; // 20rem (80px) for mobile, 48 (192px) for md+
+  const logoMargin = isMobile ? 6 : 20;  // 1.5rem (6px) for mobile, 5 (20px) for md+
+  const logoTotal = logoWidth + logoMargin * 2;
 
-  // Animation loop with simple pixel-based movement (like your original smooth code)
+  // Animation loop with infinite scrolling
   useEffect(() => {
     const animate = () => {
-      const logoWidth = getLogoWidth();
-      const speed = window.innerWidth < 768 ? 2.5 : 4; // Increased speed values
-      
-      // Top ribbon animation (right to left)
       if (!isPaused.top && !isDragging.top) {
         setTopRibbonOffset(prev => {
-          const newOffset = prev - speed;
-          const singleSetWidth = topClients.length * logoWidth;
-          // Reset when we've moved one complete set
+          const newOffset = prev - 2; // Right to left, speed increased from 1 to 1.5
+          const singleSetWidth = topClients.length * logoTotal;
+          // Use modulo to create seamless loop
           return newOffset <= -singleSetWidth ? newOffset + singleSetWidth : newOffset;
         });
       }
       
-      // Bottom ribbon animation (left to right)
       if (!isPaused.bottom && !isDragging.bottom) {
         setBottomRibbonOffset(prev => {
-          const singleSetWidth = bottomClients.length * logoWidth;
-          let newOffset = prev + speed;
-          
-          // Wrap around logic like your original
+          const singleSetWidth = bottomClients.length * logoTotal;
+          let newOffset = prev + 2; // Speed increased from 1 to 1.5
           if (newOffset > 0) {
             return newOffset - singleSetWidth;
           }
@@ -77,38 +68,15 @@ const FeaturedClients = () => {
       
       animationRef.current = requestAnimationFrame(animate);
     };
-    
     animationRef.current = requestAnimationFrame(animate);
-    
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isPaused, isDragging, topClients.length, bottomClients.length]);
+  }, [isPaused, isDragging, topClients.length, bottomClients.length, logoTotal]);
 
-  // Initialize bottom ribbon position
-  useEffect(() => {
-    const logoWidth = getLogoWidth();
-    const singleSetWidth = bottomClients.length * logoWidth;
-    setBottomRibbonOffset(-singleSetWidth * 3); // Start 3 sets back
-  }, [bottomClients.length]);
-
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      // Reset positions on resize to recalculate with new logo width
-      setTopRibbonOffset(0);
-      const logoWidth = getLogoWidth();
-      const singleSetWidth = bottomClients.length * logoWidth;
-      setBottomRibbonOffset(-singleSetWidth * 3);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [bottomClients.length]);
-
-  // Drag handlers (simplified like your original)
+  // Drag handlers
   const handleMouseDown = (e, ribbon) => {
     setIsDragging(prev => ({ ...prev, [ribbon]: true }));
     setIsPaused(prev => ({ ...prev, [ribbon]: true }));
@@ -153,7 +121,7 @@ const FeaturedClients = () => {
     handleMouseUp();
   };
 
-  // Global event listeners (simplified like your original)
+  // Global mouse events
   useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
@@ -171,42 +139,40 @@ const FeaturedClients = () => {
   const ClientLogo = ({ client, index }) => (
     <div 
       key={`${client.name}-${index}`}
-      className="flex-shrink-0 w-28 h-16 md:w-56 md:h-28 mx-1 md:mx-5 cursor-pointer group relative"
+      className="flex-shrink-0 w-20 h-14 mx-1.5 md:w-48 md:h-24 md:mx-5 cursor-pointer group relative"
+      // w-20 (80px), mx-1.5 (6px) for mobile; w-48 (192px), mx-5 (20px) for md+
     >
       <img 
         src={client.logo} 
         alt={client.name}
-        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110 md:group-hover:scale-125"
+        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-125"
         draggable={false}
-        onError={(e) => {
-          // Fallback for missing images
-          e.target.style.display = 'none';
-        }}
       />
     </div>
   );
 
   return (
-    <div className="w-full py-8 md:py-16 px-4 overflow-hidden">
-      <div className="w-[95%] md:w-[90%] mx-auto">
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-normal text-gray-800 mb-4" style={{ fontFamily: 'Krona One, sans-serif' }}>
+    <div className="w-full py-16 px-4 overflow-hidden">
+      <div className="w-[90%] mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-normal text-gray-800 mb-4" style={{ fontFamily: 'Krona One, sans-serif' }}>
             Featured Clients
           </h2>
         </div>
 
-        <div className="space-y-8 md:space-y-12">
+        {/* Reduce space between ribbons on mobile */}
+        <div className="space-y-6 md:space-y-12">
           {/* Top Ribbon - Left to Right */}
           <div className="relative overflow-hidden">
             {/* Ribbon Background */}
-            <div className="w-full h-20 md:h-32 lg:h-36 bg-white rounded-xl md:rounded-2xl shadow-lg relative">
+            <div className="w-full h-32 md:h-36 bg-white rounded-2xl shadow-lg relative">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             </div>
             
             {/* Logos Container */}
             <div 
               ref={topRibbonRef}
-              className="absolute inset-0 flex items-center cursor-grab active:cursor-grabbing select-none px-2 md:px-4"
+              className="absolute inset-0 flex items-center cursor-grab active:cursor-grabbing select-none px-4"
               style={{ 
                 transform: `translateX(${topRibbonOffset}px)`,
                 transition: isDragging.top ? 'none' : 'transform 0.1s ease-out'
@@ -223,14 +189,14 @@ const FeaturedClients = () => {
           {/* Bottom Ribbon - Right to Left */}
           <div className="relative overflow-hidden">
             {/* Ribbon Background */}
-            <div className="w-full h-20 md:h-32 lg:h-36 bg-white rounded-xl md:rounded-2xl shadow-lg relative">
+            <div className="w-full h-32 md:h-36 bg-white rounded-2xl shadow-lg relative">
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
             </div>
             
             {/* Logos Container */}
             <div 
               ref={bottomRibbonRef}
-              className="absolute inset-0 flex items-center cursor-grab active:cursor-grabbing select-none px-2 md:px-4"
+              className="absolute inset-0 flex items-center cursor-grab active:cursor-grabbing select-none px-4"
               style={{ 
                 transform: `translateX(${bottomRibbonOffset}px)`,
                 transition: isDragging.bottom ? 'none' : 'transform 0.1s ease-out'

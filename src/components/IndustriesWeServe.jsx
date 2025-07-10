@@ -41,11 +41,11 @@ const IndustriesWeServe = () => {
       className="box-border relative p-6 bg-black rounded-[3rem] w-full max-w-md mx-auto h-[400px] max-md:p-3 max-md:h-[300px] max-md:max-w-none max-sm:p-3 max-sm:h-[230px] max-sm:rounded-[2rem] transition-transform duration-500 hover:shadow-xl hover:scale-[1.03]"
       style={{fontFamily: 'Montserrat, sans-serif'}}
     >
-      <div className="relative mb-6 text-xl font-extrabold flex items-center justify-center text-black border-2 border-white bg-white h-16 rounded-full w-full max-md:h-10 max-md:text-[10px] max-sm:h-9 max-sm:text-[12px]" style={{fontFamily: 'Montserrat, sans-serif'}}>
+      <div className="relative mb-2 text-xl font-extrabold flex items-center justify-center text-black border-2 border-white bg-white h-16 rounded-full w-full max-md:h-10 max-md:text-[10px] max-sm:h-9 max-sm:text-[10px]" style={{fontFamily: 'Montserrat, sans-serif'}}>
         {title}
       </div>
-      <div className="h-[250px] rounded-2xl p-[2px] bg-gradient-to-b from-transparent to-white max-md:h-[150px] max-sm:h-[140px]">
-        <div className="h-full text-[1rem] text-center font-normal text-white leading-relaxed p-4 bg-black rounded-2xl flex items-center justify-center max-md:text-[0.6rem] max-md:p-2 max-sm:text-[0.45rem] max-sm:p-2" style={{fontFamily: 'Montserrat, sans-serif'}}>
+      <div className="h-[290px] rounded-3xl p-[2px] bg-gradient-to-b from-transparent to-white max-md:h-[150px] max-sm:h-[165px]">
+        <div className="h-full text-[1rem] text-center font-normal text-white leading-relaxed p-4 bg-black rounded-3xl flex items-center justify-center max-md:text-[0.6rem] max-md:p-2 max-sm:text-[0.52rem] max-sm:p-2" style={{fontFamily: 'Montserrat, sans-serif'}}>
           {description}
         </div>
       </div>

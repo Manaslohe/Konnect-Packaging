@@ -6,7 +6,7 @@ function FutureProof() {
       <div className="max-w-7xl mx-auto pt-8">
         {/* Header Section */}
         <div className="bg-gradient-to-r from-[#F0D395] to-[#EAC882] rounded-2xl p-6 md:p-8 mb-8">
-          <h1 className="font-['Krona_One',sans-serif] text-[#111] text-2xl md:text-3xl lg:text-4xl mb-3 leading-tight">
+          <h1 className="font-['Krona_One',sans-serif] text-[#111] text-xl md:text-3xl lg:text-4xl mb-3 leading-tight">
             Future-Proof Protection.
           </h1>
           <p className="font-['Montserrat',sans-serif] text-[#333] text-sm md:text-base font-medium lg:text-lg leading-relaxed">
