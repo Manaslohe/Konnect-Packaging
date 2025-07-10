@@ -59,12 +59,15 @@ const LandingPage = () => {
           <div style={{ position: "relative", zIndex: 1 }}>
             <Connect />
             <Ribbon />
-            <Footer />
+            {/* Footer removed from here */}
           </div>
         </div>
         {/* End second background image here */}
       </div>
-      {/* Removed Footer from outside, now included above */}
+      {/* Footer now outside, full width */}
+      <div style={{ width: "100%" }}>
+        <Footer />
+      </div>
     </>
   )
 }

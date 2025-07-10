@@ -115,7 +115,7 @@ function Stories() {
         if (!isAnimating) {
           handleNext();
         }
-      }, 3000);
+      }, 1000);
       return () => clearInterval(interval);
     }
   }, [isMobile, isLoaded, isAnimating, currentIndex, isHovered]);
@@ -237,7 +237,7 @@ function Stories() {
           <p className="text-sm text-black">{position}</p>
         </div>
       </div>
-      <p className="text-black text-sm leading-relaxed mb-6">
+      <p className="text-black text-sm leading-relaxed  mb-6">
         {testimonial}
       </p>
       <div className="flex items-center justify-between">

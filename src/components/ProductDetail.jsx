@@ -4,6 +4,7 @@ import { FaPlay, FaCube } from 'react-icons/fa';
 import productInfoData from '../utils/ProductInfoData';
 import foodProductInfoData from '../utils/FoodProductInfoData';
 import BackButton from './BackButton';
+import Viewer360 from './360';
 import '@fontsource/montserrat/400.css';
 import '@fontsource/montserrat/500.css';
 import '@fontsource/montserrat/600.css';
@@ -11,6 +12,7 @@ import '@fontsource/montserrat/600.css';
 const ProductDetail = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
+  const [show360, setShow360] = React.useState(false);
 
   // Scroll to top when productId changes
   useEffect(() => {
@@ -252,6 +254,16 @@ const ProductDetail = () => {
     navigate('/');
   };
 
+  // Function to map product id to the correct .glb file name and folder
+  const getGlbFileName = (product) => {
+    // Return the .glb file name based on product id (after renaming)
+    if (!product) return null;
+    if (product.id >= 1 && product.id <= 22) {
+      return `${product.id}.glb`;
+    }
+    return null;
+  };
+
   if (!product) {
     return (
       <div className="min-h-screen bg-black text-white font-['Krona_One'] flex items-center justify-center">
@@ -313,7 +325,10 @@ const ProductDetail = () => {
           
           {/* Action Buttons */}
           <div className="flex flex-row gap-3 w-full max-w-md">
-            <button className="group relative overflow-hidden bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white px-4 py-3.5 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex-1 border border-gray-700/30">
+            <button
+              className="group relative overflow-hidden bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white px-4 py-3.5 rounded-xl font-medium transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex-1 border border-gray-700/30"
+              onClick={() => setShow360(true)}
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-center gap-2">
                 <div className="p-1 bg-white/10 rounded-md group-hover:bg-white/20 transition-colors duration-300">
@@ -511,6 +526,30 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+
+      {/* 360 Viewer Modal */}
+      {show360 && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
+          <div className="relative w-full max-w-3xl h-full max-h-[90vh]">
+            <button 
+              onClick={() => setShow360(false)}
+              className="absolute top-4 right-4 text-white text-2xl"
+            >
+              &times;
+            </button>
+            <Viewer360
+              open={show360}
+              onClose={() => setShow360(false)}
+              modelUrl={
+                product.id >= 14
+                  ? `/KONNECT PRODUCT/Food & Agro Packaging/${getGlbFileName(product)}`
+                  : `/KONNECT PRODUCT/VCI Packaging Solutions/${getGlbFileName(product)}`
+              }
+              productName={`${product.name} ${product.code}`}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

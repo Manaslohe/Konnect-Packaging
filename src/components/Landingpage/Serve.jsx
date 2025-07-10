@@ -283,7 +283,7 @@ export default function Serve() {
       <ContinuousCarousel
         data={industries}
         CardComponent={IndustryCard}
-        speed={1.5}
+        speed={4}
         direction="left"
         pauseOnHover={true}
         enableDrag={true}
