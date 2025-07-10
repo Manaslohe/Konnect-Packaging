@@ -250,7 +250,7 @@ const ContentSection = ({
 				)}
 				{title === "FAQ" && (
 					<div
-						className="absolute top-0 left-0 text-[64px] font-bold text-white/50 w-full z-0 pointer-events-none select-none"
+						className="absolute top-0 left-0 text-[64px] font-bold text-white/40 w-full z-0 pointer-events-none select-none"
 						style={{
 							fontFamily: 'Krona One, sans-serif',
 							lineHeight: '1',
@@ -320,14 +320,14 @@ function Blogs() {
 	};
 
 	return (
-		<div className="flex justify-center min-h-screen bg-white py-8" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+		<div className="flex justify-center min-h-screen bg-white pb-8 pt-0 md:pt-0 max-md:pt-20" style={{ fontFamily: 'Montserrat, sans-serif' }}>
 			<div className="relative w-[95%] max-w-none overflow-hidden bg-white min-h-[1855px] max-md:p-5 max-md:min-h-[auto] max-sm:max-w-screen-sm max-md:bg-gradient-to-tr max-md:from-[#E9C77F] max-md:to-[#FBE6B7] max-md:rounded-[50px]">
 				{/* Back Button */}
 				<BackButton />
 
 				{/* Background Elements - Desktop Only */}
 				<div className="hidden md:block absolute bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] h-[777px] left-[25px] rounded-[352px_0px] top-[114px] w-[calc(100%-50px)]" />
-				<div className="hidden md:block absolute bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] h-[1627px] left-[25px] rounded-[343px_0px_344px_0px] top-[114px] w-[calc(100%-50px)]" />
+				<div className="hidden  md:block absolute bg-gradient-to-tr from-[#E9C77F] to-[#FBE6B7] h-[1627px] left-[25px] rounded-[343px_0px_344px_0px] top-[114px] w-[calc(100%-50px)]" />
 
 				{/* Background Text - Desktop Only */}
 				<div className="hidden md:block absolute top-42 text-9xl h-[198px] left-[790px] text-white/50 text-opacity-50 w-[600px] z-[1]" style={{ fontFamily: 'Krona One, sans-serif' }}>
