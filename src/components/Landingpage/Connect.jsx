@@ -5,11 +5,11 @@ import { FaWhatsapp, FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "reac
 
 function Connect() {
   return (
-    <div className="flex overflow-hidden flex-col py-8 px-4 bg-white md:py-12 md:pl-9 lg:pl-9 font-['Krona_One']">
+    <div className="flex overflow-hidden flex-col py-0 px-4 bg-white md:py-12 md:pb-0 pb-0 md:pl-9 lg:pl-9 font-['Krona_One']">
       <div className="self-center text-3xl text-black text-center md:text-4xl lg:text-5xl md:max-w-full">
         Connect with us
       </div>
-      <div className="flex flex-col bg-gradient-to-r from-[#E7C375] to-[#fffffe] items-start pt-4 px-4 pb-12 mt-8 w-full rounded-[30px] md:pt-5 md:pr-20 md:pb-20 md:pl-9 md:mt-20 md:rounded-[50px] lg:px-9">
+      <div className="flex flex-col bg-gradient-to-r from-[#E7C375] to-[#fffffe] items-start pt-4 px-4 pb-12 mt-8 w-full rounded-[30px] md:pt-5 md:pr-20 md:pb-20 md:pl-9 md:mt-12 md:rounded-[50px] lg:px-9">
         <div className="text-2xl text-black leading-tight md:text-4xl lg:text-5xl md:max-w-full lg:leading-normal">
           Join our social‑media <br />
           community
