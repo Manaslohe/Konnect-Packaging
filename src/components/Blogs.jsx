@@ -66,8 +66,8 @@ const SearchBar = ({ placeholder, searchTerm, setSearchTerm }) => (
 				onChange={(e) => setSearchTerm(e.target.value)}
 				className="flex-1 text-lg font-medium text-gray-800 bg-transparent outline-none placeholder-gray-500 placeholder:font-normal max-sm:text-base pr-4"
 			/>
-			<div className="w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center cursor-pointer hover:bg-gray-700 transition-colors duration-200 group-hover:scale-105 flex-shrink-0">
-				<Search className="w-5 h-5 text-white" />
+			<div className="w-10 h-10  flex items-center justify-center cursor-pointer transition-colors duration-200 group-hover:scale-105 flex-shrink-0">
+				<Search className="w-5 h-5 text-black" />
 			</div>
 		</div>
 		{searchTerm && (
@@ -232,22 +232,51 @@ const ContentSection = ({
 			</div>
 
 			{/* Mobile & Tablet Layout */}
-			<div className="block md:hidden mb-12">
-				<div className="text-center mb-8">
-					<div className="text-4xl font-bold text-gray-800 mb-4" style={{ fontFamily: 'Krona One, sans-serif' }}>
+			<div className="block md:hidden mb-12 relative">
+				{/* Background Text for Mobile */}
+				{title === "BLOG" && (
+					<div
+						className="absolute top-0 left-0 text-[64px] font-bold text-white/50 w-full z-0 pointer-events-none select-none"
+						style={{
+							fontFamily: 'Krona One, sans-serif',
+							lineHeight: '1',
+							letterSpacing: '2px',
+							top: '-18px',
+							textAlign: 'left',
+						}}
+					>
+						BLOG
+					</div>
+				)}
+				{title === "FAQ" && (
+					<div
+						className="absolute top-0 left-0 text-[64px] font-bold text-white/50 w-full z-0 pointer-events-none select-none"
+						style={{
+							fontFamily: 'Krona One, sans-serif',
+							lineHeight: '1',
+							letterSpacing: '2px',
+							top: '-18px',
+							textAlign: 'left',
+						}}
+					>
+						FAQ
+					</div>
+				)}
+				<div className="text-center mb-8 relative z-10">
+					<div className="text-4xl font-bold text-gray-800 pt-4 text-left" style={{ fontFamily: 'Krona One, sans-serif' }}>
 						{title}
 					</div>
-					<div className="text-xl font-medium text-gray-800 mb-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+					<div className="text-xl font-medium text-gray-800 text-left" style={{ fontFamily: 'Montserrat, sans-serif' }}>
 						{subtitle}
 					</div>
-					<div className="text-[11px] text-gray-800 mb-6 px-4" style={{ fontFamily: 'Montserrat, sans-serif' }}>
+					<div className="text-[11px] text-gray-800 font-medium mb-6 text-left" style={{ fontFamily: 'Montserrat, sans-serif' }}>
 						{description}
 					</div>
 					<div className="flex justify-center mb-6">
 						<SearchBar placeholder={searchPlaceholder} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 					</div>
 				</div>
-				<div className="px-4">
+				<div className="px-4 relative z-10">
 					{filteredItems.map((item, index) => (
 						<React.Fragment key={item.id}>
 							<ListItem
