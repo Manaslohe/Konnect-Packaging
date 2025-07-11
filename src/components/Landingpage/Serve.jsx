@@ -147,7 +147,7 @@ function IndustryCard({
 function ContinuousCarousel({
   data,
   CardComponent,
-  speed = 1.5,
+  speed = 1, // Slower default speed
   direction = "left",
   pauseOnHover = true,
   enableDrag = true,
@@ -163,8 +163,10 @@ function ContinuousCarousel({
   const dragOffset = useRef(0);
   const translateX = useRef(0);
 
+  // Card width must match the actual rendered width for seamless loop
   const cardWidth = isMobile ? 340 : 420;
-  const repeatedData = [...data, ...data, ...data];
+  // Only repeat twice for better performance and seamlessness
+  const repeatedData = [...data, ...data];
 
   useEffect(() => {
     const resizeHandler = () => setIsMobile(window.innerWidth < 768);
@@ -174,27 +176,35 @@ function ContinuousCarousel({
   }, []);
 
   useEffect(() => {
-    const animate = (time) => {
+    let lastTime = performance.now();
+
+    const animate = (now) => {
       if (!isPaused && !isDragging) {
-        translateX.current += direction === "left" ? -speed : speed;
+        const elapsed = now - lastTime;
+        lastTime = now;
+        // Use elapsed time for smooth, frame-rate independent animation
+        const pxPerMs = speed / 16.67; // 1 is about 60px/sec
+        const delta = (direction === "left" ? -1 : 1) * pxPerMs * elapsed;
+        translateX.current += delta;
 
         // Reset smoothly when the scroll completes one full set
-        if (Math.abs(translateX.current) >= cardWidth * data.length) {
-          translateX.current = 0;
+        const totalWidth = cardWidth * data.length;
+        if (Math.abs(translateX.current) >= totalWidth) {
+          translateX.current = translateX.current % totalWidth;
         }
 
         if (carouselRef.current) {
           carouselRef.current.style.transform = `translateX(calc(${translateX.current}px + ${dragOffset.current}px))`;
         }
       }
-
       animationRef.current = requestAnimationFrame(animate);
     };
 
     animationRef.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationRef.current);
-  }, [speed, direction, isPaused, isDragging, cardWidth]);
+  }, [speed, direction, isPaused, isDragging, cardWidth, data.length]);
 
+  // Drag/Touch handlers
   const onStartDrag = (e) => {
     if (!enableDrag) return;
     setIsDragging(true);
@@ -233,12 +243,25 @@ function ContinuousCarousel({
     setHoveredCard(null);
   };
 
+  // Prevent text/image selection while dragging
+  React.useEffect(() => {
+    const preventDefault = (e) => {
+      if (isDragging) e.preventDefault();
+    };
+    document.addEventListener("selectstart", preventDefault);
+    return () => document.removeEventListener("selectstart", preventDefault);
+  }, [isDragging]);
+
   return (
     <div className="relative w-full overflow-visible select-none">
       <div
         ref={carouselRef}
         className="flex items-center gap-5"
-        style={{ willChange: "transform" }}
+        style={{
+          willChange: "transform",
+          transition: isDragging ? "none" : "transform 0.15s cubic-bezier(.4,0,.2,1)",
+          cursor: isDragging ? "grabbing" : "grab"
+        }}
         onMouseDown={onStartDrag}
         onMouseMove={onMoveDrag}
         onMouseUp={onEndDrag}
@@ -254,14 +277,10 @@ function ContinuousCarousel({
             isHovered={hoveredCard === i}
             onMouseEnter={() => handleCardMouseEnter(i)}
             onMouseLeave={handleCardMouseLeave}
-            onTouchStart={(e) => handleCardMouseEnter(i)}
+            onTouchStart={() => handleCardMouseEnter(i)}
             onTouchEnd={handleCardMouseLeave}
           />
         ))}
-      </div>
-
-      <div className="text-center mt-4 text-gray-500 text-xs">
-        {isMobile ? "Tap and hold to pause • Drag to navigate" : "Hover to pause • Drag to navigate"}
       </div>
     </div>
   );

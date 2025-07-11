@@ -74,11 +74,11 @@ const Slide = ({
           // Determine rotation based on position relative to current
           transform:
             index === current
-              ? "scale(1) rotateX(0deg) rotateY(0deg)"
+              ? "scale(1.1) rotateX(0deg) rotateY(0deg)"
               : index === leftIndex
-                ? "scale(1.1) rotateX(0deg) rotateY(20deg)" // left card
+                ? "scale(1.1) rotateX(0deg) rotateY(25deg)" // left card
                 : index === rightIndex
-                  ? "scale(1.1) rotateX(0deg) rotateY(-20deg)" // right card
+                  ? "scale(1.1) rotateX(0deg) rotateY(-25deg)" // right card
                   : "scale(0.8) rotateX(0deg) rotateY(0deg)",
           transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
           transformOrigin: "bottom",

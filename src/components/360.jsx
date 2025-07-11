@@ -10,7 +10,7 @@ function FitCamera({ boundingBox, center, maxDim, controlsRef }) {
   React.useEffect(() => {
     if (!boundingBox || !center || !maxDim) return;
     // Calculate optimal distance for camera based on model size and viewport
-    const fov = camera.fov * (Math.PI / 180);
+    const fov = camera.fov * (Math.PI / 280);
     const aspect = size.width / size.height;
     // Fit the largest dimension in view, with less padding for more zoom-in
     const fitHeightDistance = maxDim / (2 * Math.tan(fov / 2));
@@ -47,6 +47,9 @@ const Model = ({ url, onBoundingBox }) => {
       const center = new THREE.Vector3();
       originalBox.getCenter(center);
       scene.position.set(-center.x * scale, -center.y * scale, -center.z * scale);
+
+      // Apply initial rotation (e.g., rotate 45 degrees around Y axis)
+      scene.rotation.y = Math.PI / -4;
 
       // Compute bounding box AFTER scaling and centering
       const scaledBox = new THREE.Box3().setFromObject(scene);
@@ -131,7 +134,9 @@ const Viewer360 = ({ open, onClose, modelUrl, productName }) => {
               enableZoom
               enableRotate
               makeDefault
-              zoomSpeed={0.7}
+              zoomSpeed={0.4}
+              rotateSpeed={0.4}
+              panSpeed={0.4}
               maxPolarAngle={Math.PI}
               minPolarAngle={0}
             />

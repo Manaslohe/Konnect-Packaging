@@ -196,17 +196,7 @@ function Worldwide() {
       </h1>
       
       {/* World map image container */}
-      <div
-        className="relative w-full mb-[1%] max-w-[100%] mx-auto flex flex-col items-center"
-        style={{ height: "auto" }}
-      >
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/d04903ce5b967357a61ddea4f98adab76beb3981"
-          className="w-full h-[25vh] md:h-[75vh] object-contain"
-          alt="World Map"
-          style={{ maxHeight: "75vh" }}
-        />
-      </div>
+      {/* Removed map image and container */}
       
       {/* Cards grid */}
       <div className="mt-8 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-[6%] max-w-[95%] md:max-w-[90%] mx-auto">
