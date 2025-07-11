@@ -8,14 +8,14 @@ function LeadershipTeam() {
         
         {/* Content Container */}
        {/* Main Title */}
-          <h1 className="font-normal xl:pl-6 pb-2 text-[1.3rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem]
+          <h1 className="font-normal xl:pl-8  xl:pt-6 pb-2 text-[1.3rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] xl:text-[4rem]
                           text-[#111] mb-1 leading-[1.1]
                           font-['Krona_One',sans-serif]">
             Leadership Message
           </h1>
                      
           {/* Message Content */}
-          <div className="font-normal  xl:pl-6 text-[0.95rem] sm:text-[1rem] md:text-[1.1rem] lg:text-[1.2rem] xl:text-[2rem]
+          <div className="font-normal  xl:pl-10 text-[0.95rem] sm:text-[1rem] md:text-[1.1rem] lg:text-[1.2rem] xl:text-[2rem]
                          text-[#222] leading-[1.4] max-w-[340px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[90%] xl:max-w-[90%]
                          font-['Montserrat',sans-serif] space-y-4">
             <p>
