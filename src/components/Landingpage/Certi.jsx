@@ -35,7 +35,7 @@ const CertificationCard = ({ certification }) => {
 
   return (
     <div
-      className="relative max-w-full mx-auto h-[320px] w-[550px] max-md:h-[220px] max-md:w-[380px] max-sm:h-[200px] max-sm:w-[320px] duration-400 ease-in-out"
+      className="relative max-w-full mx-auto h-[320px] w-[550px] max-md:h-[220px] max-md:w-[380px] max-sm:h-[45vw] max-sm:w-[320px] duration-400 ease-in-out"
     >
       {/* Card background with rounded corners and gradient */}
       <div className="w-full h-full bg-gradient-to-tr from-[#FFD57F] to-[#F6DFAB] rounded-[20px] border-2 border-black/60"></div>
@@ -68,7 +68,7 @@ const CertificationCard = ({ certification }) => {
         <img 
           src="/hero/check.png" 
           alt="Certification check" 
-          className="w-[140px] h-[40px] max-md:w-[100px] max-md:h-[20px] max-sm:w-[80px] max-sm:h-[26px]" 
+          className="w-[140px] h-[40px] max-md:w-[100px] max-md:h-[20px] max-sm:w-[20vw] max-sm:h-[6vw]" 
         />
       </div>
     </div>
