@@ -245,10 +245,62 @@ export function Carousel({
 
   const id = useId();
 
+  // Touch/swipe state
+  const touchStartX = useRef(null);
+  const touchStartY = useRef(null);
+  const touchStartTime = useRef(null);
+  const touchMoved = useRef(false);
+
+  // Touch event handlers for swipe and tap
+  const handleTouchStart = (e) => {
+    if (e.touches.length === 1) {
+      touchStartX.current = e.touches[0].clientX;
+      touchStartY.current = e.touches[0].clientY;
+      touchStartTime.current = Date.now();
+      touchMoved.current = false;
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (!touchStartX.current) return;
+    const dx = e.touches[0].clientX - touchStartX.current;
+    const dy = e.touches[0].clientY - touchStartY.current;
+    if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+      touchMoved.current = true;
+    }
+  };
+
+  const handleTouchEnd = (e) => {
+    if (!touchStartX.current) return;
+    const dx = (e.changedTouches[0].clientX - touchStartX.current);
+    const dy = (e.changedTouches[0].clientY - touchStartY.current);
+    const dt = Date.now() - touchStartTime.current;
+    // Swipe left/right
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+      if (dx < 0) {
+        handleNextClick();
+      } else {
+        handlePreviousClick();
+      }
+    } else if (!touchMoved.current && dt < 350) {
+      // Tap with minimal movement
+      handleNextClick();
+    }
+    touchStartX.current = null;
+    touchStartY.current = null;
+    touchStartTime.current = null;
+    touchMoved.current = false;
+  };
+
   return (
     <div
       className="relative w-[70vmin] h-[50vmin] mx-auto"
-      aria-labelledby={`carousel-heading-${id}`}>
+      aria-labelledby={`carousel-heading-${id}`}
+      // Touch handlers for mobile
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <ul
         ref={listRef}
         className="absolute flex mx-[-4vmin]"

@@ -126,9 +126,9 @@ function Certi() {
       </div>
 
       {/* Mobile view - use Carousel with infinite auto-scroll, only one card visible at a time, with navigation buttons */}
-      <div className="sm:hidden w-full px-4 pt-4"> {/* Added pt-8 for extra top padding */}
-        <div className="relative overflow-hidden w-full py-6 flex flex-col items-center justify-center">
-          <div className="w-[90vw] max-w-[340px] mx-auto relative">
+      <div className="sm:hidden w-full px-4 pt-8 pb-8"> {/* Increased pt-8 and added pb-8 for more vertical space */}
+        <div className="relative overflow-visible w-full py-8 flex flex-col items-center justify-center"> {/* Increased py-8 and set overflow-visible */}
+          <div className="w-[98vw] max-w-[350px] mx-auto relative"> {/* Increased max-w for more space */}
             <Carousel slides={carouselSlides} infinite autoScroll autoScrollInterval={3500} />
             {/* Navigation buttons for mobile */}
             <div className="flex justify-center w-full mt-12">
