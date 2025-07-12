@@ -76,9 +76,9 @@ const Slide = ({
             index === current
               ? "scale(1.1) rotateX(0deg) rotateY(0deg)"
               : index === leftIndex
-                ? "scale(1.1) rotateX(0deg) rotateY(25deg)" // left card
+                ? "scale(1.1) rotateX(0deg) rotateY(30deg)" // left card
                 : index === rightIndex
-                  ? "scale(1.1) rotateX(0deg) rotateY(-25deg)" // right card
+                  ? "scale(1.1) rotateX(0deg) rotateY(-30deg)" // right card
                   : "scale(0.8) rotateX(0deg) rotateY(0deg)",
           transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
           transformOrigin: "bottom",
