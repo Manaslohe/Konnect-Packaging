@@ -35,7 +35,7 @@ const CertificationCard = ({ certification }) => {
 
   return (
     <div
-      className="relative max-w-full mx-auto h-[320px] w-[550px] max-md:h-[220px] max-md:w-[380px] max-sm:h-[45vw] max-sm:w-[320px] duration-400 ease-in-out"
+      className="relative max-w-full mx-auto h-[320px] w-[550px] max-md:h-[220px] max-md:w-[380px] max-sm:h-[45vw] max-sm:w-[350px] duration-400 ease-in-out"
     >
       {/* Card background with rounded corners and gradient */}
       <div className="w-full h-full bg-gradient-to-tr from-[#FFD57F] to-[#F6DFAB] rounded-[20px] border-2 border-black/60"></div>
@@ -56,7 +56,7 @@ const CertificationCard = ({ certification }) => {
       {/* Description text container with fixed height */}
       <div className="absolute top-[110px] left-[25px] right-[25px] h-[100px] max-md:top-[80px] max-md:h-[90px] max-sm:top-[60px] max-sm:h-[85px] max-md:left-[15px] max-md:right-[15px] flex items-center justify-center">
         <div
-          className="text-[1.2rem] max-md:text-[12px] max-sm:text-[11px] font-medium text-black text-center leading-[1.3] px-4 overflow-hidden"
+          className="text-[1.2rem] max-md:text-[12px] max-sm:text-[2.6vw] font-medium text-black text-center leading-[1.3] px-4 overflow-hidden"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
           {description}
@@ -68,7 +68,7 @@ const CertificationCard = ({ certification }) => {
         <img 
           src="/hero/check.png" 
           alt="Certification check" 
-          className="w-[140px] h-[40px] max-md:w-[100px] max-md:h-[20px] max-sm:w-[20vw] max-sm:h-[6vw]" 
+          className="w-[140px] h-[40px] max-md:w-[100px] max-md:h-[20px] max-sm:w-[16vw] max-sm:h-[5vw]" 
         />
       </div>
     </div>
@@ -147,7 +147,7 @@ function Certi() {
       {/* Mobile view - use Carousel with infinite auto-scroll, only one card visible at a time, with navigation buttons */}
       <div className="sm:hidden w-full px-4 pt-8 pb-8"> {/* Increased pt-8 and added pb-8 for more vertical space */}
         <div className="relative overflow-visible w-full py-8 flex flex-col items-center justify-center"> {/* Increased py-8 and set overflow-visible */}
-          <div className="w-[98vw] max-w-[350px] mx-auto relative"> {/* Increased max-w for more space */}
+          <div className="w-[100vw] max-w-[70vw] mx-auto relative"> {/* Increased max-w for more space */}
             <Carousel slides={carouselSlides} infinite autoScroll autoScrollInterval={3500} />
             {/* Navigation buttons for mobile */}
             <div className="flex justify-center w-full mt-12">
