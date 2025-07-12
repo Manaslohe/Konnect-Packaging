@@ -104,7 +104,7 @@ const Viewer360 = ({ open, onClose, modelUrl, productName }) => {
         <div className="
           w-full
           max-w-[98vw] max-h-[70vh]
-          sm:w-[95vw] sm:h-[55vw] sm:max-w-4xl sm:max-h-[80vh]
+          sm:w-[95vw] sm:h-[55vw] sm:max-w-6xl sm:max-h-[85vh]
           bg-white rounded-xl flex items-center justify-center shadow-lg relative
           aspect-[4/3]
         ">
@@ -141,9 +141,9 @@ const Viewer360 = ({ open, onClose, modelUrl, productName }) => {
               minPolarAngle={0}
             />
           </Canvas>
-        </div>
-        <div className="mt-4 sm:mt-6 text-center text-[10px] sm:text-xs text-gray-400 tracking-wide">
-          DRAG TO ROTATE | PINCH TO ZOOM | SCROLL TO ZOOM
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 px-2 py-1 bg-white/80 rounded text-[4px] sm:text-xs text-gray-500 tracking-wide pointer-events-none select-none">
+            DRAG TO ROTATE | PINCH TO ZOOM | SCROLL TO ZOOM
+          </div>
         </div>
       </div>
     </div>
