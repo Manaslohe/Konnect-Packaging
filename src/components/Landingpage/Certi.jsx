@@ -56,7 +56,7 @@ const CertificationCard = ({ certification }) => {
       {/* Description text container with fixed height */}
       <div className="absolute top-[110px] left-[25px] right-[25px] h-[100px] max-md:top-[80px] max-md:h-[90px] max-sm:top-[60px] max-sm:h-[85px] max-md:left-[15px] max-md:right-[15px] flex items-center justify-center">
         <div
-          className="text-[1.2rem] max-md:text-[12px] max-sm:text-[2.6vw] font-medium text-black text-center leading-[1.3] px-4 overflow-hidden"
+          className="text-[1.2rem] max-md:text-[12px] max-sm:text-[2.7vw] font-medium text-black text-center leading-[1.3] px-4 overflow-hidden"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
         >
           {description}
