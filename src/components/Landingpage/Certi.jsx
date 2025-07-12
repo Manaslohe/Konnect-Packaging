@@ -80,8 +80,17 @@ function Certi() {
   const [currentCardIndex, setCurrentCardIndex] = useState(1); // Sync with Carousel initial index
 
   // Prepare slides for Carousel (both mobile and desktop)
-  // Add clones for infinite effect
+  // Add multiple clones for infinite effect
   const carouselSlides = [
+    // Add two clones from the end at the start
+    {
+      ...certifications[certifications.length - 2],
+      renderCard: () => (
+        <div className="flex items-center justify-center w-full h-full">
+          <CertificationCard certification={certifications[certifications.length - 2]} />
+        </div>
+      ),
+    },
     {
       ...certifications[certifications.length - 1],
       renderCard: () => (
@@ -90,6 +99,7 @@ function Certi() {
         </div>
       ),
     },
+    // Main slides
     ...certifications.map(cert => ({
       ...cert,
       renderCard: () => (
@@ -98,11 +108,20 @@ function Certi() {
         </div>
       ),
     })),
+    // Add two clones from the start at the end
     {
       ...certifications[0],
       renderCard: () => (
         <div className="flex items-center justify-center w-full h-full">
           <CertificationCard certification={certifications[0]} />
+        </div>
+      ),
+    },
+    {
+      ...certifications[1],
+      renderCard: () => (
+        <div className="flex items-center justify-center w-full h-full">
+          <CertificationCard certification={certifications[1]} />
         </div>
       ),
     },
