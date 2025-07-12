@@ -124,12 +124,12 @@ const Hero = ({ scrollToProducts }) => {
 
               {/* Title Animation */}
               <div className="relative overflow-hidden h-20 w-[23rem] md:h-24 lg:w-[30rem] xl:w-[37rem] 2xl:w-[40rem] lg:h-32 xl:h-40 2xl:h-35">
-                <div className={`absolute top-0 left-0 w-full transition-all duration-1000 ease-in-out ${textAnimating ? 'translate-x-full opacity-0' : 'translate-x-0 opacity-100'}`}>
+                <div className={`absolute top-0 left-1 w-full transition-all duration-1000 ease-in-out ${textAnimating ? 'translate-x-full opacity-0' : 'translate-x-0 opacity-100'}`}>
                   <h1 className="text-3xl lg:text-[2.5rem] xl:text-[3.5rem] font-normal text-black leading-tight font-['Krona_One']">
                     {TITLES[textIndex].title}
                   </h1>
                 </div>
-                <div className={`absolute top-0 left-0 w-full transition-all duration-1000 ease-in-out ${textAnimating ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
+                <div className={`absolute top-0 left-1 w-full transition-all duration-1000 ease-in-out ${textAnimating ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'}`}>
                   <h1 className="text-3xl lg:text-[2.5rem] xl:text-[3.5rem] font-normal text-black leading-tight font-['Krona_One']">
                     {TITLES[nextTextIndex].title}
                   </h1>

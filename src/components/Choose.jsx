@@ -35,14 +35,14 @@ const Choose = () => {
 
   const FeatureCard = ({ title, description }) => (
     <div
-      className="box-border relative bg-white rounded-3xl w-full mx-auto overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group border border-gray-100 max-sm:rounded-2xl"
+      className="box-border relative bg-white rounded-3xl w-full mx-auto overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 group border border-gray-100 max-sm:rounded-xl max-sm:p-0"
       style={{ fontFamily: 'Montserrat, sans-serif' }}
     >
       {/* Title section with gradient accent */}
-      <div className="relative p-6 bg-gradient-to-br from-white to-gray-50 border-b border-gray-100 max-md:p-4 max-sm:p-3">
+      <div className="relative p-6 bg-gradient-to-br from-white to-gray-50 border-b border-gray-100 max-md:p-4 max-sm:p-3 max-sm:rounded-t-xl">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#E9C77F] to-[#FBE6B7] group-hover:h-2 transition-all duration-300"></div>
         <h3
-          className="text-xl font-extrabold text-black text-center leading-tight pt-2 group-hover:text-gray-800 transition-colors duration-300 max-md:text-sm max-sm:text-xs"
+          className="text-xl font-extrabold text-black text-center leading-tight pt-2 group-hover:text-gray-800 transition-colors duration-300 max-md:text-sm max-sm:text-[10px]"
           style={{ fontFamily: 'Montserrat, sans-serif' }}
         >
           {title}
@@ -50,7 +50,7 @@ const Choose = () => {
       </div>
       
       {/* Description section with modern black design */}
-      <div className="relative p-6 bg-black min-h-[220px] flex items-center justify-center overflow-hidden max-md:p-4 max-md:min-h-[180px] max-sm:p-3 max-sm:min-h-[140px]">
+      <div className="relative p-6 bg-black min-h-[220px] flex items-center justify-center overflow-hidden max-md:p-4 max-md:min-h-[180px] max-sm:p-3 max-sm:min-h-[160px] max-sm:rounded-b-xl">
         {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-90"></div>
         

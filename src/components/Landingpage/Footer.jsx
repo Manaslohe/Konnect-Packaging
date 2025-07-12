@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "@fontsource/krona-one";
 import "@fontsource/montserrat"; // Import Montserrat font
 import { 
@@ -10,6 +10,7 @@ import {
   FaTwitter 
 } from "react-icons/fa";
 import { MdEmail, MdPhone } from "react-icons/md";
+import Popup from "./Popup"; // Import the new Popup component
 
 // Reusable components for consistent styling
 const SectionTitle = ({ children }) => (
@@ -59,8 +60,24 @@ const CompanyLink = ({ to, children }) => (
 );
 
 function Footer() {
+  // Popup state
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [popupMsg, setPopupMsg] = useState("");
+
+  // Handler to open popup with custom message
+  const handlePopup = (msg) => {
+    setPopupMsg(msg);
+    setPopupOpen(true);
+  };
+
   return (
     <>
+      {/* Popup */}
+      <Popup
+        open={popupOpen}
+        onClose={() => setPopupOpen(false)}
+        message={popupMsg}
+      />
       <footer
         className="bg-black text-white py-16 px-8"
         // Remove fontFamily here so only SectionTitle and credit use Krona One
@@ -91,11 +108,29 @@ function Footer() {
             <div className="col-span-1">
               <SectionTitle>Our company</SectionTitle>
               <ul>
-                <CompanyLink to="/career">Career</CompanyLink>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => handlePopup("The Career page is still under construction. We're building something amazing for you!")}
+                    className="text-gray-300 text-sm transition-all duration-500 ease-out block py-2.5 px-3 -mx-3 rounded-lg relative overflow-hidden group hover:text-white hover:translate-x-2 transform hover:bg-gradient-to-r hover:from-[#E9C77F]/20 hover:to-[#E9C77F]/5 hover:shadow-lg hover:shadow-[#E9C77F]/10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#E9C77F] before:to-transparent before:w-1 before:h-full before:left-0 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100"
+                    style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  >
+                    Career
+                  </button>
+                </li>
                 <CompanyLink to="/why-choose-us">Why Choose Us</CompanyLink>
                 <CompanyLink to="/vision-mission">Vision and Mission</CompanyLink>
                 <CompanyLink to="/analysis">Product Analysis</CompanyLink>
-                <CompanyLink to="/catalog">Catalog</CompanyLink>
+                <li>
+                  <button
+                    type="button"
+                    onClick={() => handlePopup("Our Catalog page is coming soon. Get ready to explore our products!")}
+                    className="text-gray-300 text-sm transition-all duration-500 ease-out block py-2.5 px-3 -mx-3 rounded-lg relative overflow-hidden group hover:text-white hover:translate-x-2 transform hover:bg-gradient-to-r hover:from-[#E9C77F]/20 hover:to-[#E9C77F]/5 hover:shadow-lg hover:shadow-[#E9C77F]/10 before:absolute before:inset-0 before:bg-gradient-to-r before:from-[#E9C77F] before:to-transparent before:w-1 before:h-full before:left-0 before:opacity-0 before:transition-opacity before:duration-500 hover:before:opacity-100"
+                    style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  >
+                    Catalog
+                  </button>
+                </li>
                 <li>
                   <a
                     href="/KONNECT-2.pdf"
@@ -167,4 +202,5 @@ function Footer() {
 }
 
 export default Footer;
+       
 

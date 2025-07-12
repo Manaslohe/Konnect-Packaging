@@ -73,15 +73,15 @@ function Analysis() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Left Side - Text Content */}
           <div className="flex flex-col justify-center">
-            <h2 className="font-['Krona_One',sans-serif] text-[#111] text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-4">
+            <h2 className="font-['Krona_One',sans-serif] text-[#111] text-2xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight mb-4">
               Have a product{' '}
-              <span className=" text-7xl block pb-4">query?</span>
+              <span className="block pb-1 lg:pb-2 text-5xl lg:text-[5rem]">query?</span>
             </h2>
             <div className="flex flex-row items-end flex-wrap gap-2">
-              <span className="font-['Krona_One',sans-serif] text-3xl md:text-4xl lg:text-5xl">
+              <span className="font-['Krona_One',sans-serif] text-2xl md:text-4xl lg:text-5xl">
                 Upload <br/>an image for
               </span>
-              <span className="font-['Krona_One',sans-serif] text-4xl md:text-5xl lg:text-7xl text-[#111]">
+              <span className="font-['Krona_One',sans-serif] text-5xl md:text-5xl lg:text-[5rem] text-[#111]">
                 info
               </span>
             </div>

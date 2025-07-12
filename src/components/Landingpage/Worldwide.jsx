@@ -139,7 +139,7 @@ function Worldwide() {
               <div
                 className={
                   name === "INDIA"
-                    ? "text-[9px] md:text-[9px] text-white font-medium"
+                    ? "text-[6px] md:text-[9px] text-white font-medium"
                     : "text-[10px] md:text-xs text-white font-medium"
                 }
                 style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.7)' }}
@@ -171,7 +171,7 @@ function Worldwide() {
                 transitionDelay: '0.2s'
               }}
             >
-              <div className="text-black font-bold text-sm md:text-base mb-1 leading-tight">
+              <div className="text-black font-bold text-[12px] md:text-base mb-1 leading-tight">
                 {personName}
               </div>
               <p 

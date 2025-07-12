@@ -496,10 +496,10 @@ const Products = () => {
               </AnimatePresence>
             </div>
             
-          {/* Left Arrow */}
+            {/* Left Arrow */}
             <button 
               onClick={prevSlide}
-              className="absolute left-2 md:left-4 -bottom-30 z-10
+              className="absolute  left-2 md:left-4 -bottom-30 z-10
                transition-all duration-300 hover:scale-105 font-['Krona_One']"
             >
               <img
