@@ -190,7 +190,7 @@ function Worldwide() {
   };
 
   return (
-    <div className="relative w-full bg-white py-[5%] px-[2%] max-w-full mx-auto" style={{ fontFamily: "'Krona One', sans-serif" }}>
+    <div className="relative w-full py-[5%] px-[2%] max-w-full mx-auto" style={{ fontFamily: "'Krona One', sans-serif" }}>
       <h1 className="text-xl md:text-5xl text-center text-black w-full mx-auto mb-[5%] font-normal">
         Our Offices Worldwide
       </h1>

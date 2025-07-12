@@ -17,7 +17,35 @@ const LandingPage = () => {
         <Products />
         <Products2 />
         <Progress />
-        <Worldwide />
+        {/* Worldwide section with its own background */}
+        <div
+          className="ww-bg"
+          style={{
+            position: "relative",
+            width: "100%",
+            backgroundImage: "url('/mapbg.png')",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed", // Parallax effect
+            zIndex: 0,
+          }}
+        >
+          {/* Responsive background for mobile */}
+          <style>
+            {`
+              @media (max-width: 768px) {
+                .ww-bg {
+                  background-image: url('/mapm.png') !important;
+                  background-attachment: scroll !important;
+                }
+              }
+            `}
+          </style>
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <Worldwide />
+          </div>
+        </div>
         {/* Start background image here */}
         <div style={{ position: "relative", width: "100%" }}>
           {/* Background image layer */}

@@ -47,97 +47,90 @@ const Progress = () => {
   ];
 
   const CircularProgress = ({ percentage, targetNumber }) => {
-  const [ref, isVisible] = useInView({ threshold: 0.5 });
-  const [state, setState] = useState({ count: 0, percent: 0 });
+    const [ref, isVisible] = useInView({ threshold: 0.5 });
+    const [state, setState] = useState({ count: 0, percent: 0 });
+    const hasAnimated = useRef(false);
+    const radius = 85;
+    const circumference = 2 * Math.PI * radius;
+    const animationFrame = useRef(null);
 
-  const radius = 85;
-  const circumference = 2 * Math.PI * radius;
+    useEffect(() => {
+      if (!isVisible || hasAnimated.current) return;
 
-  const animationFrame = useRef(null);
+      hasAnimated.current = true;
+      const duration = 1200;
+      const start = performance.now();
 
-  useEffect(() => {
-    if (!isVisible) return;
+      const easeInOutCubic = (t) => t < 0.5
+        ? 4 * t * t * t
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
-    const duration = 2000;
-    const start = performance.now();
+      const animate = (time) => {
+        const elapsed = time - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeInOutCubic(progress);
 
-    const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+        const newCount = Math.round(eased * targetNumber);
+        const newPercent = eased * percentage;
 
-    const animate = (time) => {
-      const elapsed = time - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = easeOutCubic(progress);
+        setState({ count: newCount, percent: newPercent });
 
-      const newCount = Math.floor(eased * targetNumber);
-      const newPercent = eased * percentage;
-
-      setState((prev) => {
-        // Prevent excessive re-renders
-        if (
-          Math.abs(prev.count - newCount) > 0 ||
-          Math.abs(prev.percent - newPercent) > 0.5
-        ) {
-          return { count: newCount, percent: newPercent };
+        if (progress < 1) {
+          animationFrame.current = requestAnimationFrame(animate);
         }
-        return prev;
-      });
+      };
 
-      if (progress < 1) {
-        animationFrame.current = requestAnimationFrame(animate);
-      }
-    };
+      animationFrame.current = requestAnimationFrame(animate);
 
-    animationFrame.current = requestAnimationFrame(animate);
+      return () => cancelAnimationFrame(animationFrame.current);
+    }, [isVisible, percentage, targetNumber]);
 
-    return () => cancelAnimationFrame(animationFrame.current);
-  }, [isVisible, percentage, targetNumber]);
+    const strokeDashoffset = circumference - (state.percent / 100) * circumference;
 
-  const strokeDashoffset = circumference - (state.percent / 100) * circumference;
+    return (
+      <div
+        ref={ref}
+        className="relative w-[200px] h-[200px] flex items-center justify-center"
+      >
+        {/* Background circle */}
+        <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 200 200">
+          <circle
+            cx="100"
+            cy="100"
+            r={radius}
+            stroke="#ffffff"
+            strokeWidth="28"
+            fill="none"
+          />
+        </svg>
 
-  return (
-    <div
-      ref={ref}
-      className="relative w-[200px] h-[200px] flex items-center justify-center"
-    >
-      {/* Background circle */}
-      <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 200 200">
-        <circle
-          cx="100"
-          cy="100"
-          r={radius}
-          stroke="#ffffff"
-          strokeWidth="28"
-          fill="none"
-        />
-      </svg>
+        {/* Animated Progress circle */}
+        <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 200 200">
+          <circle
+            cx="100"
+            cy="100"
+            r={radius}
+            stroke="#000000"
+            strokeWidth="28"
+            fill="none"
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
+            style={{
+              // Removed transition to allow JS-driven gradual fill
+              opacity: 1,
+            }}
+          />
+        </svg>
 
-      {/* Animated Progress circle */}
-      <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 200 200">
-        <circle
-          cx="100"
-          cy="100"
-          r={radius}
-          stroke="#000000"
-          strokeWidth="28"
-          fill="none"
-          strokeDasharray={circumference}
-          strokeDashoffset={strokeDashoffset}
-          style={{
-            transition: 'stroke-dashoffset 0.1s linear',
-            opacity: 1,
-          }}
-        />
-      </svg>
-
-      {/* Center count */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center font-bold text-2xl lg:text-2xl text-black">
-          {state.count}+
+        {/* Center count */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="text-center font-bold text-2xl lg:text-2xl text-black">
+            {state.count}+
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
 
   return (

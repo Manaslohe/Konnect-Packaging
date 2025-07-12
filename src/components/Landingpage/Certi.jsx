@@ -131,23 +131,7 @@ function Certi() {
           <div className="w-[90vw] max-w-[340px] mx-auto relative">
             <Carousel slides={carouselSlides} infinite autoScroll autoScrollInterval={3500} />
             {/* Navigation buttons for mobile */}
-            <div className="flex justify-center w-full mt-4 gap-4">
-              <button
-                className="w-10 h-10 flex items-center justify-center bg-neutral-200 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200"
-                onClick={goPrev}
-                aria-label="Previous"
-                type="button"
-              >
-                <ArrowRight className="text-neutral-600 rotate-180" />
-              </button>
-              <button
-                className="w-10 h-10 flex items-center justify-center bg-neutral-200 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200"
-                onClick={goNext}
-                aria-label="Next"
-                type="button"
-              >
-                <ArrowRight className="text-neutral-600" />
-              </button>
+            <div className="flex justify-center w-full mt-12">
             </div>
           </div>
         </div>
