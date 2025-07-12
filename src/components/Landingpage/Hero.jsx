@@ -113,7 +113,7 @@ const Hero = ({ scrollToProducts }) => {
               <img
                 src="/hero/1.png"
                 alt="Certification Badge"
-                className="w-36 lg:w-44 xl:w-50 2xl:w-46 h-auto object-contain"
+                className="w-36 lg:w-44 xl:w-50 2xl:w-46 h-auto object-contain transition-transform duration-500 hover:scale-105"
               />
             </div>
 
@@ -161,7 +161,7 @@ const Hero = ({ scrollToProducts }) => {
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
                     }
                   }}
-                  className="bg-black text-white 2xl:pl-4 2xl:px-2 px-1 pl-3 py-1 md:py-2.5 lg:py-2.5 xl:py-3 2xl:py-2 rounded-full flex items-center space-x-2 hover:bg-neutral-900 transition-all duration-300 font-['Krona_One'] font-normal text-[0.65rem] md:text-sm lg:text-sm xl:text-base"
+                  className="bg-black text-white 2xl:pl-4 2xl:px-2 px-1 pl-3 py-1 md:py-2.5 lg:py-2.5 xl:py-3 2xl:py-2 rounded-full flex items-center space-x-2 hover:bg-neutral-900 transition-all duration-300 font-['Krona_One'] font-normal text-[0.65rem] md:text-sm lg:text-sm xl:text-base transition-transform duration-500 hover:scale-105"
                 >
                   <span>Explore Our Products</span>
                   <img
@@ -176,7 +176,7 @@ const Hero = ({ scrollToProducts }) => {
                 <img
                   src="/hero/1.png"
                   alt="Certification Badge"
-                  className="w-36 md:w-35 h-auto object-contain"
+                  className="w-36 md:w-35 h-auto object-contain transition-transform duration-500 hover:scale-105"
                 />
               </div>
             </div>

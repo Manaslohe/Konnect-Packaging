@@ -50,12 +50,19 @@ const Progress = () => {
     const [ref, isVisible] = useInView({ threshold: 0.5 });
     const [state, setState] = useState({ count: 0, percent: 0 });
     const hasAnimated = useRef(false);
+    const [shouldAnimate, setShouldAnimate] = useState(false); // Track if animation should run
     const radius = 85;
     const circumference = 2 * Math.PI * radius;
     const animationFrame = useRef(null);
 
     useEffect(() => {
-      if (!isVisible || hasAnimated.current) return;
+      if (isVisible && !shouldAnimate) {
+        setShouldAnimate(true); // Start animation when first visible
+      }
+    }, [isVisible, shouldAnimate]);
+
+    useEffect(() => {
+      if (!shouldAnimate || hasAnimated.current) return;
 
       hasAnimated.current = true;
       const duration = 1200;
@@ -83,7 +90,7 @@ const Progress = () => {
       animationFrame.current = requestAnimationFrame(animate);
 
       return () => cancelAnimationFrame(animationFrame.current);
-    }, [isVisible, percentage, targetNumber]);
+    }, [shouldAnimate, percentage, targetNumber]);
 
     const strokeDashoffset = circumference - (state.percent / 100) * circumference;
 
