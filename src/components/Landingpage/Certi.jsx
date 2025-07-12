@@ -41,20 +41,20 @@ const CertificationCard = ({ certification }) => {
       <div className="w-full h-full bg-gradient-to-tr from-[#FFD57F] to-[#F6DFAB] rounded-[20px] border-2 border-black/60"></div>
       
       {/* Title */}
-      <div className="absolute top-[30px] left-0 right-0 text-center text-[32px] max-md:text-[24px] max-sm:text-[20px] text-black font-bold">
+      <div className="absolute top-[30px] left-0 right-0 text-center text-[32px] max-md:text-[24px] max-sm:text-[20px] text-black font-bold max-sm:top-[18px]">
         {title}
       </div>
       
       {/* Horizontal line under title with fade effect */}
       <div 
-        className="absolute top-[80px] left-[30px] right-[30px] h-[2px] max-md:top-[65px] max-sm:top-[55px] max-md:left-[20px] max-md:right-[20px]"
+        className="absolute top-[80px] left-[30px] right-[30px] h-[2px] max-md:top-[65px] max-sm:top-[43px] max-md:left-[20px] max-md:right-[20px]"
         style={{
           background: 'linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.8) 30%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0))'
         }}
       ></div>
       
       {/* Description text container with fixed height */}
-      <div className="absolute top-[110px] left-[25px] right-[25px] h-[100px] max-md:top-[80px] max-md:h-[90px] max-sm:top-[70px] max-sm:h-[85px] max-md:left-[15px] max-md:right-[15px] flex items-center justify-center">
+      <div className="absolute top-[110px] left-[25px] right-[25px] h-[100px] max-md:top-[80px] max-md:h-[90px] max-sm:top-[60px] max-sm:h-[85px] max-md:left-[15px] max-md:right-[15px] flex items-center justify-center">
         <div
           className="text-[1.2rem] max-md:text-[12px] max-sm:text-[11px] font-medium text-black text-center leading-[1.3] px-4 overflow-hidden"
           style={{ fontFamily: "'Montserrat', sans-serif" }}
@@ -126,8 +126,8 @@ function Certi() {
       </div>
 
       {/* Mobile view - use Carousel with infinite auto-scroll, only one card visible at a time, with navigation buttons */}
-      <div className="sm:hidden w-full px-4">
-        <div className="relative overflow-hidden w-full py-4 flex flex-col items-center justify-center">
+      <div className="sm:hidden w-full px-4 pt-4"> {/* Added pt-8 for extra top padding */}
+        <div className="relative overflow-hidden w-full py-6 flex flex-col items-center justify-center">
           <div className="w-[90vw] max-w-[340px] mx-auto relative">
             <Carousel slides={carouselSlides} infinite autoScroll autoScrollInterval={3500} />
             {/* Navigation buttons for mobile */}
