@@ -1,51 +1,52 @@
 import * as React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+import Marquee from "react-fast-marquee";
 import "@fontsource/montserrat"; // Import Montserrat font
 
 // Industry data array
 const industries = [
-	{
-		id: 1,
-		title: "Metals & Foundry",
-		description:
-			"Robust packaging solutions engineered to withstand extreme conditions. Supporting the heavy-duty demands of the metals and foundry industry with strength and precision.",
-		image: "/hero/Serve/4.png",
-	},
-	{
-		id: 2,
-		title: "Automotive & Engineering",
-		description:
-			"Secure packaging that safeguards delicate automotive and engineering parts. Ensures damage-free shipping and supports efficient logistics.",
-		image: "/hero/Serve/5.png",
-	},
-	{
-		id: 3,
-		title: "Food & Beverage",
-		description:
-			"Hygienic and reliable packaging that maintains freshness and safety. Eco-friendly options to enhance product appeal and shelf life.",
-		image: "/hero/Serve/6.png",
-	},
-	{
-		id: 4,
-		title: "Agriculture & Tea Export",
-		description:
-			"Packaging that preserves quality and aroma, protecting against moisture and contamination. Compliant with global export standards for freshness.",
-		image: "/hero/Serve/1.png",
-	},
-	{
-		id: 5,
-		title: "Export & Logistics",
-		description:
-			"Robust packaging optimized for international shipping. Protects products with cushioning and smart design for timely delivery.",
-		image: "/hero/Serve/2.png",
-	},
-	{
-		id: 6,
-		title: "Defense & Aerospace",
-		description:
-			"High-strength packaging for sensitive components. Provides protection from impact and environmental hazards, meeting strict industry standards.",
-		image: "/hero/Serve/3.png",
-	},
+  {
+    id: 1,
+    title: "Metals & Foundry",
+    description:
+      "Robust packaging solutions engineered to withstand extreme conditions. Supporting the heavy-duty demands of the metals and foundry industry with strength and precision.",
+    image: "/hero/Serve/4.png",
+  },
+  {
+    id: 2,
+    title: "Automotive & Engineering",
+    description:
+      "Secure packaging that safeguards delicate automotive and engineering parts. Ensures damage-free shipping and supports efficient logistics.",
+    image: "/hero/Serve/5.png",
+  },
+  {
+    id: 3,
+    title: "Food & Beverage",
+    description:
+      "Hygienic and reliable packaging that maintains freshness and safety. Eco-friendly options to enhance product appeal and shelf life.",
+    image: "/hero/Serve/6.png",
+  },
+  {
+    id: 4,
+    title: "Agriculture & Tea Export",
+    description:
+      "Packaging that preserves quality and aroma, protecting against moisture and contamination. Compliant with global export standards for freshness.",
+    image: "/hero/Serve/1.png",
+  },
+  {
+    id: 5,
+    title: "Export & Logistics",
+    description:
+      "Robust packaging optimized for international shipping. Protects products with cushioning and smart design for timely delivery.",
+    image: "/hero/Serve/2.png",
+  },
+  {
+    id: 6,
+    title: "Defense & Aerospace",
+    description:
+      "High-strength packaging for sensitive components. Provides protection from impact and environmental hazards, meeting strict industry standards.",
+    image: "/hero/Serve/3.png",
+  },
 ];
 
 // ========================================
@@ -59,87 +60,89 @@ const industries = [
 // - onMouseEnter/onMouseLeave: Hover event handlers
 // - onTouchStart/onTouchEnd: Touch event handlers for mobile
 function IndustryCard({ 
-	title, 
-	description, 
-	image, 
-	isHovered, 
-	onMouseEnter, 
-	onMouseLeave,
-	onTouchStart,
-	onTouchEnd 
+  title, 
+  description, 
+  image, 
+  isHovered, 
+  onMouseEnter, 
+  onMouseLeave,
+  onTouchStart,
+  onTouchEnd 
 }) {
-	return (
-		<div
-			className={`relative shrink-0 rounded-2xl sm:rounded-3xl border-2 border-black border-solid 
-			h-[300px] w-[320px] 
-			sm:h-[300px] sm:w-[340px] 
-			md:h-[320px] md:w-[360px] 
-			lg:h-[340px] lg:w-[380px] 
-			xl:h-[359px] xl:w-[400px] 
-			2xl:h-[380px] 2xl:w-[420px]
-			max-w-full
-			transition-all duration-300 ease-in-out
-			${isHovered ? " scale-105 z-20" : "shadow-md"}
-			cursor-pointer select-none
-			will-change-transform
-			`}
-			style={{ background: "linear-gradient(to top right, white, #F6DFAA)" }}
-			onMouseEnter={onMouseEnter}
-			onMouseLeave={onMouseLeave}
-			onTouchStart={onTouchStart}
-			onTouchEnd={onTouchEnd}
-		>
-			{/* Card title header */}
-			<div className="absolute left-1/2 top-2 sm:top-2.5 transform -translate-x-1/2 px-3 sm:px-4 lg:px-5 py-0 
-			text-sm sm:text-base md:text-lg lg:text-xl 
-			text-center text-white bg-black 
-			rounded-t-xl sm:rounded-t-2xl rounded-b-none sm:rounded-b-none
-			h-[50px] sm:h-[60px] md:h-[65px] lg:h-[70px] xl:h-[73px] 
-			w-[calc(100%_-_16px)] sm:w-[calc(100%_-_20px)] lg:w-[calc(100%_-_24px)]
-			flex items-center justify-center">
-				{title}
-			</div>
+  return (
+    <div
+      className={`relative shrink-0 rounded-2xl sm:rounded-3xl border-2 border-black border-solid 
+      h-[300px] w-[320px] 
+      sm:h-[300px] sm:w-[340px] 
+      md:h-[320px] md:w-[360px] 
+      lg:h-[340px] lg:w-[380px] 
+      xl:h-[359px] xl:w-[400px] 
+      2xl:h-[380px] 2xl:w-[420px]
+      max-w-full
+      transition-all duration-300 ease-in-out
+      ${isHovered ? "scale-105 z-30" : "shadow-md z-10"}
+      cursor-pointer select-none
+      will-change-transform
+      overflow-visible
+      `}
+      style={{ background: "linear-gradient(to top right, white, #F6DFAA)", zIndex: isHovered ? 30 : 10, overflow: 'visible' }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
+      {/* Card title header */}
+      <div className="absolute left-1/2 top-2 sm:top-2.5 transform -translate-x-1/2 px-3 sm:px-4 lg:px-5 py-0 
+      text-sm sm:text-base md:text-lg lg:text-xl 
+      text-center text-white bg-black 
+      rounded-t-xl sm:rounded-t-2xl rounded-b-none sm:rounded-b-none
+      h-[50px] sm:h-[60px] md:h-[65px] lg:h-[70px] xl:h-[73px] 
+      w-[calc(100%_-_16px)] sm:w-[calc(100%_-_20px)] lg:w-[calc(100%_-_24px)]
+      flex items-center justify-center">
+        {title}
+      </div>
 
-			{/* Gradient border wrapper for description box */}
-			<div
-				className="box-border absolute shrink-0 
-				h-[220px] sm:h-[210px] md:h-[220px] lg:h-[240px] xl:h-[258px] 2xl:h-[280px]
-				left-[8px] sm:left-[9px] 
-				top-[65px] sm:top-[75px] md:top-[80px] lg:top-[85px] xl:top-[88px] 
-				w-[calc(100%_-_16px)] sm:w-[calc(100%_-_18px)] 
-				rounded-b-xl sm:rounded-b-2xl rounded-t-none sm:rounded-t-none p-[1.5px]"
-				style={{
-					background: "linear-gradient(to bottom, transparent, black)"
-				}}
-			>
-				{/* Inner description box */}
-				<div
-					className="h-full w-full rounded-xl sm:rounded-2xl px-3 sm:px-4 pt-5 sm:pt-6 lg:pt-7 pb-0 bg-white"
-					style={{ background: "linear-gradient(to top right, white, #F6DFAA)" }}
-				>
-					<div
-						className="mb-6 sm:mb-8 lg:mb-10 
-						text-[15px] sm:text-sm md:text-base lg:text-xl 
-						text-center text-black w-full font-normal leading-normal"
-						style={{ fontFamily: "'Montserrat', sans-serif" }}
-					>
-						{description}
-					</div>
-					
-					{/* Circular icon positioned at bottom center */}
-					<div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 
-					h-[60px] w-[60px] sm:h-[70px] sm:w-[70px] md:h-[75px] md:w-[75px] lg:h-[80px] lg:w-[80px] xl:h-[88px] xl:w-[88px]">
-						<img
-							src={image}
-							alt=""
-							className="absolute top-0.5 left-0.5 shrink-0 aspect-[1/1] 
-							h-[56px] w-[56px] sm:h-[66px] sm:w-[66px] md:h-[71px] md:w-[71px] lg:h-[76px] lg:w-[76px] xl:h-[83px] xl:w-[83px]"
-						/>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
+      {/* Gradient border wrapper for description box */}
+      <div
+        className="box-border absolute shrink-0 
+        h-[220px] sm:h-[210px] md:h-[220px] lg:h-[240px] xl:h-[258px] 2xl:h-[280px]
+        left-[8px] sm:left-[9px] 
+        top-[65px] sm:top-[75px] md:top-[80px] lg:top-[85px] xl:top-[88px] 
+        w-[calc(100%_-_16px)] sm:w-[calc(100%_-_18px)] 
+        rounded-b-xl sm:rounded-b-2xl rounded-t-none sm:rounded-t-none p-[1.5px] overflow-visible"
+        style={{
+          background: "linear-gradient(to bottom, transparent, black)",
+          overflow: "visible"
+        }}
+      >
+        {/* Inner description box */}
+        <div
+          className="h-full w-full rounded-xl sm:rounded-2xl px-3 sm:px-4 pt-5 sm:pt-6 lg:pt-7 pb-0 bg-white overflow-visible"
+          style={{ background: "linear-gradient(to top right, white, #F6DFAA)", overflow: "visible" }}
+        >
+          <div
+            className="mb-6 sm:mb-8 lg:mb-10 
+            text-[15px] sm:text-sm md:text-base lg:text-xl 
+            text-center text-black w-full font-normal leading-normal"
+            style={{ fontFamily: "'Montserrat', sans-serif" }}
+          >
+            {description}
+          </div>
+          
+          {/* Circular icon positioned at bottom center */}
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 
+          h-[60px] w-[60px] sm:h-[70px] sm:w-[70px] md:h-[75px] md:w-[75px] lg:h-[80px] lg:w-[80px] xl:h-[88px] xl:w-[88px]">
+            <img
+              src={image}
+              alt=""
+              className="absolute top-0.5 left-0.5 shrink-0 aspect-[1/1] 
+              h-[56px] w-[56px] sm:h-[66px] sm:w-[66px] md:h-[71px] md:w-[71px] lg:h-[76px] lg:w-[76px] xl:h-[83px] xl:w-[83px]"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 // ==============================
 // Continuous Carousel Component
@@ -147,141 +150,37 @@ function IndustryCard({
 function ContinuousCarousel({
   data,
   CardComponent,
-  speed = 1, // Slower default speed
+  speed = 4,
   direction = "left",
   pauseOnHover = true,
-  enableDrag = true,
 }) {
-  const [isPaused, setIsPaused] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  const carouselRef = useRef(null);
-  const animationRef = useRef(null);
-  const dragStartX = useRef(0);
-  const dragOffset = useRef(0);
-  const translateX = useRef(0);
-
-  // Card width must match the actual rendered width for seamless loop
-  const cardWidth = isMobile ? 340 : 420;
-  // Only repeat twice for better performance and seamlessness
-  const repeatedData = [...data, ...data];
-
-  useEffect(() => {
-    const resizeHandler = () => setIsMobile(window.innerWidth < 768);
-    resizeHandler();
-    window.addEventListener("resize", resizeHandler);
-    return () => window.removeEventListener("resize", resizeHandler);
-  }, []);
-
-  useEffect(() => {
-    let lastTime = performance.now();
-
-    const animate = (now) => {
-      if (!isPaused && !isDragging) {
-        const elapsed = now - lastTime;
-        lastTime = now;
-        // Use elapsed time for smooth, frame-rate independent animation
-        const pxPerMs = speed / 16.67; // 1 is about 60px/sec
-        const delta = (direction === "left" ? -1 : 1) * pxPerMs * elapsed;
-        translateX.current += delta;
-
-        // Reset smoothly when the scroll completes one full set
-        const totalWidth = cardWidth * data.length;
-        if (Math.abs(translateX.current) >= totalWidth) {
-          translateX.current = translateX.current % totalWidth;
-        }
-
-        if (carouselRef.current) {
-          carouselRef.current.style.transform = `translateX(calc(${translateX.current}px + ${dragOffset.current}px))`;
-        }
-      }
-      animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationRef.current);
-  }, [speed, direction, isPaused, isDragging, cardWidth, data.length]);
-
-  // Drag/Touch handlers
-  const onStartDrag = (e) => {
-    if (!enableDrag) return;
-    setIsDragging(true);
-    setIsPaused(true);
-    dragStartX.current = e.type.includes("mouse")
-      ? e.clientX
-      : e.touches[0].clientX;
-  };
-
-  const onMoveDrag = (e) => {
-    if (!isDragging) return;
-    const clientX = e.type.includes("mouse")
-      ? e.clientX
-      : e.touches[0].clientX;
-    dragOffset.current = clientX - dragStartX.current;
-
-    if (carouselRef.current) {
-      carouselRef.current.style.transform = `translateX(calc(${translateX.current}px + ${dragOffset.current}px))`;
-    }
-  };
-
-  const onEndDrag = () => {
-    if (!isDragging) return;
-    translateX.current += dragOffset.current;
-    dragOffset.current = 0;
-    setIsDragging(false);
-    setIsPaused(false);
-  };
-
-  const handleCardMouseEnter = (i) => {
-    if (pauseOnHover) setIsPaused(true);
-    setHoveredCard(i);
-  };
-  const handleCardMouseLeave = () => {
-    if (pauseOnHover) setIsPaused(false);
-    setHoveredCard(null);
-  };
-
-  // Prevent text/image selection while dragging
-  React.useEffect(() => {
-    const preventDefault = (e) => {
-      if (isDragging) e.preventDefault();
-    };
-    document.addEventListener("selectstart", preventDefault);
-    return () => document.removeEventListener("selectstart", preventDefault);
-  }, [isDragging]);
+  const marqueeSpeed = direction === "left" ? speed : -speed;
 
   return (
-    <div className="relative w-full overflow-visible select-none">
-      <div
-        ref={carouselRef}
-        className="flex items-center gap-5"
-        style={{
-          willChange: "transform",
-          transition: isDragging ? "none" : "transform 0.15s cubic-bezier(.4,0,.2,1)",
-          cursor: isDragging ? "grabbing" : "grab"
-        }}
-        onMouseDown={onStartDrag}
-        onMouseMove={onMoveDrag}
-        onMouseUp={onEndDrag}
-        onMouseLeave={onEndDrag}
-        onTouchStart={onStartDrag}
-        onTouchMove={onMoveDrag}
-        onTouchEnd={onEndDrag}
+    <div className="relative w-full overflow-visible select-none" style={{overflow: 'visible'}}>
+      <Marquee
+        gradient={false}
+        speed={Math.abs(marqueeSpeed)}
+        direction={direction}
+        pauseOnHover={pauseOnHover}
+        pauseOnClick={true}
+        style={{ width: "100%", overflow: 'visible' }}
+        className="gap-5"
       >
-        {repeatedData.map((item, i) => (
-          <CardComponent
-            key={`${item.id}-${i}`}
-            {...item}
-            isHovered={hoveredCard === i}
-            onMouseEnter={() => handleCardMouseEnter(i)}
-            onMouseLeave={handleCardMouseLeave}
-            onTouchStart={() => handleCardMouseEnter(i)}
-            onTouchEnd={handleCardMouseLeave}
-          />
+        {data.map((item, i) => (
+          <div key={`${item.id}-${i}`} className="mx-2" style={{overflow: 'visible'}}>
+            <CardComponent
+              {...item}
+              isHovered={hoveredCard === i}
+              onMouseEnter={() => setHoveredCard(i)}
+              onMouseLeave={() => setHoveredCard(null)}
+              onTouchStart={() => setHoveredCard(i)}
+              onTouchEnd={() => setHoveredCard(null)}
+            />
+          </div>
         ))}
-      </div>
+      </Marquee>
     </div>
   );
 }
@@ -302,7 +201,7 @@ export default function Serve() {
       <ContinuousCarousel
         data={industries}
         CardComponent={IndustryCard}
-        speed={4}
+        speed={90}
         direction="left"
         pauseOnHover={true}
         enableDrag={true}

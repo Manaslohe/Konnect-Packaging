@@ -118,19 +118,18 @@ function Certi() {
         Certifications
       </div>
 
-      {/* Desktop view - use Carousel */}
+      {/* Desktop view - use Carousel with infinite auto-scroll */}
       <div className="hidden sm:flex w-full justify-center items-center">
         <div className="w-[70vw] max-w-[700px] mx-auto">
-          <Carousel slides={carouselSlides} infinite />
+          <Carousel slides={carouselSlides} infinite autoScroll autoScrollInterval={3500} />
         </div>
       </div>
 
-      {/* Mobile view - use Carousel, only one card visible at a time, with navigation buttons */}
+      {/* Mobile view - use Carousel with infinite auto-scroll, only one card visible at a time, with navigation buttons */}
       <div className="sm:hidden w-full px-4">
         <div className="relative overflow-hidden w-full py-4 flex flex-col items-center justify-center">
           <div className="w-[90vw] max-w-[340px] mx-auto relative">
-            {/* Pass currentCardIndex and setCurrentCardIndex to Carousel for sync (optional, if Carousel supports it) */}
-            <Carousel slides={carouselSlides} infinite />
+            <Carousel slides={carouselSlides} infinite autoScroll autoScrollInterval={3500} />
             {/* Navigation buttons for mobile */}
             <div className="flex justify-center w-full mt-4 gap-4">
               <button
