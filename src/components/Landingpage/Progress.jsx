@@ -65,7 +65,7 @@ const Progress = () => {
       if (!shouldAnimate || hasAnimated.current) return;
 
       hasAnimated.current = true;
-      const duration = 1200;
+      const duration = 2000;
       const start = performance.now();
 
       const easeInOutCubic = (t) => t < 0.5

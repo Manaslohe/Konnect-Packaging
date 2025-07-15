@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { Phone, Mail } from 'lucide-react';
 import BackButton from './BackButton';
+import Toast from './Toast';
 import '@fontsource/krona-one/400.css';
 import '@fontsource/montserrat/400.css';
+import Select from 'react-select';
+import countryList from 'react-select-country-list';
+import CountryFlag from 'react-country-flag';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +16,10 @@ const Contact = () => {
     country: '',
     message: ''
   });
+  const [success, setSuccess] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [countryOptions] = useState(countryList().getData());
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +29,49 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  // Use the correct environment variable for backend API base URL
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:5000';
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    // Prevent empty form submission
+    if (
+      !formData.name.trim() ||
+      !formData.phone.trim() ||
+      !formData.email.trim() ||
+      !formData.country.trim() ||
+      !formData.message.trim()
+    ) {
+      alert('Please fill in all fields.');
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      const res = await fetch(`${BACKEND_URL}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      if (res.ok) {
+        setShowToast(true);
+        setSuccess(true);
+        setFormData({ name: '', phone: '', email: '', country: '', message: '' });
+        setTimeout(() => setShowToast(false), 3000);
+      } else {
+        setSuccess(false);
+        alert('Failed to send message.');
+      }
+    } catch {
+      setSuccess(false);
+      alert('Failed to send message.');
+    }
+    setIsSubmitting(false);
   };
+
+  // Helper to get selected country option
+  const selectedCountry = countryOptions.find(
+    (option) => option.label === formData.country
+  );
 
   return (
     <div className="min-h-screen w-full p-4 relative" style={{ fontFamily: 'Montserrat, sans-serif' }}>
@@ -142,15 +189,81 @@ const Contact = () => {
                 className="w-full px-4 lg:px-6 py-3 lg:py-3 rounded-full bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 text-base lg:text-lg border-2 border-white"
                 style={{ fontFamily: 'Montserrat, sans-serif' }}
               />
-              <input
-                type="text"
-                name="country"
+              
+              {/* Country Input */}
+              <Select
+                options={countryOptions}
+                value={selectedCountry || null}
+                onChange={option =>
+                  setFormData(prev => ({
+                    ...prev,
+                    country: option ? option.label : ''
+                  }))
+                }
                 placeholder="Country"
-                value={formData.country}
-                onChange={handleInputChange}
-                className="w-full px-4 lg:px-6 py-3 lg:py-3 rounded-full bg-white/70 backdrop-blur-sm placeholder-gray-600 text-black focus:outline-none focus:bg-white/90 transition-all duration-200 text-base lg:text-lg border-2 border-white"
-                style={{ fontFamily: 'Montserrat, sans-serif' }}
+                className="react-select-container"
+                classNamePrefix="react-select"
+                styles={{
+                  control: (provided, state) => ({
+                    ...provided,
+                    borderRadius: '9999px',
+                    background: 'rgba(255,255,255,0.7)',
+                    border: '2px solid #fff',
+                    minHeight: '48px',
+                    boxShadow: state.isFocused ? '0 0 0 2px #E9C77F' : provided.boxShadow,
+                    fontFamily: 'Montserrat, sans-serif',
+                    fontSize: '1rem',
+                    paddingLeft: '0.5rem',
+                  }),
+                  input: (provided) => ({
+                    ...provided,
+                    fontFamily: 'Montserrat, sans-serif',
+                    color: '#111',
+                  }),
+                  placeholder: (provided) => ({
+                    ...provided,
+                    color: '#666',
+                    fontFamily: 'Montserrat, sans-serif',
+                  }),
+                  singleValue: (provided) => ({
+                    ...provided,
+                    fontFamily: 'Montserrat, sans-serif',
+                    color: '#111',
+                  }),
+                  option: (provided, state) => ({
+                    ...provided,
+                    fontFamily: 'Montserrat, sans-serif',
+                    backgroundColor: state.isFocused ? '#F0D395' : '#fff',
+                    color: '#111',
+                  }),
+                  menu: (provided) => ({
+                    ...provided,
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                  }),
+                }}
+                formatOptionLabel={option => (
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    {/* Show flag using react-country-flag */}
+                    <CountryFlag
+                      countryCode={option.value}
+                      svg
+                      style={{
+                        width: '1.5em',
+                        height: '1.5em',
+                        marginRight: 8,
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        boxShadow: '0 0 2px #ccc'
+                      }}
+                      aria-label={option.label}
+                    />
+                    <span>{option.label}</span>
+                  </div>
+                )}
+                isClearable
               />
+              
               <textarea
                 name="message"
                 placeholder="Type your message here..."
@@ -167,14 +280,18 @@ const Contact = () => {
                   type="submit"
                   className="bg-black text-white px-6 lg:px-8 py-2 lg:py-3 rounded-full font-bold text-xs lg:text-sm hover:bg-gray-800 transition-colors duration-200 tracking-wider"
                   style={{ fontFamily: 'Krona One, sans-serif' }}
+                  disabled={isSubmitting}
                 >
-                  SEND MESSAGE
+                  {isSubmitting ? 'Sending...' : 'SEND MESSAGE'}
                 </button>
               </div>
             </form>
           </div>
         </div>
       </div>
+      {showToast && (
+        <Toast message="Message sent successfully!" onClose={() => setShowToast(false)} />
+      )}
     </div>
   );
 };

@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { Upload } from 'lucide-react';
+import Select from 'react-select';
+import countryList from 'react-select-country-list';
+import CountryFlag from 'react-country-flag';
 
 function Analysis() {
   const [formData, setFormData] = useState({
@@ -9,8 +13,27 @@ function Analysis() {
     country: '',
     message: ''
   });
-  const [dragActive, setDragActive] = useState(false);
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [countryOptions] = useState(countryList().getData());
+
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:5000';
+
+  const onDrop = useCallback((acceptedFiles) => {
+    if (acceptedFiles && acceptedFiles.length > 0) {
+      setUploadedFile(acceptedFiles[0]);
+    }
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: {
+      'image/*': []
+    },
+    maxFiles: 1,
+    maxSize: 2 * 1024 * 1024 // 2MB
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -20,40 +43,53 @@ function Analysis() {
     }));
   };
 
-  const handleDrag = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    e.stopPropagation();
-    if (e.type === 'dragenter' || e.type === 'dragover') {
-      setDragActive(true);
-    } else if (e.type === 'dragleave') {
-      setDragActive(false);
+    // Prevent empty form submission
+    if (
+      !formData.name.trim() ||
+      !formData.phone.trim() ||
+      !formData.email.trim() ||
+      !formData.country.trim() ||
+      !formData.message.trim()
+    ) {
+      alert('Please fill in all fields.');
+      return;
     }
+    if (!uploadedFile) {
+      alert('Please upload an image file.');
+      return;
+    }
+    setIsSubmitting(true);
+    const data = new FormData();
+    Object.entries(formData).forEach(([key, value]) => data.append(key, value));
+    data.append('file', uploadedFile);
+
+    try {
+      const res = await fetch(`${BACKEND_URL}/analytics`, {
+        method: 'POST',
+        body: data
+      });
+      if (res.ok) {
+        setSuccess(true);
+        setFormData({ name: '', phone: '', email: '', country: '', message: '' });
+        setUploadedFile(null);
+        setTimeout(() => setSuccess(false), 3000);
+      } else {
+        setSuccess(false);
+        alert('Failed to send message.');
+      }
+    } catch {
+      setSuccess(false);
+      alert('Failed to send message.');
+    }
+    setIsSubmitting(false);
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      const file = e.dataTransfer.files[0];
-      setUploadedFile(file);
-    }
-  };
-
-  const handleFileSelect = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setUploadedFile(file);
-    }
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    console.log('File uploaded:', uploadedFile);
-    // Handle form submission here
-  };
+  // Helper to get selected country option
+  const selectedCountry = countryOptions.find(
+    (option) => option.label === formData.country
+  );
 
   return (
     <div className="w-full min-h-screen bg-white p-4  md:p-6 lg:p-8">
@@ -121,13 +157,76 @@ function Analysis() {
               />
 
               {/* Country Input */}
-              <input
-                type="text"
-                name="country"
+              <Select
+                options={countryOptions}
+                value={selectedCountry || null}
+                onChange={option =>
+                  setFormData(prev => ({
+                    ...prev,
+                    country: option ? option.label : ''
+                  }))
+                }
                 placeholder="Search country"
-                value={formData.country}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-[#E5E5E5] rounded-lg border-none outline-none font-['Montserrat',sans-serif] text-[#666] placeholder-[#999]"
+                className="react-select-container"
+                classNamePrefix="react-select"
+                styles={{
+                  control: (provided, state) => ({
+                    ...provided,
+                    borderRadius: '0.5rem',
+                    background: '#E5E5E5',
+                    border: 'none',
+                    minHeight: '48px',
+                    boxShadow: state.isFocused ? '0 0 0 2px #E9C77F' : provided.boxShadow,
+                    fontFamily: 'Montserrat, sans-serif',
+                    fontSize: '1rem',
+                    paddingLeft: '0.5rem',
+                  }),
+                  input: (provided) => ({
+                    ...provided,
+                    fontFamily: 'Montserrat, sans-serif',
+                    color: '#666',
+                  }),
+                  placeholder: (provided) => ({
+                    ...provided,
+                    color: '#999',
+                    fontFamily: 'Montserrat, sans-serif',
+                  }),
+                  singleValue: (provided) => ({
+                    ...provided,
+                    fontFamily: 'Montserrat, sans-serif',
+                    color: '#666',
+                  }),
+                  option: (provided, state) => ({
+                    ...provided,
+                    fontFamily: 'Montserrat, sans-serif',
+                    backgroundColor: state.isFocused ? '#F0D395' : '#fff',
+                    color: '#111',
+                  }),
+                  menu: (provided) => ({
+                    ...provided,
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                  }),
+                }}
+                formatOptionLabel={option => (
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
+                    <CountryFlag
+                      countryCode={option.value}
+                      svg
+                      style={{
+                        width: '1.5em',
+                        height: '1.5em',
+                        marginRight: 8,
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        boxShadow: '0 0 2px #ccc'
+                      }}
+                      aria-label={option.label}
+                    />
+                    <span>{option.label}</span>
+                  </div>
+                )}
+                isClearable
               />
 
               {/* Message Textarea */}
@@ -145,46 +244,37 @@ function Analysis() {
                 <button
                   type="submit"
                   className="bg-[#111] text-white px-6 py-3 rounded-lg font-['Montserrat',sans-serif] text-sm font-medium hover:bg-[#333] transition-colors"
+                  disabled={isSubmitting}
                 >
-                  SEND MESSAGE
+                  {isSubmitting ? 'Sending...' : 'SEND MESSAGE'}
                 </button>
               </div>
+              {success && (
+                <div className="text-green-700 text-center font-semibold mt-4">
+                  Message sent successfully!
+                </div>
+              )}
             </form>
 
             {/* File Upload Section */}
             <div className="mt-6">
               <div
-                className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
-                  dragActive 
-                    ? 'border-[#F0D395] bg-[#F0D395]/10' 
+                {...getRootProps()}
+                className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${
+                  isDragActive
+                    ? 'border-[#F0D395] bg-[#F0D395]/10'
                     : 'border-[#CCC] bg-[#F9F9F9]'
                 }`}
-                onDragEnter={handleDrag}
-                onDragLeave={handleDrag}
-                onDragOver={handleDrag}
-                onDrop={handleDrop}
               >
+                <input {...getInputProps()} />
                 <div className="flex flex-col items-center space-y-3">
                   <Upload className="w-12 h-12 text-[#666]" />
                   <p className="font-['Montserrat',sans-serif] text-[#666] text-lg">
-                    Drag & Drop here
+                    Drag & Drop image here, or click to browse
                   </p>
-                  <input
-                    type="file"
-                    id="fileInput"
-                    onChange={handleFileSelect}
-                    className="hidden"
-                    accept="image/*"
-                  />
-                  <label
-                    htmlFor="fileInput"
-                    className="cursor-pointer text-[#666] hover:text-[#333] transition-colors"
-                  >
-                    or click to browse
-                  </label>
+                  <span className="text-xs text-gray-500">(Only image files, max 2MB)</span>
                 </div>
               </div>
-              
               {/* File Name Display */}
               {uploadedFile && (
                 <div className="mt-3 flex items-center justify-between bg-[#F0F0F0] p-3 rounded-lg">

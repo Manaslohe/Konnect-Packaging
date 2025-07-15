@@ -1,3 +1,4 @@
+# Copilot Instructions for Konnect Packaging
 
 ## Project Overview
 - **Konnect Packaging** is a modern web application built with React (Vite) and Tailwind CSS, focused on presenting company information, products, and achievements in a visually engaging way.
